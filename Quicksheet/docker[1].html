@@ -1,0 +1,179 @@
+<pre>
+# One responsibility per container.
+
+
+
+# DOCKER HUB 
+
+	Docker Hub is a registry service on the cloud .
+	build upload/download images.
+
+# IMAGES
+	$ docker images  (list of Docker images on the system)
+	$ docker pull <image-name> (e.g jenkins) 
+
+	$ docker build --no-cache -t u12_core -f u12_core .	
+
+# CONTAINER
+
+	$ docker run -p 8080:8080 -p 50000:50000 jenkins 
+	$ docker top ContainerID
+	$ docker stop ContainerID
+	$ docker start ContainerID
+	$ docker rm ContainerID 
+	$ docker stats ContainerID 
+	$ docker pause ContainerID  
+	$ docker unpause ContainerID 
+	$ docker kill ContainerID
+
+# Daemon Logging	
+	$ docker logs ContainerID 
+	$  
+	 
+
+
+# access container in interactive mode
+  
+  $ docker exec -it container_id bash
+
+
+# DOCKER SECRET
+
+Read more about docker secret commands
+Use these links to read about specific commands, or continue to the example about using secrets with a service.
+
+	$ docker secret create
+	$ docker secret inspect
+	$ docker secret ls
+	$ docker secret rm
+	--secret flag for docker service create
+	--secret-add and --secret-rm flags for docker service update
+
+
+# DOCKERFILE
+
+	$ docker build 
+	$ docker build  -t ImageName:TagName dir
+		e.g sudo docker build –t myimage:0.1. 
+
+		-t − is to mention a tag to the image
+
+		ImageName − This is the name you want to give to your image.
+
+		TagName − This is the tag you want to give to your image.
+
+		Dir − The directory where the Docker File is present.
+
+
+# DOCKER COMPOSE
+	
+	$ docker-compose build 
+	$ docker-compose up 
+	$ docker-compose down 
+	$ docker-compose scale=5
+
+
+
+# docker-machine
+	$ docker-machine create
+	$ docker-machine create --driver virtualbox --help
+	$ docker-machine create --driver virtualbox <machine-name> (swarm-vm1)
+
+	$ docker-machine ip <machine-name>
+	$ docker-machine start <machine-name>
+	$ docker-machine stop <machine-name>
+
+	$ docker-machine ssh <machine-name>
+		e.g docker-machine stop manager1
+
+
+# SWARM 
+
+	docker swarm init --advertise-addr MANAGER_IP
+
+	# Joining as Manager/Worker Node
+
+	$ docker swarm join-token worker
+    $ docker swarm join-token manager
+   
+
+# Manage nodes in a swarm
+
+	$ docker node ls
+	$ docker node inspect self --pretty  (only for manager nodes)
+
+	$ docker node update --availability drain node-1  (only for manager update)
+	$ docker node update --label-add foo --label-add bar=baz node-1
+
+# Promote or demote a node (only manager nodes execute )
+	
+	$ docker node promote node-3 node-2
+	$ docker node demote node-3 node-2
+
+docker node promote and docker node demote are convenience commands for 
+$ docker node update --role manager  
+$ docker node update --role worker 
+respectively.
+
+# DOCKER SERVICE
+
+	$ docker service create --replicas 5 -p 80:80 --name web nginx
+	$ docker service create --mode global --name backend backend:latest
+	$ docker service ls --filter name=frontend
+
+	$ docker service ls
+	Output:
+	ID            NAME  REPLICAS  IMAGE  COMMAND
+	ctolq1t4h2o8  web   0/5       nginx
+
+	$ docker service scale frontend=50
+
+# Scale multiple services
+	$ docker service scale backend=3 frontend=5
+
+
+
+ The docker stack command accepts only pre-built images.
+
+ Docker Compose v2	 Docker compose v3
+ Start services
+ docker-compose up -d	
+ docker stack deploy --compose-file=docker-compose.yml  
+ Scale service
+ 	docker-compose scale =	
+ 	docker service scale =
+ Shutdown	
+ docker-compose down	
+ docker stack rm
+
+ Multi-host	No	Yes
+
+
+# Remove old and unused Docker images
+
+	 
+		$ docker system prune :- delete ALL dangling data (i.e. In order: containers stopped, volumes without containers and images with no containers).Even unused data, with -a option.
+		$ docker system prune -f
+		$ docker system prune -af
+
+
+		$ docker container prune
+		$ docker image prune
+		$ docker network prune
+		$ docker volume prune
+
+
+		$ docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
+
+
+# multi-stage builds
+
+	With multi-stage builds, you use multiple FROM statements in your Dockerfile. Each FROM instruction can use a different base, and each of them begins a new stage of the build. 
+
+# IMP LINKS
+https://blog.couchbase.com/deploy-docker-compose-services-swarm/
+https://www.edureka.co/blog/docker-networking/
+https://www.edureka.co/blog/docker-swarm-cluster-of-docker-engines-for-high-availability
+https://www.edureka.co/blog/docker-compose-containerizing-mean-stack-application/
+
+https://www.callicoder.com/docker-machine-swarm-stack-golang-example/

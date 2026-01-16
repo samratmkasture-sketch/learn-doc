@@ -1,0 +1,122 @@
+<pre>
+https://www.edureka.co/blog/reactjs-tutorial/
+
+#  ReactJS is a declarative, efficient, and flexible JavaScript library for building reusable UI components. 
+It is an open-source, component-based front end library which is responsible only for the view layer of the application.
+It was initially developed and maintained by Facebook and later used in its products like WhatsApp & Instagram.
+
+# Npm: Node Package Manager manages the different dependencies needed to run ReactJs applications. Npm is bundled together with node.js.
+# npx is a tool for running npm packages that: live inside of a local node_modules folder.
+
+NPM - Manages packages but doesn't make life easy executing any.
+NPX - A tool for executing Node packages.
+
+ <h3>Setup and Installation</h3>
+
+ * There are a few ways to set up React, and I'll show you two of them.
+<ol>
+<li>Static HTML File</li>
+<li>Create React App (Most popular for single page apps)</li>
+</ol>
+1.  Static HTML File 
+            <xmp>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+
+        <title>Hello React!</title>
+
+        <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+    </head>
+
+    <body background="brown">
+        <div id="root"></div>
+
+        <script type="text/babel">
+        class App extends React.Component {
+            render() {
+            return <h1>Hello world!</h1>
+            }
+        }
+
+        ReactDOM.render(<App />, document.getElementById('root'))
+        </script>
+    </body>
+    </html>
+    </xmp>
+    
+2. Create React App
+
+    Step 1: Download  & install NodeJS
+    Link: https://nodejs.org/en/download/
+
+    Step 2: Download the ‘create-react-app’ Tool from GitHub 
+
+    Link: https://github.com/facebookincubator/create-react-app
+
+    Step 3: Open cmd prompt and navigate to the project directory.
+    
+    ->  npm install -g create-react-app 
+    ->  cd my-app 
+    ->  create-react-app my-app 
+    OR
+    ->   npx create-react-app my-app 
+    Step 4:-> npm start
+    Open http://localhost:3000/, you will be greeted by this web page.
+
+    # Folder Structure
+    my-app
+    ├── README.md
+    ├── node_modules
+    ├── package.json
+    ├── .gitignore
+    ├── public
+    │   └── favicon.ico
+    │   └── index.html
+    │   └── manifest.json
+    └── src
+        └── App.css
+        └── App.js
+        └── App.test.js
+        └── index.css
+        └── index.js
+        └── logo.svg
+        └── registerServiceWorker.js
+
+
+
+JSX (JavaScript Extension) => Allows us to include ‘HTML’ in the same file along with ‘JavaScript’ (HTML+JS=JSX). Each component in React generates some HTML which is rendered by the DOM.
+
+ES6 (ES2015)=>  The sixth version of JavaScript is standardized by ECMA International in 2015. Hence the language is referred to as ECMAScript. ES6 is not completely supported by all modern browsers.
+
+ES5(ES2009) =>  This is the fifth JavaScript version and is widely accepted by all modern browsers, it is based on the 2009 ECMA specification standard. Tools are used to convert ES6 to ES5 during runtime.
+
+Webpack => A module bundler which generates a build file joining all the dependencies.
+
+Babel => This is the tool used to convert ES6 to ES5. This is done because not all web browsers can render React (ES6+JSX) directly.
+
+Feature : 
+
+Performance ->  "React" an instant reaction to change with minimum delay.
+Virtual DOM is implemented in React,is the underlying principle behind React’s superior performance.
+Size -> React – pick only what is needed. Webpack offers several plugins which further minimize (minify) the size during production, The React + Redux bundle minified constitutes around 200 kb whereas its rival Angular is almost four times bigger (Angular + RxJS bundle).
+Debugging -> React uses compile time debugging and detects errors at an early stage. 
+
+# Building Blocks:-
+    Components => 
+    This enables us to keep logic and views separate.
+    Components can be either stateful or stateless.
+    Props => React uses ‘props’ to pass attributes from ‘parent’ component to ‘child’ component. Props are the argument passed to the function or component which is ultimately processed by React.
+    State =>  create components that are dynamic and interactive. State is private, it must not be manipulated from the outside. 
+    State Lifecycle => “mounting” , “unmounting”  of component
+    Event handling 
+    Keys =>  Keys are the means by which React identifies components uniquely. 
+
+
+# Handling Events
+
+</pre>
+

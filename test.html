@@ -1,0 +1,37 @@
+function stringCompare(a, b) {
+//   let [a, b] = getRowValuesByColumnID(rowA, rowB, columnId)
+
+  a = a.split('') ///.filter()
+  b = b.split('') //.filter()
+
+  while (a.length && b.length) {
+    let aa = a.shift()
+    let bb = b.shift()
+
+    let alower = aa.toLowerCase()
+    let blower = bb.toLowerCase()
+
+    // Case insensitive comparison until characters match
+    if (alower > blower) {
+      return 1
+    }
+    if (blower > alower) {
+      return -1
+    }
+    // If lowercase characters are identical
+    if (aa > bb) {
+      return 1
+    }
+    if (bb > aa) {
+      return -1
+    }
+    continue
+  }
+
+  return a.length - b.length
+}
+
+let MainArray = ['24c2b868-8f4d-4113-a537-f8e7f57bb88b', 'a27e910cf-ba4c-412c-9faf-e7db5f058639', 'b66fc9e12-1c0a-447c-81c8-2f3a4bf0608c', 'f2afa8a9-6666-44d5-b360-8e7b8fb27c2e', '6d670044-9d3e-4c48-ba2b-5ec3e0c6be0f'];
+
+MainArray.sort(stringCompare)
+console.log(MainArray)
