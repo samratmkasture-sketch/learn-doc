@@ -1,0 +1,276 @@
+
+Username
+samratmkasture
+Password
+XtFLESNILqCXKw36
+Hide
+
+
+
+
+
+
+MongoDB:
+---------------
+https://codewithpawan.medium.com/mongodb-interview-questions-from-beginners-to-advance-part-1-8c4b8c02f63e
+ESR Guideance 
+
+Projection
+
+pipline
+TTL 
+Capped Collection :- Capped collections are fixed-size collections that support high-throughput operations that insert and retrieve documents based on insertion order.
+Capped collection's document contains the _id field, which is by default index, and deletion of the document will happen based on the oldest _id. MongoDB automatically increases the capped collection's provided size to make it an integer multiple of 256.
+
+Explain Indexes in MongoDB?
+Indexes are data structures that support the efficient execution of queries in MongoDB.They contain copies of parts of the data in documents to make queries more efficient. Without indexes, MongoDB must scan every document in a collection to find the documents that match each query.
+
+db.<collection>.deleteMany({})
+
+
+What is sharding in MongoDB? 
+   - Sharding is a method for distributing data across multiple machines.
+Explain the significance of the covered query?
+   - A covered query is a query that can be satisfied entirely using an index and does not have to examine any documents. 
+What is a replica set?
+   - A replica set in MongoDB is a group of mongod processes that maintain the same data set. Replica sets provide redundancy and high availability, and are the basis for all production deployments.
+Explain the primary and secondary replica set?
+MongoDB aggregation framework: 
+   - Aggregation is a way of processing a large number of documents in a collection by means of passing them through different stages. The stages make up what is known as a pipeline. The stages in a pipeline can filter, sort, group, reshape and modify documents that pass through the pipeline.
+   
+Which are the two storage engines used by MongoDB?
+      MongoDB uses MMAPv1 and WiredTiger.
+utilities for backup and restore in MongoDB?
+1. mongoimport, 2. mongoexport, 3. mongodump, 4. mongorestore
+
+Projection
+**
+Methods to query collection => https://www.mongodb.com/docs/manual/reference/method/js-collection/
+db.collection.aggregate()
+db.collection.bulkWrite()
+db.collection.count()
+db.collection.countDocuments()
+db.collection.createIndex(keys, options, commitQuorum)
+db.collection.createIndexes( [ keyPatterns ], options, commitQuorum )
+db.collection.dataSize()
+db.collection.deleteOne()
+db.collection.deleteMany()
+db.collection.distinct()
+db.collection.drop()
+db.collection.dropIndex()
+db.collection.ensureIndex(keys, options) Removed in 5.0 has been replaced by db.collection.createIndex().
+db.collection.explain()
+db.collection.find(query, projection, options)
+db.collection.findAndModify(document)
+db.collection.findAndModify({
+    query: <document>,
+    sort: <document>,
+    remove: <boolean>,
+    update: <document or aggregation pipeline>, // Changed in MongoDB 4.2
+    new: <boolean>,
+    fields: <document>,
+    upsert: <boolean>,
+    bypassDocumentValidation: <boolean>,
+    writeConcern: <document>,
+    maxTimeMS: <integer>,
+    collation: <document>,
+    arrayFilters: [ <filterdocument1>, ... ],
+    let: <document> // Added in MongoDB 5.0
+});
+db.collection.findOne(query, projection, options)
+db.collection.findOneAndDelete( filter, options )
+db.collection.findOneAndReplace( filter, replacement, options )
+db.collection.findOneAndUpdate( filter, update, options )
+db.collection.getIndexes()
+db.collection.getShardDistribution()
+db.collection.insert(
+   <document or array of documents>,
+   {
+     writeConcern: <document>,
+     ordered: <boolean>
+   }
+)
+db.collection.insertOne(
+   <document>,
+   {
+      writeConcern: <document>
+   }
+)
+db.collection.insertMany(
+   [ <document 1> , <document 2>, ... ],
+   {
+      writeConcern: <document>,
+      ordered: <boolean>
+   }
+)
+db.collection.isCapped()
+db.collection.latencyStats(options)
+db.collection.mapReduce(map,reduce, { <options> })
+db.collection.mapReduce(
+                         <map>,
+                         <reduce>,
+                         {
+                           out: <collection>,
+                           query: <document>,
+                           sort: <document>,
+                           limit: <number>,
+                           finalize: <function>,
+                           scope: <document>,
+                           jsMode: <boolean>,
+                           verbose: <boolean>,
+                           bypassDocumentValidation: <boolean>
+                         }
+                       )
+
+db.collection.remove(
+   <query>,
+   {
+     justOne: <boolean>,
+     writeConcern: <document>,
+     collation: <document>,
+     let: <document> // Added in MongoDB 5.0
+   }
+)
+db.collection.renameCollection(target, dropTarget)
+db.collection.replaceOne(
+   <filter>,
+   <replacement>,
+   {
+     upsert: <boolean>,
+     writeConcern: <document>,
+     collation: <document>,
+     hint: <document|string>                   // Available starting in 4.2.1
+   }
+)
+db.collection.stats({
+   scale: <num>,                   // Optional
+   indexDetails: <boolean>,        // Optional
+   indexDetailsKey: <document>,    // Optional
+   indexDetailsName: <string>.     // Optional
+})
+db.collection.updateOne(filter, update, options)
+db.collection.updateMany(filter, update, options)
+
+**
+MongoDB - Data Modelling ->
+1. Embedded Data Model 2. Normalized Data Model
+
+**
+What is a Covered Query?
+****
+Analyzing queries is a very important aspect of measuring how effective the database and indexing design is. We will learn about the frequently used $explain and $hint queries.
+******
+
+=>Capped Collection 
+***
+=>Explain Indexes in MongoDB?
+=> Index Attributes : 
+
+TTL , unique:true, sparse
+
+=> MongoDB - Indexing Limitations
+
+****
+truncate collection :
+db.<collection>.deleteMany({})
+****
+
+What is sharding in MongoDB?
+What is a replica set?
+Explain the primary and secondary replica set?
+MongoDB aggregation framework: 
+Which are the two storage engines used by MongoDB?
+      MongoDB uses MMAPv1 and WiredTiger.
+utilities for backup and restore in MongoDB?
+1. mongoimport, 2. mongoexport, 3. mongodump, 4. mongorestore
+
+
+SQL injection
+mongo/nosql injection
+OWASP
+npm i express-mongo-sanitize
+1. https://owasp.org/www-pdf-archive/GOD16-NOSQL.pdf
+2. https://www.imperva.com/learn/application-security/nosql-injection/
+
+
+**************************************************
+https://www.linkedin.com/pulse/mongodb-model-relationships-between-documents-hansraj-singh-tomar
+
+In MongoDB, there is no direct concept of foreign keys as you would find in traditional relational databases like MySQL or PostgreSQL. MongoDB is a NoSQL database, and it follows a document-oriented data model, which means it doesn't have a strict schema or support for relationships like foreign keys.
+
+However, you can still model relationships between documents in MongoDB using a technique called "manual referencing" or "embedding."
+
+1. Manual Referencing: With manual referencing, you create a separate collection for related documents and store references to those documents in the main document using their _id field. This is similar to using foreign keys in traditional databases.
+
+Let's say you have two collections, users and posts, and you want to establish a one-to-many relationship where each post is associated with a user:
+
+// User schem
+const userSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+});
+
+// Post schema
+const postSchema = new mongoose.Schema({
+  title: String,
+  content: String,
+  author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' } // Reference to the User collection
+});
+
+const User = mongoose.model('User', userSchema);
+const Post = mongoose.model('Post', postSchema);a        
+In this example, the author field in the Post schema is set as a reference to the User collection. When you create a new post, you can set the author field to the _id of the user who created the post.
+
+// Create a new use
+const newUser = new User({
+  name: 'John Doe',
+  email: 'john@example.com',
+});
+await newUser.save();
+
+
+// Create a new post and link it to the user using manual referencing
+const newPost = new Post({
+  title: 'My First Post',
+  content: 'This is my first blog post.',
+  author: newUser._id, // Set the author field with the user's _id
+});
+await newPost.save();        
+2. Embedding: Alternatively, you can embed related data directly within the document. In the case of one-to-many relationships, you can embed an array of subdocuments inside the main document.
+
+// User schema 
+const userSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }] 
+});
+
+
+// Post schema
+const postSchema = new mongoose.Schema({
+  title: String,
+  content: String,
+});
+
+const User = mongoose.model('User', userSchema);
+const Post = mongoose.model('Post', postSchema);        
+In this approach, each user document will have an array of post references, and each post document will have its data along with an author field containing the user's _id.
+
+// Create a new use
+const newUser = new User({
+  name: 'John Doe',
+  email: 'john@example.com',
+});
+await newUser.save();
+
+// Create a new post and embed it within the user document
+const newPost = new Post({
+  title: 'My First Post',
+  content: 'This is my first blog post.',
+});
+await newPost.save();
+
+// Add the post's _id to the user's posts array
+newUser.posts.push(newPost._id);
+await newUser.save();        
+Both manual referencing and embedding have their pros and cons, and the choice depends on your specific use case and query patterns. Manual referencing allows for more flexibility when querying and managing relationships while embedding can be more efficient for certain types of queries but may lead to document size and update complexity considerations.

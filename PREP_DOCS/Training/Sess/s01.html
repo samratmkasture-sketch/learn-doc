@@ -1,0 +1,674 @@
+   <pre>
+Nodejs vs Other 
+-----------------------
+https://www.toptal.com/back-end/server-side-io-performance-node-php-java-go
+https://dev.to/aaricevans/nodejs-vs-python-java-and-php-io-speed-comparison-47c6
+https://dev.to/aaricevans/nodejs-vs-python-java-and-php-io-speed-comparison-47c6
+-----------------------------
+
+ using node.js as the backend
+
+
+what is nodejs & why do we need it?
+What is the advantages of using nodejs over other technologies?
+Where should we use node js and where not ?
+what are the features of node js ?
+
+What is Node.js?
+	Web, JavaScript, and NodeJS
+	Advantages and Use Cases
+
+Setting Up the Development Environment
+Installing Node.js and npm (Node Package Manager).
+Verifying the installation
+Nodejs RELP or Node Shell 
+
+Nodejs First Program Example
+	Console App
+	Web App
+
+Node.js runtime environment
+	V8 Engine
+	System API (Web API)
+
+Q&A 
+
+
+[/afternoon/evening],
+
+
+ I am a MERN stack developer,
+
+	https://www.youtube.com/watch?v=LAUi8pPlcUM&list=PLC3y8-rFHvwh8shCMHFA5kWxD9PaPwxaY
+Session 1 : 
+**************************************************************************
+
+ 
+--------------------------------------------------------------------------------------
+
+I guess we are good to start
+
+Good morning everyone!
+
+Welcome to the Node.js Training program. My name is Samrat Kasture and I'll'be your guide to this node js Training.
+
+
+By the end of this training 
+- We will Learn and understand different nodejs concepts 
+- we are going to create a web application, Implement web apis, and to database integration with mongodb
+
+so this is our 1st session 
+- in this sesssion we will lern some background of nodejs
+		relation of javascript nd nodejs
+- nodejs runtime environment
+- set up of  nodejs development environment 
+- going to use and understand about node REPL
+- npm node package manager
+ 
+
+Javascript is must for learning nodejs 
+https://nodejs.org/en/learn/getting-started/how-much-javascript-do-you-need-to-know-to-use-nodejs
+
+In simple language Nodejs is runtime environment which allows as to run javascript out of the browser.
+for long time javascript used as clientside scripting laguage but advent of nodejs opened the doors to use javascript as a serverside language.
+
+A basic understanding of JavaScript is necessary to learn Node.js, as it is built on top of JavaScript and uses the same syntax.
+
+Let's understand some background of   JavaScript and node.
+
+Quick History :
+Tim Berners-Lee, a British scientist, invented the World Wide Web (WWW) in 1989 while he was working at Netscape Communications Corporation. It is opened to the public in 1991. 
+World Wide Web, Web 1.0 was “read-only.”
+
+1995 Brenden Eich developed Javascript 1995:
+JavaScript primarily used for web and Initially created to bring to bring interactivity to websites. 
+
+
+Netscape vs. Microsoft: After its introduction, JavaScript quickly gained popularity among web developers. 
+To counter it  Microsoft introduced its own version of JavaScript called JScript in Internet Explorer. 
+
+This led to inconsistencies in JavaScript implementations across different browsers, making it challenging for developers to write cross-browser compatible code. 
+Offen websites working in one browser and failing in other due to this inconsistencies.
+
+Standardization (ECMAScript): To address the issues of browser incompatibility and to ensure the long-term viability of JavaScript, Netscape submitted JavaScript to the ECMA International (European Computer Manufacturers Association ) for standardization.
+
+The standardized specification was named ECMAScript, and the first edition was published in 1997. 
+Since then, ECMAScript has evolved through several editions, with each edition introducing new features and improvements to the language.
+
+lets look into the ECMAScript_version_history
+https://en.wikipedia.org/wiki/ECMAScript_version_history
+When we say ECMAScript we are talking about javaScript only
+
+Latest version of ECMAScript is es14 introduced in 2023
+
+
+when we say ECMAScript we are talking about Javascript only.
+Modern JavaScript (ES6+): After year 2015, JavaScript has undergone significant enhancements with the introduction of ECMAScript 6 (ES6) and subsequent editions. ES6 introduced new language features such as arrow functions, classes, template literals, destructuring assignments, and promises, among others.
+ Subsequent editions of ECMAScript have continued to expand the capabilities of JavaScript, making it a more powerful and expressive language for building modern web applications. 
+
+latest version es14
+
+How much JavaScript do you need to know to use Node.js?
+https://nodejs.org/en/learn/getting-started/how-much-javascript-do-you-need-to-know-to-use-nodejs
+Understanding of the below topics will help us in developing our nodejs applications.
+
+In Node.js the new ECMAScript standards can be used without problems
+
+
+JavaScript VS Node.js 
+
+JavaScript is primarily used for client-side operations and runs in a web browser. 
+Node.js runs on a server and is used for server-side tasks.
+
+
+JavaScript operates in a single-threaded environment and mainly focuses on user interactions and DOM manipulation.
+Nodejs Event loop is single treaded but Node.js uses an event-driven, non-blocking I/O model, which makes it ideal for handling multiple concurrent requests and building scalable applications.
+
+JavaScript is capable to add HTML and play with the DOM. 
+There is no DOM in Nodejs
+
+JavaScript can run in any browser engine as like JS core in safari and Spider monkey in Firefox, V8 in Chrome.   
+Google Chromes V8 is the JavaScript engine inside of node.js that parses and runs JavaScript. 
+
+File manipulation is not possible on client  machine
+File Manipulation : Node.js can create, open, read, write, delete, and close files on the server
+ 
+=> Node.js runtime environment
+
+
+Before 2009 it was not possible to execute a JavaScript program outside of the browser but in 2009 a programmer named as Ryan Dahl  came out with an idea  to execute JavaScript outside of the browser and to make this possible he took Google's V8 engine which is the fastest JavaScript engine out there and embedded it inside a c ++ program and called it as node.js. Similar to a browser node.js is a runtime environment for executing  JavaScript code
+➤ There are two main JavaScript run time environments: the Browser and Node.js runtime environments. 
+	The browser run time environment executes JavaScript code on a web page and provides access to browser-specific features, such as the window object, the document object model (DOM), and web APIs. For example, you can use window.alert() to display a pop-up message in the browser. 
+	Node.js is a run time environment that executes JavaScript code outside of the browser and provides access to server-side features, such as the file system, the network, and the operating system.
+
+➤ Node.js is referred to as a runtime environment since it contains everything you need to run a JavaScript program. This V8 engine is at the heart of Node.js,  with SystemAPI  and c++ addons. 
+➤ JavaScript is internally compiled by V8 with just-in-time (JIT) compilation to speed up the execution.
+V8 is written in C++, and it's continuously improved. It is portable and runs on Mac, Windows, Linux and several other systems.
+
+
+=> Browser VS Node.js 
+  Both the browser and Node.js use JavaScript as their programming language.
+	Javascript is not same when running on browser and nodejs. there are key differences
+
+	Some features which are available in browser anre not available in node and vice versa
+
+	- we don't have the document window and all the other objects that are provided by the browser 
+		similarly in the browser we don't have all the nice apis that node.js provides through its modules for example the file system access functionality and this is the primary difference 
+	-	Another note worthy difference is that with node.js you control the environment we know which version of node.js the application runs on and that means we can write all the modern es6+ JavaScript features that are node.js version supports. On the browser we are at the mercy of what the user chooses if they're using 
+
+	=> Environment: 
+		Browser: JavaScript in the browser runs in a client-side environment, typically within a web browser like Chrome, Firefox, or Safari. It interacts with the Document Object Model (DOM) to manipulate web pages dynamically and respond to user actions or other web platform apis like cookies .
+		Node.js: JavaScript in Node.js runs on the server-side, outside of the browser environment. It provides access to various built-in modules for file system operations, networking, and other server-side functionalities.
+	=> File System Access:
+		Browser: JavaScript in the browser has limited access to the file system due to security restrictions. 
+		Node.js: JavaScript in Node.js has full access to the file system, allowing it to read, write, and manipulate files on the server's file system.
+	=> Environment Variables:
+		Browser: JavaScript in the browser does not have direct access to environment variables set on the user's system.
+		Node.js: JavaScript in Node.js can access environment variables using the process.env object, which provides information about the environment in which Node.js is running.
+	 
+
+
+
+	
+What is Nodejs?
+
+ 
+	As an asynchronous event-driven JavaScript runtime, Node.js is designed to build scalable network applications. In the following "hello world" example, many connections can be handled concurrently. Upon each connection, the callback is fired, but if there is no work to be done, Node.js will sleep.
+
+ 
+	Speed: Node.js runs on the V8 engine developed by Google that compiles JavaScript directly into machine code making it faster than most other languages. This allows Node.js to be very performant.
+
+	Node.js app runs in a single process, without creating a new thread for every request. Node.js provides a set of asynchronous I/O primitives in its standard library that prevent JavaScript code from blocking and generally, libraries in Node.js are written using non-blocking pattern .
+
+	Nodejs is Heighly scalable 
+	Node.js performs an I/O operation in non-blocking manner. This allows Node.js to handle thousands of concurrent connections with a single server without introducing the burden of managing thread concurrency.
+
+	Current Version : 
+	current version of nodejs is 21.7.1 and LTS version is 20.11.1
+	LTS is more stable version and we can current version is beta version
+	 
+	LTS stands for long term support version and it is recomended to use in production.
+ 
+	nodejs follows even odd pattern for versioning	LTS is always even no and current beta version is odd no.
+
+Project Governance : 
+	Nodejs is opensource and maintained by the Collaborators who are added by the Technical Steering Committee (TSC) on an ongoing basis.
+
+	The TSC is responsible for governance the Node.js Core project and several projects adjacent to Node.js Core.
+	TSC : works with openjs Foundation which is home of a wide range of JavaScript projects including Appium, Electron, jQuery, Node.js, webpack, and many more. 
+
+Why to use Nodejs ?
+What can you build using nodejs
+Advantages and Use Cases
+
+
+It is a popular tool for almost any kind of project! whether it is console app, web app 	real time application, desktop application variety of applications can be created with nodejs. Popular implementation of nodejs is with 	web apps and realtime application	where we need to handle large no of i/o .
+
+Netflix Uber Paypal are some example of apps using nodejs
+
+now there is also some type of apps that we should not build with node.js the apps which need very heavy server-side processing like heavy image manipulation or video conversion or file compression or anything like that we should not build such type of apps with node.js 
+ 
+--------------------------------------------------------------------------------------
+Section 1 - end 
+	In this section we learned about
+	- some background of javascript and nodejs 
+	- ECMAScript & how much javascript
+	- What is Nodejs?
+	- Why to use nodejs (Advantages)
+	- Use cases / Where yo use nodejs
+
+--------------------------------------------------------------------------------------
+Section 2 : 
+-----------
+=> Setting Up the Development Environment
+	Download and Install
+	https://nodejs.org/en/download
+Installing Node.js and npm
+Windows :
+		Step 1: Download Node.js Installer (https://nodejs.org/en/download)
+
+		Step 2: Install Node.js and NPM. Launch the installer by double-clicking the downloaded file.
+
+		Step 3:  Follow installation step and click the Install button to start the installation.
+
+		Verifying the installation: Run the following command in a command prompt or PowerShell :
+		node –v , node --version
+Using Ubuntu : 
+	curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - &&\
+	sudo apt-get install -y nodejs
+
+	Verifying the installation: Run the following command in a command prompt or PowerShell ::
+	node –v , node --version
+--watch : This feature was only introduced on v18.11 
+
+commands : 
+https://blog.risingstack.com/mastering-the-node-js-cli-command-line-options/
+	--version or -v
+	man node : access manual page from the terminal using:
+	--eval or -e : Using the --eval option, you can run JavaScript code right from your terminal. 
+			node -e 'console.log(3 + 2)'
+	--print or -p : The --print option works the same way as the --eval, however it prints the result of the expression
+	--check or -c : The --check option instructs Node.js to check the syntax of the provided file, without actually executing it.
+	node --inspect-brk index.js
+	node --env-file=.dev.env index.js
+		process.env.PORT
+
+		Using node --inspect will activate the inspector on the provided host and port. If they are not provided, the default is 127.0.0.1:9229. The debugging tools attached to Node.js instances communicate via a tcp port using the Chrome Debugging Protocol.
+
+--------------------------------------------------------------------------------
+https://medium.com/@JavaScript-World/node-js-repl-from-basics-to-advanced-4e1963989248#:~:text=Heinzer%20on%20Unsplash-,Node.,%2C%20prototyping%2C%20and%20learning%20JavaScript.
+=> Nodejs RELP or Node Shell (Commandline interface) https://nodejs.org/api/repl.html
+ Node.js REPL (Read-Eval-Print Loop) is an interactive shell that allows you to run JavaScript code directly in a Node.js environment. This powerful tool is used for debugging, prototyping, and learning JavaScript.
+
+ .help
+
+1. Starting the Node.js REPL
+To launch the Node.js REPL, open your terminal or command prompt and type node followed by the Enter key. You should now see a > prompt, indicating that you're in the REPL.
+2. Basic Usage : Type JavaScript code directly into the REPL, and it will execute the code and print the result.
+		> const x = 5;
+		undefined
+		> const y = 7;
+		undefined
+		> console.log(x + y);
+		12
+3. Using the Underscore Variable
+The result of the last executed expression is stored in the _ (underscore) variable. You can use this variable in subsequent expressions.
+4. Loading External Modules
+You can also load external modules in the REPL using require().
+
+		> const fs = require('fs');
+		undefined
+5. Saving and Loading REPL Sessions
+To save your current REPL session to a file, use the .save command followed by the file path.
+
+--------------------------------------------------------------------------------------------------
+=> Introduction to NPM (Nodejs Package Manager): ( www.npmjs.com )
+------------------------------------
+A module is any file or directory in the node_modules directory that can be loaded by the Node.js require() function. To be loaded by the Node.js require() function, a module must be one of the following:
+
+A folder with a package.json file containing a "main" field.
+A JavaScript file.
+Note: Since modules are not required to have a package.json file, not all modules are packages. Only modules that have a package.json file are also packages.
+----------------------------------------
+A package is functionality contain a file or directory that is described by a package.json file. A package must contain a package.json and meta data about pacakge. 
+
+npm is the world's largest software registry. It is database of packages	
+  
+www.npmjs.com hosts thousands of free packages to download and use.
+ Open source developers use npm to share and borrow packages.
+
+	PIP for python, composer for php, maen for java
+	
+
+	NPM – or "Node Package Manager" – is the default package manager for JavaScript's runtime Node.js. 
+	The NPM program is installed on your computer when you install Node.js
+
+	NPM consists of two main parts:
+
+	- a CLI (command-line interface) tool for publishing and downloading packages, and
+	- an online repository that hosts JavaScript packages  npmjs.com
+	
+	NPM cli is a Command line utility to install Node.js packages, perform version management and dependency management of Node.js packages.
+	 
+ 	
+	 - `npm --version`: current. 
+
+	 - `npm init`: Initializes a new Node.js project, creating a `package.json` file. 
+
+	- `npm install`: Installs dependencies listed in the `package.json` file. 
+
+	- `npm install package-name`: Installs a specific package as a project dependency. 
+
+	- `npm install -g package-name`: Installs a package globally, making it available in the command-line interface. 
+
+	- `npm update`: update command present in npm to update all packages to their latest versions:
+
+
+local package 
+global package
+
+npm init --yes
+npm help-search update
+
+npm install 
+npm update 
+npm list
+npm list --global true
+npm prune
+npm uninstall <pkg>
+npm uninstall <pkg>
+
+-> 	package.json : manifest file for you application. Its package.json job to describe the project.
+	with the help of npm we can install dependencies to our project and it is reflected in dependencies section of package.json file.
+
+	package-lock.json : package-lock.json is automatically generated for any operations where npm modifies either 
+  the node_modules tree, or package.json. It contains detailed information of user project, while package.json shows abstrct info.
+
+	https://docs.npmjs.com/cli/v10/configuring-npm/package-lock-json
+
+	install with flag : -g , -D,  --save-dev
+
+	package.json will be generated when npm init is run to initialise a JavaScript/Node.js project, with these basic metadata provided by developers:
+
+	name: the name of your JavaScript library/project
+	version: the version of your project. 
+	description: the project's description
+	license: the project's license
+
+
+-> npm pkg versioning (https://semver.org/)
+	^version “Compatible with version”, will update you to all future minor/patch versions, without incrementing the major version. ^1.2.3 will use releases from 1.2.3 to <2.0.0.
+
+	~version “Approximately equivalent to version”, will update you to all future patch versions, without incrementing the minor version. ~1.2.3 will use releases from 1.2.3 to <1.3.0.
+  
+-> Shorthands notations in npm 
+https://docs.npmjs.com/cli/v10/using-npm/config#shorthands-and-other-cli-niceties
+-----------------------------
+Installing a package:
+Regular: npm install pkg, Shorthand: npm i pkg.
+
+Installing a package globally:
+Regular: npm i --global pkg, Shorthand: npm i -g pkg.
+
+Installing a package and save it as a dependency:
+Regular: npm i --save pkg, Shorthand: npm i -S pkg.
+
+Installing a package and save it as a devDependency:
+Regular: npm i --save-dev pkg, Shorthand: npm i -D pkg.
+
+ 
+Regular: npm omot --yes,  Shorthand: npm init -y 
+Regular: npm test. Shorthand:npm t
+
+Regular: npm list --depth 0,    Shorthand : npm ls --depth 0.
+-----------------------------
+ 
+ 
+
+-> npm scripts:
+https://docs.npmjs.com/cli/v6/using-npm/scripts
+Usually in every node project you with in package.json file there will be a script section to run project.
+start is common commant to start yor app. 
+	  package.json  supports a scripts property that can be defined to run command-line tools/script that are installed in the project's local context.
+	The scripts field holds an object where you can specify various commands and scripts that you want to expose.
+	{
+	  "scripts": {
+	    "start": "node ./index.js",
+	    "test": "jest",
+	    "dev": "nodemon ./index.js"
+	  }
+	}
+
+
+https://docs.npmjs.com/cli/v6/commands
+npm help
+npm-ci : Install a project with a clean slate, Make sure you have a package-lock and an up-to-date install:
+npm-audit -  Run a security audit, Scan your project for vulnerabilities and automatically install any compatible updates to vulnerable dependencies:
+npm docs morgan
+
+
+ 
+Commands and special keys
+*************************************************************
+=> Creating Node Application:
+	Nodejs First Program Example
+	Node.js runtime environment
+
+=> Nodejs Hello World Example
+Creating Web-based Node Application:
+A web-based Node application consists of the following three important components:
+Import required module
+Create server
+Read Request and return response
+
+
+executing files default looks for .js and then .json
+
+
+const http = require('node:http');
+const hostname = '127.0.0.1';
+const port = 3000;
+const server = http.createServer((req, res) => { 
+                res.statusCode = 200; 
+               res.setHeader('Content-Type', 'text/plain'); 
+               res.end('Hello World\n');
+});server.listen(port, hostname, () => { console.log(`Server running at http://${hostname}:${port}/`);});
+
+ 
+ 
+To make HTTP requests in Node.js, there is a built-in module HTTP in Node.js to transfer data over the HTTP. To use the HTTP server in the node, we need to require the HTTP module. The HTTP module creates an HTTP server that listens to server ports and gives a response back to the client.
+
+
+Read the Query String
+The function passed into the http.createServer() has a req argument that represents the request from the client, as an object (http.IncomingMessage object).
+
+This object has a property called "url" which holds the part of the url that comes after the domain name:
+
+
+There are built-in modules to easily split the query string into readable parts, such as the URL module.
+
+The Built-in URL Module
+The URL module splits up a web address into readable parts.
+
+To include the URL module, use the require() method:
+
+var url = require('url');
+Parse an address with the url.parse() method, and it will return a URL object with each part of the address as properties:
+
+ExampleGet your own Node.js Server
+Split a web address into readable parts:
+
+var url = require('url');
+var adr = 'http://localhost:8080/default.htm?year=2017&month=february';
+var q = url.parse(adr, true);
+
+console.log(q.host); //returns 'localhost:8080'
+console.log(q.pathname); //returns '/default.htm'
+console.log(q.search); //returns '?year=2017&month=february'
+
+var qdata = q.query; //returns an object: { year: 2017, month: 'february' }
+console.log(qdata.month); //returns 'february'
+
+
+http.METHODS
+http.STATUS_CODES
+http.request(options[, callback])
+http.request(url[, options][, callback])
+
+response.statusCode
+response.statusMessage
+response.req
+response.sendDate
+
+*********************************************
+
+PROGRAMS : 
+
+Process : 
+-------------------------------------------------
+const { stdin, stdout } = require("node:process");
+
+const add = (inArr) => {
+  let total = 0;
+  inArr.forEach((val) => {
+    if (val) {
+      total += parseInt(val);
+    }
+  });
+  return total;
+};
+const mul = (inArr) => {
+  let total = 1;
+  inArr.forEach((val) => {
+    if (val) {
+      total *= parseInt(val);
+    }
+  });
+  return total;
+};
+
+const cmdArg = process.argv;
+const operator = cmdArg[2];
+const operand = cmdArg.slice(3);
+console.log(operator);
+
+if (operator == "+") {
+  console.log(`Result : `, add(operand));
+} else {
+  console.log(`Result : `, mul(operand));
+}
+
+---------------------------------------------------------
+Readline : 
+const { stdin: input, stdout: output } = require("node:process");
+const readline = require("node:readline");
+
+const rl = readline.createInterface({ input, output });
+
+const add = (inArr) => {
+  let total = 0;
+  inArr.forEach((val) => {
+    if (val) {
+      total += parseInt(val);
+    }
+  });
+  return total;
+};
+const mul = (inArr) => {
+  return inArr.reduce((acc, current) => {
+    return current ? (acc *= parseInt(current)) : acc;
+  }, 1);
+};
+
+function math() {
+  rl.question(
+    `
+    Please provide operator and input
+    e.g + n1 n2
+    `,
+    (resData) => {
+      let inData = resData.split(" ");
+      let operator = inData[0];
+      let operand = inData.slice(1);
+      if (operator == "+") {
+        console.log("Result: ", add(operand));
+      } else {
+        console.log("Result: ", mul(operand));
+      }
+      math();
+    }
+  );
+}
+math();
+
+-----------------------------------------------------
+
+Webserver : ->
+ const http = require("http");
+const PORT = 3000;
+
+const url = require("url");
+let users = [];
+const server = http.createServer((req, res) => {
+  if (req.url == "/favicon.ico") {
+    res.end();
+  }
+  const urlParts = url.parse(req.url, true);
+  const { query, pathname } = urlParts;
+
+  if (pathname == "/" && req.method == "GET") {
+    res.writeHead(200, {
+      "Content-Type": "text/plain",
+    });
+    res.end("Home Page");
+  } else if (pathname == "/" && req.method == "POST") {
+    let requestBody = "";
+    req.on("data", (chunk) => {
+      requestBody += chunk;
+    });
+    req.on("end", () => {
+      res.writeHead(200, {
+        "Content-Type": "application/json",
+      });
+      console.log(requestBody);
+      users.push(JSON.parse(requestBody));
+      res.end(JSON.stringify(users));
+    });
+  } else if (pathname == "/" && req.method == "DELETE") {
+    let requestBody = "";
+    req.on("data", (chunk) => {
+      requestBody += chunk;
+    });
+    req.on("end", () => {
+      res.writeHead(200, {
+        "Content-Type": "application/json",
+      });
+      let { name } = requestBody;
+      users = users.filter((obj) => obj.name != name);
+
+      res.end(JSON.stringify(users));
+    });
+  } else if (pathname == "/about" && req.method == "GET") {
+    res.writeHead(200, {
+      "Content-Type": "text/plain",
+    });
+    res.end("About Page");
+  }
+  //   res.writeHead(200, {
+  //     "Content-Type": "text/plain",
+  //     // "Content-Type":"application/json"
+  //   });
+  //   res.end("Hello World");
+});
+
+server.listen(PORT, () => {
+  console.log(`Server starts listening on port ${PORT}`);
+});
+
+ 
+ 
+ 
+ -------------------------------------
+ 
+The choice between CommonJS and ESM depends on your project’s specific requirements and environment:
+
+If you primarily develop server-side applications with Node.js or work in a mixed environment, CommonJS may be the right choice.
+For modern web applications, especially those that prioritize performance, tree shaking, and non-blocking behavior, ESM is generally preferred.
+
+Here are some key advantages of ESM:
+1. Asynchronous Loading
+2. Tree Shaking
+3. Standardization : ESM is part of the ECMAScript standard, ensuring that it is a standardized and future-proof choice for JavaScript development.
+4. Dynamic Imports : ESM provides native support for dynamic imports, which can be used to load modules on-demand, improving the initial loading time of web applications.
+ 
+
+What is CommonJS and ESM format?
+
+CommonJS (CJS) and ECMAScript Modules (ESM) are two different module systems in JavaScript used for organizing and structuring code. They have different syntax and behaviors, and they are often used in different contexts. Let's explore each format:
+CommonJS (CJS):
+1. Synchronous: CommonJS modules are loaded synchronously. When you require a module, it is loaded and executed immediately.
+2. Server-Side: CommonJS modules were originally designed for server-side JavaScript (e.g., Node.js). They are commonly used in server-side applications and back-end development.
+3. require and module.exports: CommonJS modules use require to import modules and module.exports to export values from a module. For example:
+ // Importing a module
+   const someModule = require('./someModule');
+
+   // Exporting a value
+   module.exports = someValue;
+4. No Support for Tree Shaking: CommonJS modules don't support tree shaking, which means all exports are bundled, even if they are not used in the consuming code. This can result in larger bundle sizes in front-end applications.
+5. Dynamic Imports: CommonJS does not support dynamic imports. You cannot conditionally import modules based on runtime conditions.
+ECMAScript Modules (ESM):
+1. Asynchronous: ESM is asynchronous. Modules are loaded and executed asynchronously, which can lead to better performance in certain scenarios.
+2. Front-End and Back-End: ESM modules are supported in both front-end (browsers) and back-end (Node.js) environments. They are becoming more widely used for front-end development.
+3. import and export Statements: ESM modules use import to import modules and export to export values from a module. For example:
+ // Import a module
+import { someValue } from './myModule';
+
+// Export a value from a module
+export default someValue;
+Key Differences:
+Synchronous vs. Asynchronous Loading: CommonJS modules are loaded synchronously, which means they block the execution of code until the module is loaded. ESM modules, on the other hand, are loaded asynchronously, allowing for better parallelism.
+Static vs. Dynamic Imports: ESM supports static imports, meaning that the import statements are resolved at compile time. CommonJS supports dynamic imports, where module paths can be constructed dynamically at runtime.
+Browser Compatibility: ESM is more suitable for modern web browsers, while CommonJS is often used in server-side environments. However, with the growth of JavaScript bundlers and transpilers, ESM can also be used in web applications with broader compatibility.
+Syntax: ESM uses import and export statements, which are more concise and align with the language's evolution. CommonJS uses require() and module.exports, which have a different syntax.
+
+

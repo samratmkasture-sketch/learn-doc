@@ -1,0 +1,200 @@
+1. docker --version
+Description: Check the installed Docker version.
+Example:
+docker --version
+2. docker info
+Description: Display system-wide information about Docker.
+Example:
+docker info
+3. docker images
+Description: List all available Docker images.
+Example:
+docker images
+4. docker pull <image>
+Description: Download a Docker image from DockerHub.
+Example:
+docker pull nginx
+5. docker run <image>
+Description: Create and start a Docker container from an image.
+Example:
+docker run nginx
+6. docker ps
+Description: List all running containers.
+Example:
+docker ps
+7. docker ps -a
+Description: List all containers (including stopped ones).
+Example:
+docker ps -a
+8. docker start <container>
+Description: Start a stopped container.
+Example:
+docker start my_container
+9. docker stop <container>
+Description: Stop a running container.
+Example:
+docker stop my_container
+10. docker rm <container>
+Description: Remove a container.
+Example:
+docker rm my_container
+11. docker rmi <image>
+Description: Remove an image.
+Example:
+docker rmi nginx
+12. docker build -t <image_name> .
+Description: Build a Docker image from a Dockerfile.
+Example:
+docker build -t my_image .
+13. docker exec -it <container> <command>
+Description: Run a command inside a running container.
+Example:
+docker exec-it my_container /bin/bash
+14. docker logs <container>
+Description: Display logs of a container.
+Example:
+docker logs my_container
+15. docker inspect <container>
+Description: Display detailed information about a container.
+Example:
+docker inspect my_container
+16. docker network ls
+Description: List Docker networks.
+Example:
+docker network ls
+17. docker network create <network>
+Description: Create a Docker network.
+Example:
+docker network create my_network
+18. docker volume ls
+Description: List Docker volumes.
+Example:
+docker volume ls
+19. docker volume create <volume>
+Description: Create a Docker volume.
+Example:
+docker volume create my_volume
+20. docker system prune
+Description: Remove all stopped containers, unused networks, dangling images, and unused volumes.
+Example:
+docker system prune
+21. docker run -d <image>
+Description: Run a container in detached mode.
+Example:
+docker run -d nginx
+22. docker run -p <host_port>:<container_port> <image>
+Description: Map a container port to a host port.
+Example:
+docker run -p 8080:80 nginx
+23. docker run -v <host_path>:<container_path> <image>
+Description: Mount a host directory as a volume inside the container.
+Example:
+docker run -v /host/path:/container/path nginx
+24. docker run -e <environment_variable>=<value> <image>
+Description: Set environment variables in the container.
+Example:
+docker run -e MYSQL_ROOT_PASSWORD=password mysql
+25. docker run --name <container_name> <image>
+Description: Specify a custom name for the container.
+Example:
+docker run --name my_container nginx
+26. docker cp <source_path> <container>:<destination_path>
+Description: Copy files or directories between the host and the container.
+Example:
+docker cp index.html my_container:/usr/share/nginx/html/
+27. docker commit <container> <image_name>
+Description: Create a new image from a container’s changes.
+Example:
+docker commit my_container my_image:v2
+28. docker tag <source_image> <target_image>
+Description: Tag an image with a new name and/or tag.
+Example:
+docker tag my_image:latest my_image:1.0
+29. docker save -o <output_file.tar> <image>
+Description: Save an image to a tar archive file.
+Example:
+docker save -o my_image.tar my_image
+30. docker load -i <input_file.tar>
+Description: Load an image from a tar archive file.
+Example:
+docker load -i my_image.tar
+31. docker login
+Description: Log in to a Docker registry (e.g., DockerHub).
+Example:
+docker login
+32. docker logout
+Description: Log out from a Docker registry.
+Example:
+docker logout
+33. docker push <image>
+Description: Push an image to a Docker registry.
+Example:
+docker push my_username/my_image
+34. docker pull <image>
+Description: Pull an image from a Docker registry.
+Example:
+docker pull my_username/my_image
+35. docker image prune
+Description: Remove unused images.
+Example:
+docker image prune
+36. docker container prune
+Description: Remove all stopped containers.
+Example:
+docker container prune
+37. docker volume prune
+Description: Remove unused volumes.
+Example:
+docker volume prune
+38. docker network prune
+Description: Remove unused networks.
+Example:
+docker network prune
+39. docker system df
+Description: Display disk usage by Docker.
+Example:
+docker system df
+40. docker stats
+Description: Display live resource usage statistics for containers.
+Example:
+docker stats
+41. docker top <container>
+Description: Display running processes of a container.
+Example:
+docker top my_container
+42. docker pause <container>
+Description: Pause all processes within a container.
+Example:
+docker pause my_container
+43. docker unpause <container>
+Description: Unpause a paused container.
+Example:
+docker unpause my_container
+44. docker restart <container>
+Description: Restart a running container.
+Example:
+docker restart my_container
+45. docker exec <container> <command>
+Description: Run a command inside a running container.
+Example:
+docker exec my_container ls -l /app
+46. docker attach <container>
+Description: Attach local standard input, output, and error streams to a running container.
+Example:
+docker attach my_container
+47. docker build --no-cache -t <image_name> .
+Description: Build a Docker image without using cache.
+Example:
+docker build --no-cache -t my_image .
+48. docker inspect --format '{{json .State}}' <container>
+Description: Display detailed state information about a container in JSON format.
+Example:
+docker inspect --format '{{json .State}}' my_container
+49. docker events
+Description: Get real-time events from the server.
+Example:
+docker events
+50. docker kill <container>
+Description: Kill a running container by sending a SIGKILL signal.
+Example:
+docker kill my_container

@@ -1,0 +1,75 @@
+<pre>
+
+Files Upload : 
+-----------------------
+formidable
+multer 
+multiparty
+
+https://www.geeksforgeeks.org/how-to-upload-file-using-formidable-module-in-node-js/
+
+
+
+Uploading binary file on Node.js
+
+
+3 ways to upload files using NodeJS and Axios
+https://www.saurabhmisra.dev/file-uploads-nodejs/#:~:text=Approach%201%3A%20Binary%20Upload,That's%20it!
+
+Approach 1: Binary Upload
+
+Approach #2: Multipart Uploads
+
+
+Approach #3: Base64 uploads
+
+=======================================================================================
+*************************************************
+Upload Files
+Now you are ready to make a web page in Node.js that lets the user upload files to your computer:
+
+The Formidable Module
+There is a very good module for working with file uploads, called "Formidable".
+
+The Formidable module can be downloaded and installed using NPM:
+
+Step 1: Create an Upload Form
+Create a Node.js file that writes an HTML form, with an upload field:
+
+Step 2: Parse the Uploaded File
+Include the Formidable module to be able to parse the uploaded file once it reaches the server.
+
+When the file is uploaded and parsed, it gets placed on a temporary folder on your computer.
+Example
+The file will be uploaded, and placed on a temporary folder:
+var http = require('http');
+var formidable = require('formidable');
+
+Multipart form data: The ENCTYPE attribute of <form> tag specifies the method of encoding for the form data. It is one of the two ways of encoding the HTML form. It is specifically used when file uploading is required in HTML form. It sends the form data to server in multiple parts because of large size of file.  
+
+Approach: In this example, we are creating a simple HTML form (uploading.html) for uploading an image file to the server. The server will process the POST request of HTML form using uploading.php file. The uploading code will upload the file to the folder “upload-images” and will be displayed on the browser as well.
+
+
+http.createServer(function (req, res) {
+  if (req.url == '/fileupload') {
+    var form = new formidable.IncomingForm();
+    form.parse(req, function (err, fields, files) {
+      res.write('File uploaded');
+      res.end();
+    });
+  } else {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write('<form action="fileupload" method="post" enctype="multipart/form-data">');
+    res.write('<input type="file" name="filetoupload"><br>');
+    res.write('<input type="submit">');
+    res.write('</form>');
+    return res.end();
+  }
+}).listen(8080);
+
+Step 3: Save the File
+When a file is successfully uploaded to the server, it is placed on a temporary folder.
+
+The path to this directory can be found in the "files" object, passed as the third argument in the parse() method's callback function.
+
+To move the file to the folder of your choice, use the File System module, and rename the file:

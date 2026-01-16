@@ -1,0 +1,683 @@
+.<pre>
+***************************
+https://github.com/manojjha86/NODE-JS/tree/main
+********************************
+Interview Prep : Nodejs
+https://www.fullstack.cafe/blog/node-js-interview-questions
+*****************************************************
+https://www.edureka.co/blog/interview-questions/top-node-js-interview-questions-2016/
+
+** Node Workspaces : https://www.geeksforgeeks.org/getting-started-with-npm-workspaces/
+   A strong toolkit for managing multiple package repositories inside of a single repository is offered by npm workspaces. With the help of this functionality, developers may manage dependencies, version many related packages, and develop more quickly
+---------------
+Data Leaks : 
+---------------
+Debug App : => node --inspect --inspect-brk ./app.js
+https://www.builder.io/blog/debug-nodejs
+https://medium.com/@saransh98/debugging-node-js-via-vs-code-with-inspect-brk-multiple-process-clusters-b7282d63bec7
+https://medium.com/@saransh98/debugging-node-js-via-vs-code-with-attach-single-process-only-87c50683a8ef
+https://nodejs.org/en/docs/guides/debugging-getting-started
+
+
+upload big files using stream?
+error handling in stream
+validation in stream
+https://medium.com/@me9lika.sh/uploading-and-downloading-large-files-with-nodejs-db9e1bf4a8cc
+
+default buffer limit in nodejs?
+Maximum length of a typed array in V8 is currently set to kSmiMaxValue which depending on the platform is either:
+
+1Gb - 1byte on 32-bit
+2Gb - 1byte on 64-bit
+Relevant constant in the code is v8::internal::JSTypedArray::kMaxLength (source).
+
+V8 team is working on increasing this even further on 64-bit platforms, where currently ArrayBuffer objects can be up to Number.MAX_SAFE_INTEGER large (2**53 - 1). 
+import buffer from "buffer";
+console.log(buffer.constants.MAX_LENGTH);
+*****************************
+PROFILING :=>
+
+https://medium.com/@rishabh171192/performance-analysis-node-js-68cc4628205c
+
+Benchmark test of node application
+    https://www.systango.com/blog/nodejs-performance-testing-and-tuning
+Apachec bench tool
+Testing code coverage: 
+1- Mocha,sinon,supertest
+2- Jest, supertest
+SYSTEM DESIGN :
+------------------------
+https://www.youtube.com/playlist?list=PLCRMIe5FDPsd0gVs500xeOewfySTsmEjf
+Top 7 Ways to 10x Your API Performance :-
+1. Pagination
+2. Asynchronous Logging
+3. Caching
+4. Limit Payloads
+5. Payload Compression
+6. Connection Pool
+7. Implement Concurrency Strategies
+8. Avoid Query N+1 Problem
+
+RDS Proxy :
+
+https://www.youtube.com/watch?v=zvWKqUiovAM
+
+Top 6 Most Popular API Architecture Styles:
+️SOAP (Simple Object Access Protocol):
+RESTful (representational State Transfer)
+GraphQL:
+gRPC (Google remote Procedure call):
+WebSocket:
+Webhook:
+
+https://www.youtube.com/watch?v=4vLxWqE94l4
+*****************************
+----------------------
+*********************************************
++++++++++++  y:- SQL injection is the placement of malicious code in SQL statements, via web page input. 
+Nosql Injection :-NoSQL injection is a vulnerability where an attacker is able to interfere with the queries that an application makes to a NoSQL database. 
+       https://portswigger.net/web-security/nosql-injection
+*********************************************
+
+Husky - Husky is a tool that helps developers work with Git hooks more efficiently and run all the scripts that need to work at various stages. 
+
+Nodejs Design Patterns : Example of them
+https://blog.logrocket.com/guide-node-js-design-patterns/
+Design patterns are a way for you to structure your solution’s code in a way that allows you to gain some kind of benefit, such as faster development speed, code reusability, etc
+Immediately Invoked Function Expressions
+The factory method pattern
+The singleton pattern
+The builder pattern
+The prototype pattern
+The observer pattern
+Dependency injection
+The chain of responsibility pattern
+Streams
+
+Immediately Invoked Function Expressions (IIFE)
+The first pattern we’ll explore is one that allows you to define and call a function at the same time.
+Middleware
+In Node.js, middleware is the design pattern that allows a developer to add functionalities in the request/response processing pipelines of the application.
+The observer pattern
+The observer pattern allows you to respond to a certain input by being reactive to it instead of proactively checking if the input is provided
+Streams
+Streams in Node.js are a way to efficiently handle large amounts of data by breaking the data down into smaller chunks and processing it one chunk at a time.
+---------------------
+REST API (Representational state transfer)
+-------------------------------------
+Passport supported Oauth authentication
+JWT token based authentication
+https://medium.com/@techsuneel99/jwt-authentication-in-nodejs-refresh-jwt-with-cookie-based-token-37348ff685bf
+https://www.geeksforgeeks.org/jwt-authentication-with-refresh-tokens/
+-------------------------------------
+
+
+Best Practices : 
+-----------------
+Enable gzip Compression on the Web Server
+Optimizing Images
+
+=> https://github.com/goldbergyoni/nodebestpractices
+1. Project Architecture Practices (6)
+      1 Structure your solution by components #strategic 
+      2 Layer your components, keep the web layer within its boundaries #strategic 
+      3 Wrap common utilities as packages, consider publishing
+      4 Use environment aware, secure and hierarchical config 
+      5 Consider all the consequences when choosing the main framework #new
+      6 Use TypeScript sparingly and thoughtfully #new
+Enable gzip Compression on the Web Server
+2. Error Handling Practices (12)
+   1 Use Async-Await or promises for async error handling
+   2 Extend the built-in Error object 
+   3 Distinguish operational vs programmer errors 
+   4 Handle errors centrally, not within a middleware #strategic
+   5 Document API errors using OpenAPI or GraphQL
+   6 Exit the process gracefully when a stranger comes to town #strategic
+   7 Use a mature logger to increase errors visibility 
+   8 Test error flows using your favorite test framework 
+   9 Discover errors and downtime using APM products
+   10 Catch unhandled promise rejections 
+   11 Always await promises before returning to avoid a partial stacktrace #new
+   12 Subscribe to event emitters 'error' event #new
+
+ 
+3. Code Style Practices (12)
+   1. Use ESLint #strategic
+   2. Separate your statements properly
+   3. Use naming conventions for variables, constants, functions and classes
+   4. Prefer const over let. Ditch the var
+   5. Require modules first, not inside functions
+   6. Set an explicit entry point to a module/folder 
+   7. Use the === operator
+   8. Use Async Await, avoid callbacks #strategic
+   9. Use arrow function expressions (=>)
+
+4. Testing And Overall Quality Practices (13)
+   4.1 At the very least, write API (component) testing #strategic
+   4.3 Structure tests by the AAA pattern #strategic
+   4.4 Ensure Node version is unified #new
+   4.5 Avoid global test fixtures and seeds, add data per-test #strategic
+   4.6 Tag your tests #advanced
+   4.7 Check your test coverage, it helps to identify wrong test patterns
+   4.8 Use production-like environment for e2e testing
+   4.9 Refactor regularly using static analysis tools
+   4.10 Mock responses of external HTTP services #advanced #new #advanced
+   4.11 Test your middlewares in isolation
+   4.12 Specify a port in production, randomize in testing #new
+   4.13 Test the five possible outcomes #strategic #new
+
+5. Going To Production Practices (19)
+   5.1. Monitoring And Increase the observability using smart logging #strategic
+   5.3. Delegate anything possible (e.g. gzip, SSL) to a reverse proxy #strategic
+   5.5. Guard process uptime using the right tool
+   5.6. Utilize all CPU cores
+   5.7. Create a ‘maintenance endpoint’
+   5.8. Discover the unknowns using APM products #advanced 
+   5.9. Make your code production-ready
+   5.10. Measure and guard the memory usage #advanced
+   5.11. Get your frontend assets out of Node
+   5.12. Strive to be stateless #strategic
+   5.13. Use tools that automatically detect vulnerabilities
+   5.14. Assign a transaction id to each log statement #advanced
+   5.15. Set NODE_ENV=production
+   5.16. Design automated, atomic and zero-downtime deployments #advanced
+   5.17. Use an LTS release of Node.js
+   5.18. Log to stdout, avoid specifying log destination within the app 
+   5.19. Install your packages with npm ci #new
+
+6. Security Practices (25)
+   6.1. Embrace linter security rules
+   6.2. Limit concurrent requests 
+   6.3  Extract secrets from config files or use packages to encrypt them #strategic
+   6.4. Prevent query injection vulnerabilities with ORM/ODM libraries #strategic
+   6.5. Collection of generic security best practices
+   6.6. Adjust the HTTP response headers for enhanced security
+   6.7. Constantly and automatically inspect for vulnerable dependencies #strategic
+   6.8. Protect Users' Passwords/Secrets using bcrypt or scrypt #strategic (Bcrypt is a password-hashing algorithm that's used to protect passwords in storage.)
+   6.9. Escape HTML, JS and CSS output
+   6.10. Validate incoming JSON schemas #strategic
+   6.11. Support blocklisting JWTs
+   6.12. Prevent brute-force attacks against authorization #advanced
+         - Employ 2-Factor Authentication (2FA)
+         - Use CAPTCHA
+         - Limit Logins to a Specified IP Address or Range
+         - Use Strong Passwords.
+         -  Limit Login Attempts
+         - Use Web Application Firewalls (WAFs)
+
+   6.13. Run Node.js as non-root user
+   6.14. Limit payload size using a reverse-proxy or a middleware
+   6.16. Prevent evil RegEx from overloading your single thread execution
+   6.19. Take extra care when working with child processes #advanced
+   6.20. Hide error details from clients
+   6.21. Configure 2FA for npm or Yarn #strategic
+   6.22. Modify session middleware settings
+   6.23. Avoid DOS attacks by explicitly setting when a process should crash #advanced
+   6.24. Prevent unsafe redirects
+   6.26. Inspect for outdated packages
+   6.27. Import built-in modules using the 'node:' protocol #new
+
+7. Performance Practices (2) (Work In Progress️ ✍️)
+   7.1. Don't block the event loop
+   7.2. Prefer native JS methods over user-land utils like Lodash
+
+
+*********************************
+Links => https://www.javatpoint.com/node-js-interview-questions
+
+-> What do you understand by the term fork in Node.js?
+   Generally, a fork is used to spawn child processes. In Node.js, it is used to create a new instance of the V8 engine to run multiple workers to execute the code.
+-> What are buffers in Node.js?
+   a buffer is a temporary memory mainly used by the stream to hold on to some data until it is consumed. Buffers are used to represent a fixed-size chunk of memory allocated outside of the V8 JavaScript engine. It can't be resized. It is like an array of integers, which each represents a byte of data. It is implemented by the Node. js Buffer class. Buffers also support legacy encodings like ASCII, utf-8, etc.
+-> What is a control flow function?
+   Control flow function is a generic piece of code that runs in between several asynchronous function calls.
+
+-> What are the streams in Node.js?
+Streams perate on chunks of data piece by piece, processing its content without keeping it all in memory. This makes streams really powerful when working with large amounts of data,
+   Readable: This stream is used for reading operations.
+   Writable: This stream is used for write operations.
+   Duplex: This stream can be used for both reading and write operations.
+   Transform: It is a type of duplex stream where the output computes according to input.
+   => Node.js Streams :: https://nodesource.com/blog/understanding-streams-in-nodejs/
+
+-> What do you understand by an EventEmitter in Node.js?
+   In Node.js, an EventEmitter is a class that includes all the objects capable of emitting events. This can be achieved by attaching named events that are emitted by the object using an eventEmitter.on() function. Thus whenever this object throws an event, the attached functions are invoked synchronously.
+   Example:
+   const EventEmitter = require('events');  
+   class MyEmitter extends EventEmitter {}  
+   const myEmitter = new MyEmitter();  
+   myEmitter.on('event', () => {  
+    console.log('an event occurred!');  
+   });  
+   myEmitter.emit('event');  
+
+
+-> Explain the concept of middleware in Node.js.
+   next()
+-> What is callback hell?
+CORS (Cross-Origin Resource Sharing) 
+
+how request processed once?
+
+Process Model : https://www.tutorialsteacher.com/nodejs/nodejs-process-model
+   Event loop : 
+   Event loops handle asynchronous callbacks in Node.js. It is the foundation of the non-blocking input/output in Node.js, making it one of the most important environmental features.
+
+   Thread Pool : Node.js uses libev for the event loop which in turn uses internal C++ thread pool to provide asynchronous I/O.
+
+Express.js is based on the Node.js middleware module called connect which in turn uses http module. 
+   Advantages of Express.js
+   Makes Node.js web application development fast and easy.
+   Easy to configure and customize.
+   Allows you to define routes of your application based on HTTP methods and URLs.
+   Includes various middleware modules which you can use to perform additional tasks on request and response.
+   Easy to integrate with different template engines like Jade, Vash, EJS etc.
+   Allows you to define an error handling middleware.
+   Easy to serve static files and resources of your application.
+   Allows you to create REST API server.
+   Easy to connect with databases such as MongoDB, Redis, MySQL
+
+24. What are the two types of API functions in Node.js?
+The two types of API functions in Node.js are:
+
+Asynchronous, non-blocking functions
+Synchronous, blocking functions
+
+4. Why is Node.js preferred over other backend technologies like Java and PHP?
+         Some of the reasons why Node.js is preferred include:
+         Node.js is very fast
+         Node Package Manager has over 50,000 bundles available at the developer’s disposal
+         Perfect for data-intensive, real-time web applications, as Node.js never waits for an API to return data
+         Better synchronization of code between server and client due to same code base
+         Easy for web developers to start using Node.js in their projects as it is a JavaScript library
+
+5. Differentiate between process.nextTick() and setImmediate()?
+The distinction between method and product. This is accomplished through the use of nextTick() and setImmediate(). next Tick() postpones the execution of action until the next pass around the event loop, or it simply calls the callback function once the event loop's current execution is complete, whereas setImmediate() executes a callback on the next cycle of the event loop and returns control to the event loop for any I/O operations.
+**********************
+Socket.IO
+-----------
+https://www.javatpoint.com/socket-io
+**********************
+      
+sonarqube issues:- There are 3 types of issues: Bugs, code smells, and vulnerabilities.
+The Executor Framework :- contains a bunch of components that are used to efficiently manage worker threads. The Executor API de-couples the execution of task from the actual task to be executed via Executors . This design is one of the implementations of the Producer-Consumer pattern.
+
+Runnable is an interface that is to be implemented by a class whose instances are intended to be executed by a thread. There are two ways to start a new Thread – Subclass Thread and implement Runnable. There is no need of subclassing a Thread when a task can be done by overriding only run() method of Runnable.
+
+**************************************
+=> https://www.freecodecamp.org/news/how-to-create-and-publish-your-first-npm-package/
+
+ 
+***************  
+
+PROFILING :=> https://medium.com/@rishabh171192/performance-analysis-node-js-68cc4628205c
+
+  => How to measure and improve Node.js performance?
+   https://raygun.com/blog/improve-node-performance/
+   https://blog.appsignal.com/2021/11/24/7-ways-to-improve-nodejs-performance-at-scale.html
+
+  =>  Enable gzip Compression on the Web Server
+  https://www.geeksforgeeks.org/how-to-do-compression-with-gzip-in-node-js/
+  => Optimizing Images =>
+#############################
+
+
+The dns.lookup() method is an inbuilt application programming interface of the dns module
+ which is used to resolve IP addresses of the specified hostname for given parameters into 
+ the first found A (IPv4) or AAAA (IPv6) record.
+
+
+
+*****************************
+
+https://www.freecodecamp.org/news/node-js-streams-everything-you-need-to-know-c9141306be93/
+*********************************************
+
+1.  Manage and administer MySQL instances, including configuration, monitoring, performance tuning, and troubleshooting.
+2.  Design, implement, and maintain database backup, replication, and recovery strategies for MySQL databases.
+3.  Monitor database performance, identify bottlenecks, and optimize queries and schema design for improved efficiency.
+4.  Implement and maintain database security measures, including access controls, user management, and data encryption.
+5.  Collaborate with development teams to assist in database design, schema changes, and query optimization.
+6.  Perform database capacity planning and scaling to accommodate growth and ensure high availability.
+8.  Manage and support MongoDB database instances, including installation, configuration, and monitoring.
+9.  Design and implement MongoDB data models, indexes, and sharding strategies for optimal performance.
+10. Implement replication and high availability solutions, ensuring data redundancy and disaster recovery.
+11. Maintain comprehensive documentation of database systems, configurations, and procedures.
+12. Work with SRE (Site reliability engineering) team in supporting database deployments and handle database alerts
+13. Perform database tuning and optimization to improve query performance and overall system efficiency.
+14. Perform regular Audits on the database to maintain the standard security.
+15. Stay updated with the latest trends and technologies in database administration, AWS, and MongoDB, and make recommendations for improvements to the existing database infrastructure.
+16. Knowledge on other databases(Redshift and Postgresql) and experience on AWS services (RDS, Aurora EC2, S3, IAM, CloudWatch) are added advantage
+
+*********************************************
+
+*********************************************
+
+   
+
+A lot of time is spent on scripting because it has to map all the style rules passed to the actual CSS properties, which increases the rendering time for the component.
+Let's imagine that we have an event with a debounce time of one second. The event handler for that event will be triggered after one second, once the user stops triggering the event.
+
+The first step in improving the performance of a React application is to measure its current performance. There are several tools available for measuring performance, including:
+
+Lighthouse – Lighthouse is an open-source tool from Google that audits web pages for performance, accessibility, and more. Lighthouse generates a report that includes suggestions for improving the performance of the application.
+WebPageTest – WebPageTest is a free tool that allows you to test the speed of your website from multiple locations around the world. WebPageTest provides detailed reports on the performance of your website, including suggestions for improvement.
+Google PageSpeed Insights – Google PageSpeed Insights analyzes the content of a web page and generates a report that identifies opportunities to improve the page's performance.
+
+*********************************************
+     
+
+Upload big files using stream?
+error handling in stream
+validation in stream
+
+default buffer limit in nodejs?
+
+----
+Benchmark test of node application
+Apachec bench tool
+Testing code coverage: 
+1- Mocha,sinon,supertest
+2- Jest, supertest
+----
+***********
+ 
+***********
+---------------
+Testing framework: Jest  
+---------------
+
+  
+-----------
+***************
+***************
+https://www.jsv9000.app/
+
+https://www.geeksforgeeks.org/node-js-event-loop/
+the event loop in Node.js consists of several phases, each of which performs a specific task
+
+1.Timers , 2.Pending Callbacks ,3. Idle, Prepare , 4. Poll, 5.Check, 6. Close Callbacks
+Eventloop in NodeJS: MacroTasks and MicroTasks
+https://medium.com/dkatalis/eventloop-in-nodejs-macrotasks-and-microtasks-164417e619b9
+ANS :
+    V8 Engine works by enqueuing tasks into the event loop.
+    The tasks are broken down further into microtask and macrotask
+       1. macroTasks: setTimeout, setInterval, setImmediate, requestAnimationFrame, I/O, UI rendering
+       2. microTasks: process.nextTick, Promises, queueMicrotask, MutationObserver
+    Only after tasks in microTasks are completed/ excahusted, event loop will next pick up one task from macroTasks. And this repeats.
+
+**********
+Node.js - Global Objects : __filename,__dirname, setTimeout(cb, ms), clearTimeout(t), setInterval(cb, ms)
+                             Console:Used to print information on stdout and stderr.
+
+                           2  Process:Used to get information on current process. Provides multiple events related to process activities.
+
+Node.js - Utility Modules : 
+1  OS Module
+Provides basic operating-system related utility functions.
+
+2  Path Module
+Provides utilities for handling and transforming file paths.
+
+3  Net Module
+Provides both servers and clients as streams. Acts as a network wrapper.
+
+4  DNS Module
+Provides functions to do actual DNS lookup as well as to use underlying operating system name resolution functionalities.
+
+5  Domain Module
+Provides ways to handle multiple different I/O operations as a single group.
+
+
+************
+
+
+Core Modules : HTTP, util, fs , url, query string, stream, zib
+
+Node.js Cluster Process Module
+   The cluster module provides a way of creating child processes that runs simultaneously and share the same server port.
+
+   Node.js runs single threaded programming, which is very memory efficient, but to take advantage of computers multi-core systems, the Cluster module allows you to easily create child processes that each runs on their own single thread, to handle the load.
+
+The Child Processes Module
+   We can easily spin a child process using Node’s child_process module and those child processes can easily communicate with each other with a messaging system.
+   There are four different ways to create a child process in Node: spawn(), fork(), exec(), and execFile().
+   https://www.freecodecamp.org/news/node-js-child-processes-everything-you-need-to-know-e69498fe970a/
+
+
+------------------------------
+https://www.fullstack.cafe/blog/node-js-interview-questions
+
+https://medium.com/@khaledq_43881/advanced-node-js-concepts-a-comprehensive-guide-for-senior-engineers-8e49a5456b60
+
+------------------------------
+Q8: How do you handle security in a Node.js application? 
+Answer: Here are a few best practices for securing a Node.js application:
+
+   Keep your dependencies up to date: It is essential to keep all the packages and dependencies used in your application up to date to ensure that any security vulnerabilities are fixed.
+
+   Use a web application firewall (WAF): A WAF can help protect your application from common web attacks such as SQL injection, cross-site scripting (XSS), and cross-site request forgery (CSRF).
+
+   Use encryption: Secure any sensitive data that is stored or transmitted by your application by using encryption.
+
+   Use a Content Security Policy (CSP): CSP is a security feature that helps to prevent cross-site scripting (XSS) and other code injection attacks.
+
+   Input validation: Ensure that all inputs are validated before processing them, this will help to prevent from injection attacks. Joi library can be used for validation.
+
+   Use a security middleware: There are several Node.js middleware libraries available for security like helmet, cors and etc.
+
+   Using rate limitter / incremental delay: DOS (Denial of service), DDOS and Brute-Force Attack can be handled by time limitter
+
+   Regularly test and monitor your application for vulnerabilities: Regularly test your application for potential vulnerabilities, and use monitoring tools to detect any suspicious activity.
+
+   It's important to keep in mind that security is an ongoing process, and it is essential to stay up-to-date with the latest security best practices and trends.
+
+Q9: How do you implement performance optimization in a Node.js application?
+
+   Answer: Performance optimization is an ongoing process that involves identifying and addressing bottlenecks in an application. Here are a few best practices for optimizing the performance of a Node.js application:
+
+  1. Use a profiler: Profiling tools like the Node.js Performance Hooks or the V8 profiler can help identify performance bottlenecks in your application.
+
+  2. Minimize the number of dependencies: The more dependencies you have, the more resources your application will require to run. Minimizing the number of dependencies can help improve performance.
+
+  3. Use caching: Caching can help reduce the number of database queries and network requests your application makes, which can help improve performance. Redis and Memcached can be used for caching.
+
+  4. Use a reverse proxy: Reverse proxies like Nginx or HAProxy can help offload some of the workload from your Node.js application, which can help improve performance.
+
+  5. Use a CDN: Content Delivery Networks (CDNs) can help reduce the load on your application by caching and delivering static assets to users from a location that is closer to them.
+
+  6. Use Asynchronous programming: Node.js is built on an event-driven, non-blocking I/O model, and it's important to take advantage of this by using asynchronous programming techniques.
+
+  7. Use a memory leak detector: Memory leaks can cause an application to consume more and more memory over time, which can lead to performance issues. Use a memory leak detector like the heapdump module to identify and address memory leaks in your application.
+
+  8. Use a process manager: Process managers like PM2 can help to monitor, reload and improve the performance of your application.
+
+  9. Use cluster module and child process: For running long task child process can be run so that main thread will be available. Additionally, cluster module can be implemented so that all the child process will handle the I/O task.
+
+Q11: What is XSS?
+
+   Answer: Cross-Site Scripting (XSS) is a type of security vulnerability that allows an attacker to inject malicious code into a web page viewed by other users. Here are a few best practices for preventing XSS attacks:
+
+   Input validation: Ensure that all user inputs are properly validated, and that any special characters or scripts are properly escaped or removed.
+
+   Use a Content Security Policy (CSP): A Content Security Policy (CSP) is a security feature that helps to prevent cross-site scripting by specifying which sources of content are allowed to be loaded by the browser.
+
+   Code Example:
+
+   const Joi = require('@hapi/joi');
+
+   // Define a schema for the user input
+   const inputSchema = Joi.string().max(100).regex(/^[a-zA-Z0-9 ]+$/);
+
+   // Define a function to handle user input
+   function handleInput(req, res) {
+       // Validate the user input using the defined schema
+       const { error, value } = inputSchema.validate(req.body.userInput);
+
+       if (error) {
+           // Return an error if validation fails
+           res.status(400).send(error.message);
+       } else {
+           // Use the validated input in the response
+           res.send(`<h1>Hello, ${value}!</h1>`);
+       }
+   }
+   It's important to note that this example uses the Joi library to validate the user input, but also it's important to use other methods such as encoding, security headers and etc to prevent from XSS attacks.
+
+Q12: What is CSP and how it prevents from attack?
+
+   Answer: Content Security Policy (CSP) is a security feature that helps to prevent cross-site scripting (XSS) and other code injection attacks. It allows web developers to control where resources such as scripts, images and styles can be loaded from, and can help to prevent malicious code from being executed in the browser.
+
+   A CSP is set using an HTTP response header, and it is a set of policies that the browser should follow when loading resources for a particular page. The policies specify which sources of content are allowed to be loaded by the browser and which should be blocked.
+
+   For example, a CSP can be used to only allow scripts to be loaded from a specific domain, or to block all inline scripts. This helps to prevent malicious scripts from being executed, even if an attacker is able to inject code into a web page.
+
+   CSP can also be used to report any violations of the policy to a specified URL, this is known as a report-only policy and it can be used to monitor the page and detect any potential vulnerabilities.
+
+   CSP is considered a best practice for web security, and it's supported by all major web browsers. It is also supported by the latest version of the OWASP top 10 security risks.
+
+   const express = require('express');
+   const app = express();
+
+   app.use((req, res, next) => {
+       // Set the Content-Security-Policy header
+       res.set('Content-Security-Policy', "default-src 'self'; script-src 'self' https://example.com; img-src 'self' https://example.com; style-src 'self' https://example.com;");
+       next();
+   });
+
+   app.get('/', (req, res) => {
+       res.send('<h1>Welcome to my website</h1><script src="https://example.com/script.js"></script>');
+   });
+
+   app.listen(3000, () => {
+       console.log('Server listening on port 3000');
+   });
+
+   This code sets the Content-Security-Policy header using the res.set function provided by the Express framework. The policy specified in the header states that resources should only be loaded from the same origin ('self') and from https://example.com, it also separates the different types of resources such as scripts, images and styles.
+
+   -------------------------
+   Cluster Module :
+   The cluster module in Node.js allows you to take advantage of the multiple CPU cores in a single machine by creating child processes, also known as workers, that all share the same server ports. This means that instead of having a single Node.js process handle all incoming connections, you can have multiple worker processes, each handling a portion of the connections. This can greatly increase the performance and scalability of your application, as each worker process can run on its own CPU core, allowing for parallel processing.
+
+   Additionally, the cluster module provides a way to handle worker restarts and other logic. This is useful in cases where a worker process may crash or otherwise become unresponsive, as the cluster module can automatically spawn a new worker process to replace it.
+
+   Overall, the cluster module in Node.js provides a powerful and easy-to-use solution for taking advantage of multiple CPU cores and improving the performance and scalability of your application.
+
+   Note: Go to /performance/cluster.js for whole implementation.
+
+   Look at the difference in performance
+
+   Running on only master thread (total time - 79 seconds)
+Q. How does the cluster module work? What is the difference between it and a load balancer?
+   The Node.js cluster module allows developers to create a cluster of worker processes that share the same server port. This improves the performance and scalability of Node.js applications. 
+   The main difference between clustering and load balancing is that clustering creates a single logical system from multiple servers, while load balancing distributes requests among multiple servers:
+   Clustering
+   Creates a single logical system from multiple servers, which can provide higher availability and fault tolerance.
+   Load balancing
+   Distributes requests among multiple servers, which can provide higher scalability and efficiency. 
+   Here's how clustering and load balancing work together in Node.js:
+   Clustering: Uses CPU cores effectively.
+   Load balancing: Distributes incoming requests across multiple servers or worker processes. 
+   Together, clustering and load balancing can create a system that can handle high traffic. 
+**************************************************************************
+https://www.geeksforgeeks.org/how-to-create-load-balancing-servers-using-node-js/
+ -=> How does the cluster load balance work in node.js?
+   In Node.js, the cluster module's load balancer uses the round-robin algorithm to distribute incoming requests evenly across worker processes: 
+
+   How it works -   The cluster module creates multiple copies of the same application on the same machine and runs them at the same time. The load balancer distributes incoming requests evenly among the processes. 
+
+   Benefits -   This improves performance because the load is shared among multiple processes, preventing a single instance from being overwhelmed. If a single instance crashes, users can be served by the remaining processes. 
+
+   Custom load balancing -   You can implement custom load balancing strategies for more complex scenarios. For example, you can distribute requests based on various criteria such as URL, user session, or request properties. 
+   You can also use other tools to improve the performance and scalability of Node.js applications, such as: 
+
+   PM2 -   A popular process manager that provides load balancing, process clustering, and other features 
+
+   Health checks -   Automated periodic tests that determine the operational status of servers. Health checks help load balance by avoiding sending traffic to servers that are not ready to handle incoming requests. 
+-------------------------------------------------------------------------
+**************************************************************************
+https://sematext.com/blog/nodejs-memory-leaks/#:~:text=Closures%2C%20timers%2C%20and%20event%20handlers%20can%20often%20create%20memory%20leaks,and%20keeps%20growing%20in%20memory.
+
+Memory leaks : in Node.js can lead to a gradual increase in memory usage, which can degrade performance or cause the application to crash. 
+
+Here are some types of memory leaks in Node.js: 
+
+1. Global variables : Global variables are never garbage collected throughout the lifetime of an app. They occupy memory as long as the app is running. Here’s the kicker: this applies to any object referenced by a global variable, and all their children, as well. Having a large graph of objects referenced from the root can lead to a memory leak in Node.js applications.
+
+2. Multiple references :
+If you reference the same object from multiple objects, it can lead to a memory leak if one of the references is garbage collected while the other one is left dangling.
+3. Forgotten timers and callbacks : Objects tied to timers are not garbage collected until they time out. If a timer runs forever, objects will never be garbage collected.
+The use of setTimeout, setInterval, Observers, and event listeners can cause memory leaks when heavy object references are kept in their callbacks without proper handling.
+
+4. Event listeners : If event listeners are not removed when they're no longer needed, they can cause memory leaks. 
+
+5. Retaining objects for too long : When objects are referenced for too long, values are stored even though they're not needed. 
+
+How to Avoid Memory Leaks in Node.js Applications: Prevention Best Practices
+
+1. Reduce Use of Global Variables
+   Avoid Accidental Globals
+   Use Global Scope Sparingly : 
+      Use local scope inside functions, as it will be garbage collected. 
+      Never use global variables for the convenience of avoiding passing values around. 
+      Never store big objects in the global scope. 
+      When you’re using objects as cache, set a handler to clean them up once in a while and don’t let them grow indefinitely.
+2. Properly Using Closures, Timers, and Event Handlers
+Node.js Memory Leak Detectors
+   1. Memwatch 2. Heapdump 3. node-inspector
+   V8 Inspector & Chrome Dev Tools
+   You can use Dev Tools in Chrome to inspect Node.js apps. How? They both run the same V8 engine which contains the inspector used by the Dev Tools.
+3. Monitoring Tools
+
+Sematext Monitoring: enables you to monitor your entire infrastructure stack, from top to bottom, with one tool. You can map out, and monitor, your whole infrastructure in real-time, down to below a granularity of below a minute.
+
+
+**************************************************************************
+What is daemon process? how to implement it in node.js?
+- A daemon is a program that runs in background and has no controlling terminal. They are often used to provide background services. For example, a web-server or a database server can run as a daemon.
+e.g forever | PM2
+**************************************************************************
+How to synchronize data between multiple clients on node.js server?
+ -  notify clients with websocket 
+
+**************************************************************************
+https://amplication.com/blog/7-tips-to-build-scalable-nodejs-applications
+How would you scale Node application?
+- 7 Tips to Build Scalable Node.js Applications
+   1. Worker threads & concurrency
+   2. Scaling out to multiple servers/clusters
+      - Scale with clustering.
+      - Scale across multiple servers.
+   3. Breaking the application into microservices
+   4. Optimizing static assets through a CDN
+   5. Stateless authentication
+   6. Use of timeouts for I/O operations
+      - it is vital to implement timeouts to ensure that the application is not waiting for a response from a different service for an extended time. 
+   7. Implement tracking, monitoring & observability to debug and solve performance issues actively
+**************************************************************************
+https://www.geeksforgeeks.org/how-to-solve-process-out-of-memory-exception-in-node-js/
+   How to solve "Process out of Memory Exception" in Node.js?
+   A “Process out of Memory Exception” in Node.js typically occurs when your application consumes more memory than is available, causing the Node.js process to crash. This issue is critical in applications that handle large datasets, process intensive tasks, or have memory leaks. 
+   Understanding the Problem:
+   Causes - 
+   Large Data Handling: Processing large files or datasets in memory.
+   Memory Leaks: Unintentionally retaining objects in memory longer than necessary.
+   Inefficient Code: Suboptimal algorithms or operations that use excessive memory.
+   Excessive Concurrent Operations: Running too many processes or threads concurrently.
+
+**************************************************************************
+
+**************************************************************************
+Q. Why do we need C++ Addons in Node.js?
+C++ addons in Node.js are useful for: 
+Performance : C++ addons can improve the performance of Node.js applications. For example, one developer found that C++ addons outperformed Node.js in both of their test cases. 
+Seamless integration : C++ addons allow you to integrate native C++ code with Node.js applications. 
+Leveraging existing libraries : C++ addons allow you to leverage existing C++ libraries. For example, you can use a C++ addon to interact with the OpenSSL cryptographic library. 
+Writing performance-critical code : C++ addons allow you to write performance-critical code in C++. 
+
+**Here are some tips for using C++ addons in Node.js:** 
+Use tools like or for debugging on Unix-based systems and Visual Studio Debugger on Windows. 
+Use the Node.js debugger in conjunction with C++ debugging tools. 
+Use N-API functions to throw and handle exceptions appropriately. 
+Use Node-API, an API that is independent from the underlying JavaScript runtime. 
+Use Nan, a set of tools that addon developers can use to keep compatibility between past and future releases of V8 and Node.js. 

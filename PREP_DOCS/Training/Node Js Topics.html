@@ -1,0 +1,225 @@
+<pre>
+Sessions : 
+**********************
+Node Js Topics
+
+https://www.nodejsera.com/nodejs-tutorial-day21-buffers.html
+Day 1 - The Beginning
+Day 2 - File System in node.js
+Day 3 - Regular expressions in node.js
+Day 4 - Console module in node.js
+Day 5 - All about errors
+Day 6 - Array methods
+Day 7 - All about NPM
+Day 8 - Publishing package on NPM
+Day 9 - Crypto Module ( Hashing and HMAC)
+Day 10 - Crypto Module ( Encryption and Decryption )
+Day 11 - Express Framework
+Day 12 - CRUD in MongoDB using node.js
+Day 13 - Sign Up form in node.js
+Day 14 - Introduction to socket.io
+Day 15 - All about streams
+Day 16 - Zlib Module
+Day 17 - CRUD in MySQL using node.js
+Day 18 - Concepts of callbacks in node.js
+Day 19 - Query String in node.js
+Day 20 - Timers in node.js
+Day 21 - Buffers in node.js
+Day 22 - String Decoder Module in node.js
+Day 23 - Debugger module in node.js
+Day 24 - Child Processes in node.js
+Day 25 - Clusters in node.js
+Day 26 - OS module in node.js
+Day 27 - Assert module in node.js
+Day 28 - Getting Tweets using node.js
+Day 29 - Uploading file to dropbox using node.js
+Day 30 - Github API with node.js
+
+
+**********************
+Introduction
+Read Files
+Write Files
+Append Files
+Rename Files
+Delete Files
+Summary
+Repository
+
+**********************
+Sessions 1: 
+**********************
+1. Node.js Basics:
+	Understanding the Node.js runtime environment
+	Installing Node.js and npm (Node Package Manager)
+2. npm:
+	Managing dependencies
+	Package.json file
+	npm scripts
+9. File System Operations:
+	Reading and writing files
+	Working with directories
+
+
+3. Express.js:
+	Creating a basic server with Express
+	Routing in Express
+	Middleware usage and creation
+
+4. RESTful API Design:
+	Defining routes and endpoints
+	Handling HTTP methods (GET, POST, PUT, DELETE)
+	Request and response handling
+
+Using template engines with Express
+
+5. Database Integration:
+	Connecting to databases (e.g., MongoDB, MySQL, PostgreSQL)
+	Using an ORM (Object-Relational Mapping) if applicable
+
+6. Authentication and Authorization:
+		Implementing user authentication (e.g., using JWT)
+		Role-based access control
+7. Middleware:
+	 Custom middleware functions
+	 Error handling middleware
+8. Asynchronous JavaScript:
+	Callbacks, Promises, and async/await
+	Understanding the event loop in Node.js
+
+10. Express Middleware:
+	Body-parser for handling request bodies
+	CORS (Cross-Origin Resource Sharing) middleware
+
+11. Testing:
+	Unit testing with tools like Mocha or Jest
+	Integration testing with tools like Supertest
+
+12. Security:Best practices for securing Node.js applications
+
+	Production best practices: performance and reliability
+	Health Checks and Graceful Shutdown
+
+13. Handling and validating user input
+
+14. Node.js, the difference between development and production
+
+15. publishing npm package
+16. Worker Treads
+17. Process managers for Express apps
+
+18. Web Socket and socet.io
+
+Node.js OS Module
+
+https://www.w3schools.com/nodejs/nodejs_email.asp
+Node.js Send an Email
+
+
+
+* Nodejs Streams 
+* Events Module
+	EventEmitter  (fs, streams and http extended from EventEmitter )
+* Streams and Buffers
+* fs Module
+* pipe
+*  http Module
+* lib uv
+	Thread Pool
+* Network io
+* Event Loop and Microtask Queue
+* npm, Dependencies and versioning
+* Globals in Nodejs
+* npm scripts
+* publishing npm package
+* Cluster Modules
+* Worker Treads
+
+“npm scripts” are the entries in the scripts field of the package.json file. The scripts field holds an object where you can specify various commands and scripts that you want to expose.
+
+
+ 
+
+------------------------------------------------
+Node.js Introduction
+Official Documenation 
+https://nodejs.org/en/learn/getting-started/introduction-to-nodejs
+
+What Can Node.js Do?
+Node.js can generate dynamic page content
+Node.js can create, open, read, write, delete, and close files on the server
+Node.js can collect form data
+Node.js can add, delete, modify data in your database
+What is a Node.js File?
+Node.js files contain tasks that will be executed on certain events
+A typical event is someone trying to access a port on the server
+Node.js files must be initiated on the server before having any effect
+Node.js files have extension ".js"
+
+
+
+Node.js runs on various platforms (Windows, Linux, Unix, Mac OS X, etc.)
+Node.js uses JavaScript on the server
+
+What is the difference between Node.js and JavaScript?
+https://reintech.io/blog/difference-between-nodejs-and-javascript
+
+=> How to install Node.js?
+Download and Install
+https://nodejs.org/en/download
+
+https://nodejs.org/docs/latest/api/addons.html
+
+
+Differences between Node.js and the Browser -> 
+
+NODEJS REPL -> https://nodejs.org/api/repl.html
+The V8 JavaScript Engine->
+Command Line Interface ->
+Initiate the Node.js File ->
+
+
+-> What is NPM? 
+		1. www.npmjs.com 
+
+https://www.geeksforgeeks.org/why-node-js-is-a-single-threaded-language/
+
+-> nodejs Modules -> it is a simple or complex functionality organized in single or multiple javascript files which can be reused throught the application. Each module in nodejs has its own context, so it cannot interfere with other modules or polute global scope. 
+   it help developer to work faster and write structured code.
+	- Core modules
+	- Local modules
+	- ThirdParty Modules
+
+************** Nodejs modules ************************************************
+https://nodejs.org/api/crypto.html
+console
+crypto
+*********** Testing and debugging ***************************************************************
+-> Debugger
+	https://nodejs.org/api/debugger.html
+=> Testing [ Jest | assert ]
+=> debugging
+
+************* Node.js – Express *****************************************
+
+ 
+**************************************************************************************
+Blocking vs Non-Blocking
+**************************************************************************************
+ In Node.js, the terms "blocking" and "non-blocking" refer to the way in which I/O operations are handled in the event-driven architecture of Node.js. Here's a simplified explanation:
+
+Blocking:
+
+Blocking I/O operations are synchronous, meaning that when a piece of code requests an I/O operation (like reading from a file or making a network request), the program waits until the operation completes before proceeding to the next line of code.
+During this waiting period, the Node.js event loop is blocked, and no other operations can be processed. This can lead to decreased performance and scalability, especially in applications with high I/O demands.
+Example: Reading a large file synchronously using fs.readFileSync().
+Non-Blocking:
+
+Non-blocking I/O operations are asynchronous, meaning that when a piece of code requests an I/O operation, it continues to execute without waiting for the operation to complete.
+Once the operation is completed, a callback function is invoked to handle the result. In the meantime, the event loop remains free to process other tasks, improving performance and scalability.
+Example: Reading a file asynchronously using fs.readFile() with a callback function to handle the result.
+In summary, blocking operations halt the execution of code until the operation is completed, while non-blocking operations allow code to continue executing without waiting, resulting in better performance and responsiveness, especially in I/O-intensive applications. Node.js promotes the use of non-blocking, asynchronous I/O to maximize throughput and scalability.
+
+
+**************************************************************************************
+ 

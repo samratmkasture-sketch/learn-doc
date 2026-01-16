@@ -1,0 +1,186 @@
+<pre>
+REACT Interview Prep
+*****************************
+How to re render react without setState
+
+node --inspect --inspect-brk ./app.js
+
+BEST PRACTICES 
+------------------
+https://github.com/WebDevSimplified
+Profiling
+Creating a Production Build
+Measuring Performance
+Analyzing the Bundle Size
+
+React :=>
+1. https://www.makeuseof.com/must-follow-react-practices/
+2. https://kinsta.com/blog/react-best-practices/
+3. https://www.codementor.io/blog/react-optimization-5wiwjnf9hj
+4. https://blog.bitsrc.io/10-ways-to-optimize-your-react-apps-performance-e5e437c9abce
+    
+    1. Use React Fragments to Avoid Extra Tag
+    2. Virtualize long lists 
+    If you render large lists of data, it is recommended that you render only a small portion of the datasets at a time within the visible viewport of a browser, then the next data are rendered as the lists is scrolled, this is called “windowing”. Awesome React libraries have been built for this, there is the react-window and react-virtuaized 
+    3. React.PureComponent
+    4. Caching functions - > See, that useMemo(), useCallback()
+    5. Using reselect selectors
+    6. Web worker
+    7. Code splitting and Lazy Loading
+    8. React.memo()
+    9. useCallback()
+10. shouldComponentUpdate()
+
+How to Measure Performance
+
+Debouncing concepts
+Debouncing refers to ignoring the event handler call until the calls have stopped for a certain amount of time.
+Avoid Using Inline Style Attribute
+With inline styles, the browser spends a lot more time scripting and rendering.
+
+A lot of time is spent on scripting because it has to map all the style rules passed to the actual CSS properties, which increases the rendering time for the component.
+Let's imagine that we have an event with a debounce time of one second. The event handler for that event will be triggered after one second, once the user stops triggering the event.
+
+The first step in improving the performance of a React application is to measure its current performance. There are several tools available for measuring performance, including:
+
+Lighthouse – Lighthouse is an open-source tool from Google that audits web pages for performance, accessibility, and more. Lighthouse generates a report that includes suggestions for improving the performance of the application.
+WebPageTest – WebPageTest is a free tool that allows you to test the speed of your website from multiple locations around the world. WebPageTest provides detailed reports on the performance of your website, including suggestions for improvement.
+Google PageSpeed Insights – Google PageSpeed Insights analyzes the content of a web page and generates a report that identifies opportunities to improve the page's performance.
+
+*********************************************
+    
+---- 
+Testing code coverage: 
+1- Mocha,sinon,supertest
+2- Jest, supertest
+----
+---------------
+Testing framework: Jest with supertest
+---------------
+
+ 
+
+ReactJs:
+------------
+*************
+Higher-Order Components
+Portals
+Reconciliation
+
+Get query params in React ? 
+React Hooks - How to get parameter value from query string?
+useSearchParams
+https://simplefrontend.com/get-query-params-in-react/
+import { useParams } from "react-router-dom";
+const { id } = useParams();
+
+
+how to pass data from parent to child and child to parent?
+
+*************
+use of callback function in setState ?
+
+Render prop : “render prop” refers to a technique for sharing code between React components using a prop whose value is a function. A component with a render prop takes a function that returns a React element and calls it instead of implementing its own render logic.
+
+prop drilling 
+
+portal in react
+
+
+lazy loading
+
+reconcilation
+React best practices (optimisation)
+https://www.makeuseof.com/must-follow-react-practices/
+
+Code-splitting : To avoid winding up with a large bundle, it’s good to get ahead of the problem and start “splitting” your bundle. Code-Splitting is a feature supported by bundlers like Webpack, Rollup and Browserify (via factor-bundle) which can create multiple bundles that can be dynamically loaded at runtime.
+Code-splitting your app can help you “lazy-load” just the things that are currently needed by the user, which can dramatically improve the performance of your app. While you haven’t reduced the overall amount of code in your app, you’ve avoided loading code that the user may never need, and reduced the amount of code needed during the initial load.
+Before:
+
+ 
+import { add } from './math';
+
+console.log(add(16, 26));
+After:
+import("./math").then(math => {
+  console.log(math.add(16, 26));
+});
+
+React.lazy :
+The React.lazy function lets you render a dynamic import as a regular component.
+React.lazy takes a function that must call a dynamic import(). This must return a Promise which resolves to a module with a default export containing a React component.
+
+Fallback prop : The fallback prop accepts any React elements that you want to render while waiting for the component to load. You can place the Suspense component anywhere above the lazy component. You can even wrap multiple lazy components with a single Suspense component.
+
+import React, { Suspense } from 'react';
+
+const OtherComponent = React.lazy(() => import('./OtherComponent'));
+8const AnotherComponent = React.lazy(() => import('./AnotherComponent'));
+
+function MyComponent() {
+  return (
+    <div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <section>
+          <OtherComponent />
+          <AnotherComponent />
+        </section>
+      </Suspense>
+    </div>
+  );
+}
+
+React final form
+
+Error handling in react : 
+Error boundaries: 
+https://legacy.reactjs.org/docs/code-splitting.html
+
+Context : Context provides a way to pass data through the component tree without having to pass props down manually at every level.
+Context is designed to share data that can be considered “global” for a tree of React components
+https://legacy.reactjs.org/docs/context.html
+
+Pure component :  React. Component doesn't implement shouldComponentUpdate() , but React. PureComponent implements it with a shallow prop and state comparison. If your React component's render() function renders the same result given the same props and state.
+
+
+ 
+
+It is the type of component which re-renders only when the props passed to it changes and not even if its parent component re-renders or if the shouldComponentUpdate() method is called. It is greatly used to enhance the performance of a web application.
+
+
+useMemo vs useCallback : The main difference between useCallback and useMemo is the type of value they return. useCallback returns a memoized callback function, while useMemo returns a memoized value. Both hooks can be used to optimize the performance of your React components by avoiding unnecessary re-creations of functions or values.
+
+Axios : Axios has built-in XSRF(Cross-Site Request Forgery) protection, while Fetch does not. Axios has the ability to intercept HTTP requests but Fetch, by default, does not. Axios allows canceling requests and request timeout but fetch does not.
+
+Redux - DataFlow
+Thunk - 
+
+Typescript
+
+Semantic Tags : A semantic element clearly describes its meaning to both the browser and the developer.
+Examples of non-semantic elements: <div> and <span> - Tells nothing about its content.
+Examples of semantic elements: <form>, <table>, and <article> - Clearly defines its content.
+--------------------
+Html 5
+Local Storage 
+Cookies more secure ?
+
+CSS : 
+--------
+SASS
+Mixins
+
+
+
+method refrence va constructure ref
+lambda expression
+
+runnable interface implementation 
+try with resources
+fin client
+solid design principle
+lisco substiyution
+executer framework
+async 
+creational design pattern
+sonar issues

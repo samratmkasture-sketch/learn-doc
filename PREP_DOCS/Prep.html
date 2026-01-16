@@ -1,0 +1,500 @@
+<pre>
+Interview Prep
+*********************************************
+
+preventDefault vs propogation
+
+https://github.com/WebDevSimplified
+
+BEST PRACTICES 
+------------------
+https://github.com/goldbergyoni/nodebestpractices
+
+1. Project Architecture Practices (6)
+1.1 Structure your solution by components #strategic #updated
+1.2 Layer your components, keep the web layer within its boundaries #strategic #updated
+1.3 Wrap common utilities as packages, consider publishing
+1.4 Use environment aware, secure and hierarchical config #updated
+1.5 Consider all the consequences when choosing the main framework #new
+1.6 Use TypeScript sparingly and thoughtfully #new
+
+2. Error Handling Practices (12)
+2.1 Use Async-Await or promises for async error handling
+2.2 Extend the built-in Error object #strategic #updated
+2.3 Distinguish operational vs programmer errors #strategic #updated
+2.4 Handle errors centrally, not within a middleware #strategic
+2.5 Document API errors using OpenAPI or GraphQL
+2.6 Exit the process gracefully when a stranger comes to town #strategic
+2.7 Use a mature logger to increase errors visibility #updated
+2.8 Test error flows using your favorite test framework #updated
+2.9 Discover errors and downtime using APM products
+2.10 Catch unhandled promise rejections #updated
+2.11 Fail fast, validate arguments using a dedicated library
+2.12 Always await promises before returning to avoid a partial stacktrace #new
+2.13 Subscribe to event emitters 'error' event #new
+
+3. Code Style Practices (12)
+3.1 Use ESLint #strategic
+3.2 Use Node.js eslint extension plugins #updated
+3.3 Start a Codeblock's Curly Braces on the Same Line
+3.4 Separate your statements properly
+3.5 Name your functions
+3.6 Use naming conventions for variables, constants, functions and classes
+3.7 Prefer const over let. Ditch the var
+3.8 Require modules first, not inside functions
+3.9 Set an explicit entry point to a module/folder #updated
+3.10 Use the === operator
+3.11 Use Async Await, avoid callbacks #strategic
+3.12 Use arrow function expressions (=>)
+3.13 Avoid effects outside of functions #new
+
+4. Testing And Overall Quality Practices (13)
+4.1 At the very least, write API (component) testing #strategic
+4.2 Include 3 parts in each test name #new
+4.3 Structure tests by the AAA pattern #strategic
+4.4 Ensure Node version is unified #new
+4.5 Avoid global test fixtures and seeds, add data per-test #strategic
+4.6 Tag your tests #advanced
+4.7 Check your test coverage, it helps to identify wrong test patterns
+4.8 Use production-like environment for e2e testing
+4.9 Refactor regularly using static analysis tools
+4.10 Mock responses of external HTTP services #advanced #new #advanced
+4.11 Test your middlewares in isolation
+4.12 Specify a port in production, randomize in testing #new
+4.13 Test the five possible outcomes #strategic #new
+
+5. Going To Production Practices (19)
+5.1. Monitoring #strategic
+5.2. Increase the observability using smart logging #strategic
+5.3. Delegate anything possible (e.g. gzip, SSL) to a reverse proxy #strategic
+5.4. Lock dependencies
+5.5. Guard process uptime using the right tool
+5.6. Utilize all CPU cores
+5.7. Create a ‘maintenance endpoint’
+5.8. Discover the unknowns using APM products #advanced #updated
+5.9. Make your code production-ready
+5.10. Measure and guard the memory usage #advanced
+5.11. Get your frontend assets out of Node
+5.12. Strive to be stateless #strategic
+5.13. Use tools that automatically detect vulnerabilities
+5.14. Assign a transaction id to each log statement #advanced
+5.15. Set NODE_ENV=production
+5.16. Design automated, atomic and zero-downtime deployments #advanced
+5.17. Use an LTS release of Node.js
+5.18. Log to stdout, avoid specifying log destination within the app #updated
+5.19. Install your packages with npm ci #new
+
+6. Security Practices (25)
+6.1. Embrace linter security rules
+6.2. Limit concurrent requests using a middleware
+6.3 Extract secrets from config files or use packages to encrypt them #strategic
+6.4. Prevent query injection vulnerabilities with ORM/ODM libraries #strategic
+6.5. Collection of generic security best practices
+6.6. Adjust the HTTP response headers for enhanced security
+6.7. Constantly and automatically inspect for vulnerable dependencies #strategic
+6.8. Protect Users' Passwords/Secrets using bcrypt or scrypt #strategic
+6.9. Escape HTML, JS and CSS output
+6.10. Validate incoming JSON schemas #strategic
+6.11. Support blocklisting JWTs
+6.12. Prevent brute-force attacks against authorization #advanced
+6.13. Run Node.js as non-root user
+6.14. Limit payload size using a reverse-proxy or a middleware
+6.15. Avoid JavaScript eval statements
+6.16. Prevent evil RegEx from overloading your single thread execution
+6.17. Avoid module loading using a variable
+6.18. Run unsafe code in a sandbox
+6.19. Take extra care when working with child processes #advanced
+6.20. Hide error details from clients
+6.21. Configure 2FA for npm or Yarn #strategic
+6.22. Modify session middleware settings
+6.23. Avoid DOS attacks by explicitly setting when a process should crash #advanced
+6.24. Prevent unsafe redirects
+6.25. Avoid publishing secrets to the npm registry
+6.26. 6.26 Inspect for outdated packages
+6.27. Import built-in modules using the 'node:' protocol #new
+
+7. Performance Practices (2) (Work In Progress️ ✍️)
+7.1. Don't block the event loop
+7.2. Prefer native JS methods over user-land utils like Lodash
+-------------------------------------------------------
+Profiling
+Creating a Production Build
+Measuring Performance
+Analyzing the Bundle Size
+
+React :=>
+1. https://www.makeuseof.com/must-follow-react-practices/
+2. https://kinsta.com/blog/react-best-practices/
+3. https://www.codementor.io/blog/react-optimization-5wiwjnf9hj
+4. https://blog.bitsrc.io/10-ways-to-optimize-your-react-apps-performance-e5e437c9abce
+    
+    1. Use React Fragments to Avoid Extra Tag
+    2. Virtualize long lists 
+    If you render large lists of data, it is recommended that you render only a small portion of the datasets at a time within the visible viewport of a browser, then the next data are rendered as the lists is scrolled, this is called “windowing”. Awesome React libraries have been built for this, there is the react-window and react-virtuaized 
+    3. React.PureComponent
+    4. Caching functions - > See, that useMemo(), useCallback()
+    5. Using reselect selectors
+    6. Web worker
+    7. Code splitting and Lazy Loading
+    8. React.memo()
+    9. useCallback()
+10. shouldComponentUpdate()
+
+How to Measure Performance
+
+Debouncing concepts
+Debouncing refers to ignoring the event handler call until the calls have stopped for a certain amount of time.
+Avoid Using Inline Style Attribute
+With inline styles, the browser spends a lot more time scripting and rendering.
+
+A lot of time is spent on scripting because it has to map all the style rules passed to the actual CSS properties, which increases the rendering time for the component.
+Let's imagine that we have an event with a debounce time of one second. The event handler for that event will be triggered after one second, once the user stops triggering the event.
+
+The first step in improving the performance of a React application is to measure its current performance. There are several tools available for measuring performance, including:
+
+Lighthouse – Lighthouse is an open-source tool from Google that audits web pages for performance, accessibility, and more. 
+
+ generates a report that includes suggestions for improving the performance of the application.
+WebPageTest – WebPageTest is a free tool that allows you to test the speed of your website from multiple locations around the world. WebPageTest provides detailed reports on the performance of your website, including suggestions for improvement.
+Google PageSpeed Insights – Google PageSpeed Insights analyzes the content of a web page and generates a report that identifies opportunities to improve the page's performance.
+
+*********************************************
+---------------
+ AWS Amplify setup
+20 AWS Cognito Interview Questions and Answers
+https://climbtheladder.com/aws-cognito-interview-questions/
+https://www.gangboard.com/blog/aws-cognito
+
+Top 100+ AWS Interview Questions and Answers for 2023
+https://www.simplilearn.com/tutorials/aws-tutorial/aws-interview-questions
+https://mindmajix.com/aws-interview-questions
+---------------
+
+
+----
+Benchmark test of node application
+Apachec bench tool
+Testing code coverage: 
+1- Mocha,sinon,supertest
+2- Jest, supertest
+----
+***********
+SonarQube
+Docker 
+Docker-swarm
+Kubernates
+***********
+---------------
+Testing framework: Jest with supertest
+---------------
+
+MongoDB:
+---------------
+ESR Guideance 
+Projection
+
+pipline
+TTL 
+Capped Collection 
+Q. What is use of capped collection in MongoDB?
+    Capped collections are fixed-size collections that support high-throughput operations
+    that insert and retrieve documents based on insertion order. Capped collections work in a
+    way similar to circular buffers: once a collection fills its allocated space, it makes room for
+    new documents by overwriting the oldest documents in the collection.
+    Capped collections restrict updates to the documents if the update results
+    in increased document size. Since capped collections store documents in the
+    order of the disk storage, it ensures that the document size does not
+    increase the size allocated on the disk. Capped collections are best for
+    storing log information, cache data, or any other high volume data.
+    Example:-
+    >db.createCollection( "log", { capped: true, size: 100000 } )
+    // specify a maximum number of documents for the collection
+    >db.createCollection("log", { capped: true, size: 5242880, max: 5000 } )
+    // check whether a collection is capped or not
+    >db.cappedLogCollection.isCapped()
+    // convert existing collection to capped
+    >db.runCommand({"convertToCapped": "posts", size: 10000})
+    // Querying Capped Collection
+    >db.cappedLogCollection.find().sort({$natural: -1})
+
+Explain Indexes in MongoDB?
+
+db.<collection>.deleteMany({})
+
+
+What is sharding in MongoDB?
+Explain the significance of the covered query?
+What is a replica set?
+Explain the primary and secondary replica set?
+MongoDB aggregation framework: 
+Which are the two storage engines used by MongoDB?
+      MongoDB uses MMAPv1 and WiredTiger.
+utilities for backup and restore in MongoDB?
+1. mongoimport, 2. mongoexport, 3. mongodump, 4. mongorestore
+
+
+SQL injection
+mongo/nosql injection
+OWASP
+npm i express-mongo-sanitizeZ
+1. https://owasp.org/www-pdf-archive/GOD16-NOSQL.pdf
+2. https://www.imperva.com/learn/application-security/nosql-injection/
+
+
+---------------------
+REST API (Representational state transfer)
+-------------------------------------
+Passport supported Oauth authentication
+JWT token based authentication
+-------------------------------------
+
+Javascript Q :
+-----------
+Expain Hoisting in javascript
+What is closure?
+differenciate between var and let
+
+es6+ features
+
+map vs reduce 
+
+fn vs flat arrow fn
+-+
+local storage 
+session storage
+Cokie
+
+Nodejs :
+-----------
+***************
+How to create npm package ready to distribute from scratch?
+***************
+https://www.jsv9000.app/
+
+https://www.geeksforgeeks.org/node-js-event-loop/
+he event loop in Node.js consists of several phases, each of which performs a specific task
+
+1.Timers , 2.Pending Callbacks ,3. Idle, Prepare , 4. Poll, 5.Check, 6. Close Callbacks
+Eventloop in NodeJS: MacroTasks and MicroTasks
+https://medium.com/dkatalis/eventloop-in-nodejs-macrotasks-and-microtasks-164417e619b9
+ANS :
+    V8 Engine works by enqueuing tasks into the event loop.
+    The tasks are broken down further into microtask and macrotask
+       1. macroTasks: setTimeout, setInterval, setImmediate, requestAnimationFrame, I/O, UI rendering
+       2. microTasks: process.nextTick, Promises, queueMicrotask, MutationObserver
+    Only after tasks in microTasks are completed/ excahusted, event loop will next pick up one task from macroTasks. And this repeats.
+
+**********
+Node.js - Global Objects : __filename,__dirname, setTimeout(cb, ms), clearTimeout(t), setInterval(cb, ms)
+                             Console:Used to print information on stdout and stderr.
+
+                           2  Process:Used to get information on current process. Provides multiple events related to process activities.
+
+Node.js - Utility Modules : 
+1  OS Module
+Provides basic operating-system related utility functions.
+
+2  Path Module
+Provides utilities for handling and transforming file paths.
+
+3  Net Module
+Provides both servers and clients as streams. Acts as a network wrapper.
+
+4  DNS Module
+Provides functions to do actual DNS lookup as well as to use underlying operating system name resolution functionalities.
+
+5  Domain Module
+Provides ways to handle multiple different I/O operations as a single group.
+
+
+************
+Explain the concept of middleware in Node.js.
+next()
+What is callback hell?
+
+Core Modules : HTTP, util, fs , url, query string, stream, zib
+
+Node.js Cluster Process Module
+   The cluster module provides a way of creating child processes that runs simultaneously and share the same server port.
+
+   Node.js runs single threaded programming, which is very memory efficient, but to take advantage of computers multi-core systems, the Cluster module allows you to easily create child processes that each runs on their own single thread, to handle the load.
+
+The Child Processes Module
+   We can easily spin a child process using Node’s child_process module and those child processes can easily communicate with each other with a messaging system.
+   There are four different ways to create a child process in Node: spawn(), fork(), exec(), and execFile().
+   https://www.freecodecamp.org/news/node-js-child-processes-everything-you-need-to-know-e69498fe970a/
+
+CORS (Cross-Origin Resource Sharing) 
+
+how request processed once
+What are streams in Node.js?
+Readable – Used for reading operations
+Writable − Used for write operation
+Duplex − Can be used for both reading and write operations
+Transform − A type of duplex stream where the output is computed based on input
+
+Process Model : https://www.tutorialsteacher.com/nodejs/nodejs-process-model
+   Event loop : 
+   Event loops handle asynchronous callbacks in Node.js. It is the foundation of the non-blocking input/output in Node.js, making it one of the most important environmental features.
+
+   Thread Pool : Node.js uses libev for the event loop which in turn uses internal C++ thread pool to provide asynchronous I/O.
+
+Express.js is based on the Node.js middleware module called connect which in turn uses http module. 
+   Advantages of Express.js
+   Makes Node.js web application development fast and easy.
+   Easy to configure and customize.
+   Allows you to define routes of your application based on HTTP methods and URLs.
+   Includes various middleware modules which you can use to perform additional tasks on request and response.
+   Easy to integrate with different template engines like Jade, Vash, EJS etc.
+   Allows you to define an error handling middleware.
+   Easy to serve static files and resources of your application.
+   Allows you to create REST API server.
+   Easy to connect with databases such as MongoDB, Redis, MySQL
+
+24. What are the two types of API functions in Node.js?
+The two types of API functions in Node.js are:
+
+Asynchronous, non-blocking functions
+Synchronous, blocking functions
+
+4. Why is Node.js preferred over other backend technologies like Java and PHP?
+         Some of the reasons why Node.js is preferred include:
+         Node.js is very fast
+         Node Package Manager has over 50,000 bundles available at the developer’s disposal
+         Perfect for data-intensive, real-time web applications, as Node.js never waits for an API to return data
+         Better synchronization of code between server and client due to same code base
+         Easy for web developers to start using Node.js in their projects as it is a JavaScript library
+
+5. Differentiate between process.nextTick() and setImmediate()?
+The distinction between method and product. This is accomplished through the use of nextTick() and setImmediate(). next Tick() postpones the execution of action until the next pass around the event loop, or it simply calls the callback function once the event loop's current execution is complete, whereas setImmediate() executes a callback on the next cycle of the event loop and returns control to the event loop for any I/O operations.
+**********************
+Socket.IO
+-----------
+https://www.javatpoint.com/socket-io
+**********************
+
+ReactJs:
+------------
+*************
+Higher-Order Components
+Portals
+Reconciliation
+
+*************
+use of callback function in setState ?
+
+Render prop : “render prop” refers to a technique for sharing code between React components using a prop whose value is a function. A component with a render prop takes a function that returns a React element and calls it instead of implementing its own render logic.
+
+prop drilling 
+
+portal in react
+
+
+lazy loading
+
+reconcilation
+React best practices (optimisation)
+https://www.makeuseof.com/must-follow-react-practices/
+
+Code-splitting : To avoid winding up with a large bundle, it’s good to get ahead of the problem and start “splitting” your bundle. Code-Splitting is a feature supported by bundlers like Webpack, Rollup and Browserify (via factor-bundle) which can create multiple bundles that can be dynamically loaded at runtime.
+Code-splitting your app can help you “lazy-load” just the things that are currently needed by the user, which can dramatically improve the performance of your app. While you haven’t reduced the overall amount of code in your app, you’ve avoided loading code that the user may never need, and reduced the amount of code needed during the initial load.
+Before:
+
+import { add } from './math';
+
+console.log(add(16, 26));
+After:
+import("./math").then(math => {
+  console.log(math.add(16, 26));
+});
+
+React.lazy :
+The React.lazy function lets you render a dynamic import as a regular component.
+React.lazy takes a function that must call a dynamic import(). This must return a Promise which resolves to a module with a default export containing a React component.
+
+Fallback prop : The fallback prop accepts any React elements that you want to render while waiting for the component to load. You can place the Suspense component anywhere above the lazy component. You can even wrap multiple lazy components with a single Suspense component.
+
+import React, { Suspense } from 'react';
+
+const OtherComponent = React.lazy(() => import('./OtherComponent'));
+8const AnotherComponent = React.lazy(() => import('./AnotherComponent'));
+
+function MyComponent() {
+  return (
+    <div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <section>
+          <OtherComponent />
+          <AnotherComponent />
+        </section>
+      </Suspense>
+    </div>
+  );
+}
+
+React final form
+
+Error handling in react : 
+Error boundaries: 
+https://legacy.reactjs.org/docs/code-splitting.html
+
+Context : Context provides a way to pass data through the component tree without having to pass props down manually at every level.
+Context is designed to share data that can be considered “global” for a tree of React components
+https://legacy.reactjs.org/docs/context.html
+
+Pure component :  React. Component doesn't implement shouldComponentUpdate() , but React. PureComponent implements it with a shallow prop and state comparison. If your React component's render() function renders the same result given the same props and state.
+
+
+
+It is the type of component which re-renders only when the props passed to it changes and not even if its parent component re-renders or if the shouldComponentUpdate() method is called. It is greatly used to enhance the performance of a web application.
+
+
+useMemo vs useCallback : The main difference between useCallback and useMemo is the type of value they return. useCallback returns a memoized callback function, while useMemo returns a memoized value. Both hooks can be used to optimize the performance of your React components by avoiding unnecessary re-creations of functions or values.
+
+Axios : Axios has built-in XSRF(Cross-Site Request Forgery) protection, while Fetch does not. Axios has the ability to intercept HTTP requests but Fetch, by default, does not. Axios allows canceling requests and request timeout but fetch does not.
+
+Redux - DataFlow
+Thunk - 
+
+Typescript
+
+Semantic Tags : A semantic element clearly describes its meaning to both the browser and the developer.
+Examples of non-semantic elements: <div> and <span> - Tells nothing about its content.
+Examples of semantic elements: <form>, <table>, and <article> - Clearly defines its content.
+--------------------
+Html 5
+Local Storage 
+Cookies more secure ?
+
+CSS : 
+--------
+SASS
+Mixins
+
+---------------------
+AWS LAMBDA
+---------------------
+=> Deployment package size is calculated based on the combination of all the layers and the function code
+=> You can add up to five layers to a Lambda function. The total unzipped size of the function 
+and all layers cannot exceed the unzipped deployment package size quota of 250 MB.
+=> By default, Lambda provides your account with a total concurrency limit of 1,000 across all functions in a region.
+   To support your specific account needs, you can request a quota increase and configure function-level concurrency controls so that your critical functions don't experience throttling.
+
+=> In Lambda, concurrency is the number of requests your function can handle at the same time. There are two types of concurrency controls available:
+
+Reserved concurrency – Reserved concurrency guarantees the maximum number of concurrent instances for the function. When a function has reserved concurrency, no other function can use that concurrency. There is no charge for configuring reserved concurrency for a function.
+
+Provisioned concurrency – Provisioned concurrency initializes a requested number of execution environments so that they are prepared to respond immediately to your function's invocations. Note that configuring provisioned concurrency incurs charges to your AWS account.
+-----------------------
+
+
+method refrence vs constructure ref
+lambda expression
+
+runnable interface implementation 
+
+solid design principle
+lisco substiyution
+executer framework
+async 
+creational design pattern

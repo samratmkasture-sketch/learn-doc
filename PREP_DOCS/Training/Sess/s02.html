@@ -1,0 +1,501 @@
+<pre>
+ 	   
+As an asynchronous event-driven JavaScript runtime, Node.js is designed to build scalable network applications.
+
+
+Session 2 : 
+---------------
+1. Nodejs Modules and Packages
+	CommonJS is a module system for JavaScript.
+	It facilitates code organization and reusability.
+	Core features include require, module.exports, and synchronous loading
+
+	 Types of Modules :
+		- Built-in modules 
+		- Local modules.
+		- Third-party modules. Nodemon, morgon, Express
+		
+=> Nodejs Globals 
+
+2. Asynchronous flow control
+	- callbacks, promises and async/await.
+	- Best Practices for Asynchronous Code
+	https://www.ditdot.hr/en/4-tips-better-asynchronous-javascript-code
+  fs callback vs fs/Promisses hands on example
+
+File System Operations:
+	- Reading and writing files
+ 	-  Working with directories
+  Nodejs Web App
+
+Q&A 
+ 
+
+
+ Tree shaking is a technique that removes unused code from your JavaScript bundles, making them smaller and faster to load. 
+ Tree shaking or dead code elimination means that unused modules will not be included in the bundle during the build process. 
+
+
+https://expressjs.com/en/4x/api.html#router.all
+
+--------------------------------------
+*****************************************************
+node varsion 14 > supports ESM
+
+
+=> Nodejs Modules :  https://nodejs.org/api/modules.html
+let's learn about modules in node.js
+  
+
+-> Modules is an encapsulated and reusable code/functionality organized in single or multiple javascript files. 
+In modularization we organizing a codebase into loosely coupled and self contained parts.
+Each module in nodejs has its own context, so it cannot interfere with other modules or polute global scope. 
+
+Thesre are two module system in nodejs 
+CommonJS modules are the original way to package JavaScript code for Node.js. It helps developer to work faster and write structured code.
+
+	In total we have three  types of modules
+	1. first we have local modules : modules that we create in our application
+	2. second we have built-in modules :  modules that node ships with out of the box
+	3. finally we have third-party modules : which refer to modules written by other developers that we can use in our 	application
+
+Module vs Package
+a module is a single file or a collection of files that encapsulates related functionality, while a package is a way of organizing and distributing related modules, often with additional metadata and dependencies specified in a package. json file.
+
+In node.js each file is a module that is isolated by default.
+ to load a module into another file we use the require function. 
+ When file is executed the code in the module is also executed
+
+We can skip specifying the extension and node.js will infer it on our behalf
+
+We could expose certain functionality from the module while keeping the rest private that would allow us to share only the necessary code between modules 
+
+
+Module scope :  Each loaded module in node.js is wrapped with an iffy that provides private scoping of code
+this allows you to repeat variable or function names without any conflicts.
+
+--------------------------------------------
+
+***********
+Folders as modules#
+folder may be passed to require() as an argument.
+ create a package.json file in the root of the folder, which specifies a main module. An example package.json file might look like this:
+ { "name" : "some-library",
+  "main" : "./lib/some-library.js" }
+
+ If there is no package.json file present in the directory, or if the "main" entry is missing or cannot be resolved, then Node.js will attempt to load an index.js or index.node file out of that directory.
+******** 
+The module wrapper#
+Before a module's code is executed, Node.js will wrap it with a function wrapper that looks like the following:
+(function(exports, require, module, __filename, __dirname) {
+// Module code actually lives in here
+});
+
+exports, require, module, __filename, __dirname are specific to modules 
+********************
+module caching : Modules are cached after the first time they are loaded.
+********************
+different ways we can export 
+
+********************
+Although common JS works perfectly fine a new module system has been added to node.js and that is es modules
+
+let's learn about es modules :
+why there is 2nd module system for importing and exporting modules, at the time node.js was created there was no built-in module system in JavaScript,  node.js defaulted to common.js as its module system however as of es 2015 JavaScript does have a standardized module system as part of the language itself that module system is called ecmascript modules or ES modules or esm for short
+ 
+
+let's use the same example of our math module from before but use es modules instead of common Js the first thing you should know is that the file extension for ES modules is dot MJS and not Js
+let's create a new file main dot MJS
+let's create a second file for our math module math esm.mjs
+within the file I'm going to define a function const add a comma b as parameters and we return a plus b our first pattern is where we have to export and import a single variable or function in math hyphen esm.mjs we type export default add
+
+this exports the add function
+in main dot MJS
+import add from
+ to summarize
+es modules is the ecmascript standard for modules it was introduced with es2015 and node.js provided stable support since  version 14. with es modules instead of module.exports we use the export keyword
+the export can be default or named we import the exported variables or functions using the import keyword
+if it is a default export we can assign any name while importing if it is a named export the import name
+must be the same if you have done front-end development before this format of es modules should
+already be familiar it might also be the future of node.js but for now I'll stick to using common
+JS which will still be the primary format for a year or two alright thank you for watching and I'll
+see you in the next video
+
+******************
+
+built-in modules Modules 
+	http : creates an HTTP server in Node.js.
+	assert : set of assertion functions useful for testing.
+	fs : 	used to handle file system.
+	dns	: To do DNS lookups and name resolution functions
+	net :	To create servers and clients
+	events :	To handle events
+	child_process	To run a child process
+	crypto : To handle OpenSSL cryptographic functions
+	process : 	provides information and control about the current Node.js process.
+	os : provides information about the operating system.
+		1. os.cpus() - : Returns an array of objects containing information about each logical CPU core. The array will be empty if no CPU information is available, such as if the /proc file system is unavailable.
+		2. os.totalmem() | os.freemem() : Returns the amount of free system memory in bytes as an integer.
+		3. os.homedir() : Returns the string path of the current user's home directory.
+		4. os.hostname() : Returns the host name of the operating system as a string.
+		5. os.platform() : Returns a string identifying the operating system platform, the return value is equivalent to process.platform
+		6. os.release() : Returns the operating system as a string.
+		7. os.version()
+
+
+	querystring :	utility used for parsing and formatting URL query strings.
+		querystring.stringify({ foo: 'bar', baz: ['qux', 'quux'], corge: '' });
+		// Returns 'foo=bar&baz=qux&baz=quux&corge='
+
+	url : module provides utilities for URL resolution and parsing.
+
+	  
+
+
+=> Nodejs Globals
+In Node.js, there are several global objects and variables that are available without the need for explicit declaration. These globals provide essential functionalities and are accessible throughout your Node.js application. Here are some of the key Node.js globals:
+
+These are some of the primary global objects and variables in Node.js. While globals can be convenient, it's generally recommended to minimize the use of global variables to avoid unintended side effects and promote better code organization.
+global Object:
+
+Process : The process object provides information about the current Node.js process and allows you to interact with it. Examples include process.env, process.argv, and process.exit().
+
+console : The console object provides methods for logging and interacting with the console. Common methods include console.log(), console.error(), and console.warn().
+
+Buffer: The Buffer class provides a way to work with binary data directly. It is a global object in Node.js and does not need to be explicitly imported.
+
+setTimeout and setInterval: These functions are global and allow you to schedule the execution of a function after a specified delay or at regular intervals.
+
+ClearTimeout and clearInterval : A function that cancels a timeout previously established by setTimeout/setInterval.
+
+URL and URLSearchParams : The URL class provides methods for parsing, formatting, and resolving URLs. 
+
+ The URLSearchParams class provides methods for working with the query string of a URL. 
+
+fetch: A function to make HTTP requests similar to the Fetch API in web browsers (available in recent versions of Node.js, but not a standard built-in global). 
+
+
+
+******************
+setTimeout() 
+setInterval() 
+XMLHttpRequest
+Fetch API
+The setTimeout() function is actually exposed by the browser's window o
+
+=> Asynchronous flow control & Overview of Blocking vs Non-Blocking
+
+ let's learn a bit about asynchronous JavaScript  
+JavaScript is a synchronous blocking single threaded language.
+ 
+1. JavaScript is synchronous if you have two functions which log messages to the console code executes top down with only one line executing at any given time
+ 
+2. JavaScript is blocking which is because of its synchronous nature no matter how long a previous process takes the subsequent process won't kick off until the former is completed 
+
+ the browser the browser can  appear to be frozen this is called blocking the browser is blocked from continuing to handle user input and perform other tasks until the web app returns control to the processor
+
+JavaScript is single threaded a thread is simply a process that your JavaScript program can use to run a task and each thread can only do one task at a time.
+  
+This model of JavaScript creates a huge problem, suppose task to retrieve data from the database and then run some code on the data that is retrieved we have to wait on the first line for the data to be fetched and when the data finally comes back we can resume with our normal execution but that could take one second or even
+more and during that time we can't run any further code and JavaScript if it simply proceeds to the next line
+without waiting we have an error because data or response in this case is not what we expect it to be
+
+To have asynchronous Behavior with JavaScript code in front end  web browsers come into play in backend this is where node.js used. web browsers and node Define functions and apis that allow us to register functions that should not be executed synchronously and should instead be invoked asynchronously when some kind of an event occurs for example that could be the passage of time,  user's interaction with the mouse, data being read from a file system or the arrival of data over the network. This means you can let your code do several things at the same time without stopping or blocking your main thread this is pretty much the what and why of asynchronous JavaScript 
+
+ to summarize
+JavaScript is a synchronous blocking single threaded language this nature however is not beneficial
+for writing apps we want non-blocking asynchronous Behavior which is made possible by browser in the front end and node.js on the back end.  The style of programming where we don't block the main JavaScript thread is fundamental to node.js and is at the heart of how some of the built-in module code is written 
+
+Asynchronous flow control : One of the key features of Node.js is its ability to handle large numbers of concurrent connections efficiently. One of the underlying mechanisms that make this possible is the concept of control flow – a way of managing the flow of function calls in a Node.js program.
+
+
+=> fs modules 
+	const fs = require('fs')
+
+	console.log("1")
+	// const fileContent = fs.readFileSync("./datafile.txt","utf-8");
+	// console.log(fileContent)
+	fs.readFile("./datafile.txt","utf-8",(err, data)=>{
+	    console.log(data)
+	});
+	console.log("2")
+	 
+  
+
+https://medium.com/@gunendu/control-flow-in-nodejs-8e855996a5c7
+Control flow in programming is the order in which statement or function is executed or evaluated.   
+
+ 
+
+Control flow in Node.js is typically managed using one of three methods: callbacks, promises, and async/await.
+Callbacks, Promises, and Async/Await provides us different approaches towards handling asynchronous operations
+
+1. Callbacks: Callbacks are functions that are passed as arguments to other functions and are executed when that function completes its task. 
+
+		const fetchData = (url, callback) => { 
+ 
+		    setTimeout(() => { 
+		         const data = { id: 74, name: "Geeks for Geeks" }; 
+		         callback(data); 
+		     }, 2000); // Simulating a 2-second delay 
+		   
+		   /* fetch(url)
+		   .then((res) => res.json())
+		   .then((data) => {
+		     callback(data); 
+		    }); */
+		} 
+		const handleData = (data) => { 
+		  console.log("Fetched data:", data); 
+		} 
+		fetchData("https://jsonplaceholder.typicode.com/todos/1", handleData)
+		 
+
+2. Promises: Promises are a way to handle asynchronous operations in JavaScript. They provide an alternative approach to callbacks, making it easier to write and manage asynchronous code. 
+
+		// Function that performs an asynchronous operation and returns a promise 
+		function getUser(id) { 
+		    return new Promise(function (resolve, reject) { 
+		  
+		        // Simulating an asynchronous  
+		        // operation (e.g., fetching 
+		        // user data from a database) 
+		        setTimeout(() => { 
+		            const users = { 
+		                1: { id: 73, name: "Geek" }, 
+		                2: { id: 74, name: "Geeks for Geeks" }, 
+		                3: { id: 75, name: "M." } 
+		            }; 
+		  
+		            if (users[id]) { 
+		  
+		                // Resolve the promise with 
+		                // the user data if found 
+		                resolve(users[id]); 
+		            } else { 
+		  
+		                // Reject the promise with an 
+		                // error if user not found 
+		                reject(new Error("User not found")); 
+		            } 
+		        }, 2000); // Simulating a 2-second delay 
+		    }); 
+		} 
+		  
+		// Call the getUser function with user ID 2 and  
+		//handle the promise using then and catch 
+		getUser(2) 
+		    .then(function (user) { 
+		  
+		        // Log the retrieved user data to 
+		        // the console 
+		        console.log("User:", user); 
+		    }) 
+		    .catch(function (error) { 
+		  
+		        // Log any errors that occurred during 
+		        // the asynchronous operation 
+		        console.log("Error:", error); 
+		    });
+
+3. Async/await: Async/await is a language feature in Node.js that allows developers to write asynchronous code that looks similar to synchronous code.
+		async function add(a, b) { 
+		  
+		    // Add the numbers a and b 
+		    const sum = a + b;  
+		    return sum; // Return the sum 
+		} 
+		  
+		// Async function that demonstrates 
+		// the usage of async/await 
+		async function run() { 
+		  
+		    // Await the result of adding 2 and 3 
+		    const result = await add(2, 3); 
+		  
+		    // Log a message indicating the  
+		    // use of async/await 
+		    console.log("Async/await"); 
+		  
+		    // Log the sum with a prefix "Sum is: " 
+		    console.log("Sum is: " + result); 
+		} 
+		  
+		// Call the async function to 
+		// start the execution 
+		run();
+
+function getUser(id) { 
+    return new Promise(function (resolve, reject) { 
+        setTimeout(() => { 
+            const users = { 
+                1: { id: 73, name: "Geek" }, 
+                2: { id: 74, name: "Geeks for Geeks" }, 
+                3: { id: 75, name: "M." } 
+            }; 
+            if (users[id]) {  
+                resolve(users[id]); 
+            } else { 
+                reject(new Error("User not found")); 
+            } 
+        }, 2000); // Simulating a 2-second delay 
+    }); 
+} 
+
+getUser(2) 
+.then(function (user) { 
+    console.log("User:", user); 
+}) 
+.catch(function (error) {
+    console.log("Error:", error); 
+});
+
+***********************************************************
+File System Operations:
+----------------------------------------------------
+Read files
+Create files
+Update files
+Delete files
+Rename files
+
+The File System module has methods for creating new files:
+
+fs.appendFile()
+fs.open()
+fs.writeFile()
+The fs.appendFile() method appends specified content to a file. If the file does not exist, the file will be created:
+
+----------------------------------------------------
+Every method in fs module has synchronous and asynchronous forms.
+
+var http = require('http');
+var fs = require('fs');
+const fs = require("fs");
+
+fs.writeFile("a.txt", "Hellow World", (err) => {
+  if (err) {
+    console.error(err.message);
+  }
+  console.log("Data Saved!");
+});
+
+fs.appendFile("a.txt", " Some More data", (err, data) => {
+  if (err) {
+    console.error(err.message);
+  }
+  console.log("Data Saved!");
+});
+
+fs.readFile("a.txt", (err, data) => {
+  if (err) {
+    console.error(err.message);
+  }
+  console.log("Data Read: ", data.toString());
+});
+console.log("Data Read: ");
+fs.unlink("a.txt", (err) => {
+  if (err) {
+    console.error(err.message);
+  }
+  console.log("File deleted");
+});
+
+fs.mkdir("./dir2/l1/l2/l3", { recursive: true }, (err) => {
+  if (err) {
+    return console.error(err);
+  }
+  console.log("Directory created successfully!");
+});
+const result = fs.mkdirSync("dir1/l1/l2", { recursive: true });
+
+const result = fs.readFileSync("./a.txt");
+console.log("result ", result.toString());
+
+fs.rename("a.txt", "aa.txt", function (err) {
+  if (err) throw err;
+  console.log("File Renamed!");
+});
+
+fs.rmdir(
+  "./dir1",
+  {
+    recursive: false,
+  },
+  (err) => {
+    if (err) {
+      console.log(err.message);
+    }
+    console.log("removed");
+  }
+);
+
+
+ 
+************************************************************************************************************
+
+https://www.geeksforgeeks.org/express-js/?ref=lbp
+Express.js: https://expressjs.com/
+ 
+ Express.js is a powerful and widely used web framework for Node.js that prioritizes speed, flexibility, and minimalism. Its fast performance, unopinionated nature, and minimalist design make it a popular choice for developers building a wide range of web applications, from small projects to large-scale enterprise applications.
+
+	
+Why learn Express ?
+Express makes the development of Node application very easy and it is very simple to use. It provides a simple and efficient way to build web applications and APIs using JavaScript. It helps Node to handling routes, requests, and responses, making it easier for you to create robust and scalable applications. As it is very flexible, lightweight and easy to learn and contains a ton of middleware option making it an excellent choice to learn and use Express in your application.
+
+Express Advantages:
+	1. Simplicity and Minimalism: Express JS has very simple design, that makes it easy to learn and use. With its simple structure you can quickly set up a server, define routes, and handle HTTP requests which makes it an excellent choice for building web applications efficiently.
+	2. Flexibility and Customization: Express JS is a flexible framework that allows you to structure the application based on your preferences. It does have a strict application architecture so you can organize your code according to your preference.
+	3. Middleware Ecosystem: Express JS has a large numbers of middleware that can be easily integrated into applications. Middleware functions increases the functionality of Express by allowing you to handle various tasks such as authentication, logging, and error handling.
+	4. Scalability: Express JS is designed to be lightweight and scalable, which makes it suitable for building both small projects and large-scale applications. It is asynchronous and has event-driven architecture which allows you to handle a large number of requests.
+	5. Active Community Support: Express JS has a large active community who contribute to its growth and improvement. Because of them the framework is regularly updated and well-documented.
+	
+
+-----------
+Q : The description "Express.js is a fast, unopinionated, minimalist web framework for Node.js" succinctly captures the core characteristics of Express.js. Let's break down each aspect in detail:
+
+Fast:
+
+Middleware System: Express.js is designed to handle HTTP requests and responses efficiently. It employs a middleware system that allows developers to organize and structure their application logic in a modular way. Middleware functions can be executed in a specific order, enabling developers to control the flow of the request-response cycle.
+
+Routing: Express.js provides a robust routing mechanism that allows developers to define how the application responds to different HTTP methods and request paths. This routing system is optimized for performance, ensuring that routes are matched quickly.
+
+Event-Driven Architecture: Express.js leverages the event-driven nature of Node.js. This allows it to handle a large number of concurrent connections efficiently, making it well-suited for building scalable web applications.
+
+Unopinionated:
+
+Flexibility: Express.js is unopinionated, meaning it doesn't enforce a strict structure or set of rules on how developers should build their applications. This flexibility allows developers to choose their preferred libraries and tools for various components of their application stack.
+
+Minimal Abstraction: Express.js provides a minimal layer of abstraction over the core functionalities of Node.js, giving developers the freedom to make decisions about the architecture and components of their applications.
+
+Customization: Developers have the freedom to customize the application structure, choose template engines, and integrate additional middleware according to their specific needs.
+
+Minimalist:
+
+Lightweight Core: Express.js has a lightweight core that provides essential functionality for building web applications. This minimalist approach ensures that developers only include the components they need, keeping the overall application size and complexity to a minimum.
+
+Extensibility: While the core of Express.js is minimalist, it is highly extensible. Developers can easily add functionality by integrating third-party middleware or writing custom middleware to extend the capabilities of their applications.
+
+Focus on HTTP Fundamentals: Express.js focuses on the fundamentals of handling HTTP requests and responses, providing a simple and intuitive interface for building web servers and APIs without unnecessary abstractions.
+
+In summary, Express.js is a powerful and widely used web framework for Node.js that prioritizes speed, flexibility, and minimalism. Its fast performance, unopinionated nature, and minimalist design make it a popular choice for developers building a wide range of web applications, from small projects to large-scale enterprise applications.
+
+ 
+--------------
+***********************
+
+  
+=>  Understanding the Node.js runtime environment
+   V8 + Javascript + c++ addons
+   JavaScript is internally compiled by V8 with just-in-time (JIT) compilation to speed up the execution.
+V8 is written in C++, and it's continuously improved. It is portable and runs on Mac, Windows, Linux and several other systems.
+	JS Runtime Environment :  https://wanganator414.github.io/2019/08/02/JSRuntime
+
+=> Node.js runtime environment
+	https://medium.com/@shaghayegh-gh/how-javascript-runtime-and-web-apis-work-together-d82d98a41848
+ 
+	 
+
+**************************
+	 
+	 

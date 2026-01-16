@@ -1,0 +1,239 @@
+<pre> 
+	
+
+********************* Mongoose **************************************
+Mongoose is an Object Data Modeling (ODM) library for MongoDB. MongoDB is a NoSQL database and Mongoose is used to interact with MongoDB by providing a schema-based solution. The Mongoose acts as the abstraction layer over the MongoDB database.
+
+Mongoose is used in Node application to interact with MongoDB without write complex queries. It acts as an Object Data Modeling (ODM) used to define schema model and provides easy communication between application and database. 
+
+It provides many features like schema validation, middleware support, and easy query building It manages relationships between data, and is used to translate between objects in code and the representation of those objects in MongoDB.
+
+
+Mongoose Advantages : -
+----------------------------
+Mongoose is used in Node application to interact with MongoDB without write complex queries. It acts as an Object Data Modeling (ODM) used to define schema model and provides easy communication between application and database. It provides many features like schema validation, middleware support, and easy query building
+
+1. Schema Definition: Mongoose allows you to define structured schema model for MongoDB collections, because of that you get a clear understanding about the structure of model data.
+
+2. Data Validation: Mongoose can be used for data validation, which ensures that only valid and properly formatted data is stored in the database, which helps to manage data integrity.
+
+3. Middleware Support: Mongoose has the support of middleware which helps in the execution of custom logic before or after database operations, that offers flexibility in handling data interactions.
+
+4. Query Building: We don’t have to write  complex queries which we were writing in MongoDB because Mongoose simplifies the process by providing a high-level API that makes it easier to interact with the database.
+
+5. Modeling Relationships and Population: You can define relationships between different data models and it also supports population, due to this you can work with related data without disturbing database normalization.
+Ref option
+Now, you can reference documents in other collections. You can replace a specified path in a document with document(s) from other collection(s), this process is known as population
+
+The ref option is what tells mongoose.js which model to use during population.
+-------------------------------------
+https://www.freecodecamp.org/news/introduction-to-mongoose-for-mongodb-d2a7aa593c57/
+Terminologies Mongoose : 
+
+Collections: Collections in Mongo are equivalent to tables in relational databases. They can hold multiple JSON documents.
+
+Documents: Documents are equivalent to records or rows of data in SQL. While a SQL row can reference data in other tables, Mongo documents usually combine that in a document.
+
+The document structure in MongoDB are BSON objects with support for the full range of BSON types; however, BSON(Binary Javascript Object Notation) documents are conceptually, similar to JSON(JavaScript Object Notation.) objects, 
+
+Fields: Fields, are  properties or attributes, are similar to columns in a SQL table. FirstName, LastName, Email, and Phone are all fields.
+
+Schema: While Mongo is schema-less, SQL defines a schema via the table definition. A Mongoose schema is a document data structure (or shape of the document) that is enforced via the application layer.
+Schemas can be reused and they can contain several child-schemas too. 
+
+SchemaTypes:  Mongoose schemas define the overall structure or shape of a document, SchemaTypes define the expected data type for individual fields (String, Number, Boolean, and so on).
+
+  You can also pass in useful options like required to make a field non-optional, default to set a default value for the field, and many more.
+
+Models: Models are higher-order constructors that take a schema and create an instance of a document equivalent to records in a relational database.
+
+
+Mongoose Schema vs. Model
+A Mongoose model is a wrapper on the Mongoose schema. A Mongoose schema defines the structure of the document, default values, validators, etc., whereas a Mongoose model provides an interface to the database for creating, querying, updating, deleting records, etc.
+
+Creating a Mongoose model comprises primarily of three parts:
+
+1. Referencing Mongoose
+let mongoose = require('mongoose');
+This reference will be the same as the one that was returned when we connected to the database, which means the schema and model definitions will not need to explicitly connect to the database.
+
+2. Defining the Schema
+A schema defines document properties through an object where the key name corresponds to the property name in the collection.
+
+let emailSchema = new mongoose.Schema({
+  email: String
+});
+
+Here we define a property called email with a schema type String which maps to an internal validator that will be triggered when the model is saved to the database. It will fail if the data type of the value is not a string type.
+
+
+The following Schema Types are permitted:
+
+Array
+Boolean
+Buffer
+Date
+Mixed (A generic / flexible data type)
+Number
+ObjectId
+String
+
+3. Exporting a Model
+We need to call the model constructor on the Mongoose instance and pass it the name of the collection and a reference to the schema definition.
+
+module.exports = mongoose.model('Email', emailSchema);
+Let’s combine the above code into ./src/models/email.js to define the contents of a basic email model:
+
+let mongoose = require('mongoose');
+
+let emailSchema = new mongoose.Schema({
+  email: String
+});
+
+module.exports = mongoose.model('Email', emailSchema);
+A schema definition should be simple, but its complexity is usually based on application requirements. In the example above, the value of the email property is a simple value type. However, it can also be an object type with additional properties on it.
+
+Basic Operations
+Mongoose has a flexible API and provides many ways to accomplish a task. We will not focus on the variations because that is out of scope for this article, but remember that most of the operations can be done in more than one way either syntactically or via the application architecture.
+
+-------------------------------------------------
+Everything in Mongoose starts with a Schema. Each schema maps to a MongoDB collection and defines the shape of the documents within that collection.
+
+Creating a model
+To use our schema definition, we need to convert our blogSchema into a Model we can work with. To do so, we pass it into mongoose.model(modelName, schema):
+
+const Blog = mongoose.model('Blog', blogSchema);
+// ready to go!
+
+Ids
+By default, Mongoose adds an _id property to your schemas.
+
+const schema = new Schema();
+
+schema.path('_id'); // ObjectId { ... }
+----------------------------------------------------
+Create Record
+
+Fetch Record
+Update Record
+Delete Record
+
+Middleware
+Middleware are functions that run at specific stages of a pipeline. Mongoose supports middleware for the following operations:
+
+Aggregate
+Document
+Model
+Query
+
+
+***********************************************************
+
+
+
+************************ MongoDB *************************************
+MongoDB is an open-source document database and leading NoSQL database. MongoDB is written in C++.
+
+MongoDB is a cross-platform, document oriented database that provides, high performance, high availability, and easy scalability. MongoDB works on concept of collection and document.
+
+
+https://www.freecodecamp.org/news/mongodb-mongoose-node-tutorial/
+-> MongoDB server  usually listens on a TCP socket, and  Node.js process can connect to it using a TCP connection.
+
+- But on the top of TCP, MongoDB also has its own protocol for understanding what exactly the client (our Node.js process) wants the database to do.
+
+- For this communication, instead of learning the messages we have to send on the TCP layer, we abstract that away with the help of a "driver" software, called MongoDB driver in this case. MongoDB driver is available as an npm package here.
+- The MongoDB driver is responsible for connecting and abstracting the low level communication request/responses from you – but this only gets you so far as a developer.
+
+Because MongoDB is a schemaless database
+Mongoose is an abstraction over the native MongoDB driver (the npm package I mentioned above).
+
+
+
+Mongoose is an Object Data Modeling (ODM) library for MongoDB. MongoDB is a NoSQL database and Mongoose is used to interact with MongoDB by providing a schema-based solution. 
+
+Advantages of MongoDB over RDBMS
+Schema less − MongoDB is a document database in which one collection holds different documents. Number of fields, content and size of the document can differ from one document to another.
+Structure of a single object is clear.
+No complex joins.
+Deep query-ability. MongoDB supports dynamic queries on documents using a document-based query language that's nearly as powerful as SQL.
+Ease of scale-out − MongoDB is easy to scale.
+Conversion/mapping of application objects to database objects not needed.
+Uses internal memory for storing the (windowed) working set, enabling faster access of data.
+
+
+Why Use MongoDB?
+Document Oriented Storage − Data is stored in the form of JSON style documents.
+Index on any attribute
+Replication and high availability
+Auto-Sharding
+Rich queries
+Fast in-place updates
+Professional support by MongoDB
+
+
+Mongoose Advantages / Why Learn Mongoose? : -
+----------------------------
+Mongoose is used in Node application to interact with MongoDB without write complex queries. It acts as an Object Data Modeling (ODM) used to define schema model and provides easy communication between application and database. It provides many features like schema validation, middleware support, and easy query building
+
+1. Schema Definition: Mongoose allows you to define structured schema model for MongoDB collections, because of that you get a clear understanding about the structure of model data.
+2. Data Validation: It can be used for data validation, which ensures that only valid and properly formatted data is stored in the database, which helps to manage data integrity.
+3. Middleware Support: Mongoose has the support of middleware which helps in the execution of custom logic before or after database operations, that offers flexibility in handling data interactions.
+4. Query Building: We don’t have to write those complex queries which we were writing in MongoDB because Mongoose simplifies the process by providing a high-level API that makes it easier to interact with the database.
+5. Modeling Relationships and Population: You can define relationships between different data models and it also supports population, due to this you can work with related data without disturbing database normalization.
+----------------------------------------
+
+https://www.mongodb.com/docs/drivers/node/current/quick-start/connect-to-mongodb/
+-------------------------------------------------
+1. Create your Node.js Application
+Create a file to contain your application called index.js in your node_quickstart project directory.
+
+Copy and paste the following code into the index.js file:
+
+const { MongoClient } = require("mongodb");
+// Replace the uri string with your connection string.
+const uri = "<connection string uri>";
+const client = new MongoClient(uri);
+async function run() {
+  try {
+    const database = client.db('sample_mflix');
+    const movies = database.collection('movies');
+    // Query for a movie that has the title 'Back to the Future'
+    const query = { title: 'Back to the Future' };
+    const movie = await movies.findOne(query);
+    console.log(movie);
+  } finally {
+    // Ensures that the client will close when you finish/error
+    await client.close();
+  }
+}
+run().catch(console.dir);
+-------------------------------------------------------------------------
+2. Assign the Connection String
+Replace the <connection string uri> placeholder with the connection string that you copied from the Create a Connection String step of this guide.
+
+-------------------------------------------------------------------------
+3. Run your Node.js Application
+In your shell, run the following command to start this application:
+
+node index.js
+
+-------------------------------------------------------------------------
+CRUD OPERATION with Mongodb
+
+-------------------------------------------------------------------------
+CRUD OPERATION with Mongoose : 
+
+https://www.geeksforgeeks.org/mongoose-tutorial/
+https://www.freecodecamp.org/news/introduction-to-mongoose-for-mongodb-d2a7aa593c57/
+
+-------------------------------------------------------------------------
+
+-----------------------------------------------------------
+Atlas Connection : =>
+Find your MongoDB Atlas Connection String
+
+https://www.mongodb.com/docs/drivers/node/current/quick-start/create-a-connection-string/
+
+
+-----------------------------------------------------------

@@ -1,0 +1,420 @@
+<pre>
+  
+REACT Interview Prep
+*********************************************************
+
+1. What is OpenFin Framework Have you worked on it
+2. Have you worked on any old UI technology like WPF
+8. have you worked on with Open fin app
+
+3. How react works
+    - Virtual dom
+    - Reconcilation
+    - Diffing algorithm
+    - Fiber
+    -- updates - Element of different type, DOM elements of same type, Component elements of the same type, Recursion on Children
+
+    https://medium.com/@ruchivora16/react-how-react-works-under-the-hood-9b621ee69fb5#:~:text=React%20creates%20a%20virtual%20DOM,on%20the%20actual/real%20DOM.
+4. react vs node 
+5. why use node as a backed and why not react
+6. if multiple users loggeed in at the same time then how to handle the application
+7. how to implement and manage authentication from backend and front end
+9. React vs Angular
+10. What is redux
+11. if an issue generate on web application then how to debug and fixed
+12. How to show data records on browser and how to load and show the row data
+13. which major features you developed in your previous project
+14 Pros and cons of react 
+15 which features are not present in react
+
+----------------------------------------------------------------------------
+ - How ui renders on the  browser? Sending from server to actual rendering on browser
+ - What is loosely typed language vs strictly types language? Javascript vs python vs Java
+ - What is typescript how  it works have you used it where benifites?
+ - If there is some price/trade value changing continuesly how will you show it on ui?
+    what is best approach ? changing values provided by server
+ - Do you know about Microsoft foundation classses ?
+
+ ----------------------------------------------------------------------------
+ - What is the toughest task you did in your previous project
+ - What is debouncing and how to implement in your react application
+ - Which version are you using in react and what are the new feature from the previous one
+ - What is useState hook
+ - What is redux how it different from state
+ - Architechture of redux
+ - How redux interact with react application
+ - How to redux state available in entire react application
+
+ - what is typescript
+ - Some common types in typescript
+  - What what is use of enum
+  - What are the generics
+  - what are the lifecycle method in react
+  - how to achive lifecycle methods in functional component
+  - What are ways to make faster your react application
+  - what are useMemo and useCallack fucntion
+  - What is Heigher order component and what is use case of it
+  - if you are working with team and one of the team member will not agree with UI component design pattern then how to handle that situation
+
+Enums (enumerations) in programming, including TypeScript, serve a specific purpose: to define a set of named constants.  They make your code more readable, maintainable, and less prone to errors by replacing arbitrary values (like numbers or strings) with meaningful names.   
+
+Here's a breakdown of the uses and benefits of enums:
+1. Improved Readability:
+2. Maintainability:
+3. Type Safety:
+4. Code Completion and Tooling:
+5. Representing Finite Sets of Values:
+6. Working with Data from APIs or Databases:
+
+Generics in programming are a powerful feature that allows you to write reusable components or functions that can work with a variety of types without sacrificing type safety.  They essentially let you create "templates" for code that can be adapted to different data types.
+----------------------------------------------------------------------------
+
+  🔹 Final Performance Checklist
+✅ Use React.memo to avoid unnecessary re-renders
+✅ Optimize expensive computations with useMemo
+✅ Prevent unnecessary function re-creations using useCallback
+✅ Use React.lazy & Suspense for code splitting
+✅ Virtualize long lists with react-window
+✅ Optimize images, enable lazy loading
+✅ Minify and optimize JS & CSS bundles
+✅ Debounce API calls to prevent unnecessary requests
+✅ Use React Profiler to find slow components
+
+By implementing these strategies, your React app will be faster, smoother, and more efficient!
+----------------------------------------------------------------------------
+*********************************************************
+New React 18 Features ::
+------------------------
+React 18 was released in March 2022 and has several new features and improvements that benefit users and developers. 
+
+- Automatic Batching :
+- Transitions
+- Suspense on the server
+  React 18 introduces: 
+    1. Code splitting on the server with suspense
+    2. Streaming rendering on the server
+- Strict mode
+
+
+https://www.freecodecamp.org/news/new-react-19-features-you-should-know-with-code-examples/#heading-react-19-features
+React Compiler: The Magic Behind the Scenes
+The star of React 19 is its new compiler. 🎉 This compiler transforms your React code into plain JavaScript, which boosts performance and, even better, frees you from constantly tweaking performance manually.
+
+To optimize our React applications, we use some inbuilt methods like useMemo or useCallback. This tells React not to compile the code again if the inputs don’t change.
+  - No More Memoization Hooks
+  - No forwardRef: Simplified Ref Handling
+  - Fetch Data with use() vs. useEffect
+  - The New use() Hook: A Game Changer
+The versatile new use() hook replaces multiple hooks, such as useEffect for data fetching as well as useContext and useState for consuming context data. It simplifies your code by handling promises and context with a single, elegant solution.
+- Suspense and use(): When you use use(), it suspends the component rendering until the promise resolves. If an error occurs, it can also trigger a Suspense error boundary.
+- Use Context with use()
+Handling context data has also become more straightforward. The new use() hook can now consume context directly, eliminating the need for useContext and making context management more intuitive. 🎯
+
+ - Directives: A Fresh Approach
+  Use use client for client-side components and use server for server-side ones. It’s as easy as adding a string at the top of your file:
+
+  - useFormStatus(): Managing Form State
+Keep track of your form submissions with the useFormStatus() hook. 🕒 It helps manage form states like disabling the submit button while the form is pending. This is a must-have for smooth user experiences.
+
+*********************************************************
+React Fiber is an internal engine change geared to make React faster and smarter. The Fiber reconciler, which became the default reconciler for React 16 and above, is a complete rewrite of React's reconciliation algorithm to solve some long-standing issues in React.
+---------------------------------------------------------------------------
+
+Q1. Difference between let, var and const.
+Q2. // Get output 1,2 without using let.
+for(var i=0; i<=2; i++){
+  setTimeout(function(){console.log(i)}, 1000);
+}
+Answer::
+function print(i){
+  setTimeout(function(){console.log(i)}, 1000)
+}
+
+for(var i=0; i<=2; i++){print(i)}
+
+- Name some of the hooks you have worked on?
+- How to get query parameters in React Router v4?
+- What is "key" prop and what is the benefit of using it in arrays of elements?
+- What is children prop?
+- What is Lifting State Up in React?
+- What is shallow copy and deep copy in JavaScript ?
+   https://www.javatpoint.com/shallow-copy-and-deep-copy-in-javascript
+- What are Pure Components?
+- What are synthetic events in React?
+- What are portals in React?
+- How to perform automatic redirect after login?
+
+Testing : 
+-
+- What is Shallow Renderer in React testing?
+
+Redux : 
+- Prop drilling
+- Redux flow
+- What are the core principles of Redux?
+- What is the difference between React context and React Redux?
+- What is the difference between component and container in React Redux?
+- What is Redux Thunk?
+
+    
+Q4. map vs filter
+Q5. Prototype and how it works?
+Q6. Arrow function and advantages of arrow function
+- Don't have this scope. Closer parent will have access. If no then target to global. No argument objects, use rest operator, Arrow functions are not hoisted. 
+Q7. When we use bind VS call apply and bind
+Q8. Difference between spread and rest operator.
+Q9. //Get second last element from array. 
+
+let arr = ["a", "b", "c", "d", "e", "f"];
+output = "e"
+
+console.log(arr[arr.length-2]);
+
+Q10. Output?
+console.log(3+"3")
+console.log(3-"3")
+
+
+Q12 React Element vs Component
+ 
+
+Q14 What are refs in React?
+
+Q15 forwardRefs in React?
+
+Q16 React Virtual DOM
+
+Q17 Intereceptor :: Intercept request and response before going to backend. Eg, Strictly check API before going to backend. Part of middleware. Depends upon status responses we can do some navigation
+
+Q18 React fibre?
+
+Q19. React lifecycles? 
+
+Q20 In which case you will use HOC? :: 
+
+Q21 Lazy loading ?
+
+Q22 How to manage nested routes in terms of role based routing?
+
+**********************************************************
+what is sideeffects in react js?
+in React, a side effect is an operation that occurs outside of a component's scope and affects the application's state or interacts with the external environment
+https://codesandbox.io/p/sandbox/react-essentials-deep-dive-start-xmr985?file=%2Fsrc%2Findex.css
+
+New Feature ofreactjs 18V
+https://react.dev/blog/2022/03/29/react-v18
+Automatic Batching : 
+      - Fewer rerenders for better performance
+      - Works outside of event handelers
+      - Safe but you can opt out when needed (flushSync)
+  Suspence of serverside rendering : we have support for suspense on the server,which means by the help of suspense,you can wrap a slow part of your application,maybe like a comments component telling react to delay this loading
+of the slow component, like comments.This can also be used to specify a loading state.So maybe we can show a spinner while comments is loading. 
+  Code spiliting :  React 18 server rendering is also fully integrated with another optimization called code splitting. Previously it was hard to make server rendering work with code splitting,
+  Concurrent : React 18 adds a few new APIs called concurrent features. They let you prove your applications performance by marking some state updates as non-urgent to keep the browser responsive. 
+  Some of them are startTransition, useTransition, useDeferredValue.
+
+Streaming html : 
+Hydration process :
+
+useId()
+useSyncExternalStore()
+useDeffered()
+**********************************************************
+How to re render react without setState?
+ 
+
+Strict Mode in react ?
+BEST PRACTICES 
+------------------
+https://github.com/WebDevSimplified
+Profiling
+Creating a Production Build
+Measuring Performance
+Analyzing the Bundle Size
+
+hydrateRoot : when we render a React app on the server (instead of the browser), it generates HTML for our components. The hydrateRoot function is then used on the client side to attach event listeners and make the HTML interactive.
+
+https://www.youtube.com/watch?v=kZG3izJu7qE
+hydrateRoot lets you display React components inside a browser DOM node whose HTML content was previously generated by react-dom/server.
+
+const root = hydrateRoot(domNode, reactNode, options?)
+i.renderToString()
+ii.renderToStaticMarkup()
+
+React :=>
+1. https://www.makeuseof.com/must-follow-react-practices/
+2. https://kinsta.com/blog/react-best-practices/
+3. https://www.codementor.io/blog/react-optimization-5wiwjnf9hj
+4. https://blog.bitsrc.io/10-ways-to-optimize-your-react-apps-performance-e5e437c9abce
+    Avoid Using State (if Possible)
+    1. Opt for Fragments Instead of Divs Where Possible
+    2. Virtualize long lists 
+    If you render large lists of data, it is recommended that you render only a small portion of the datasets at a time within the visible viewport of a browser, then the next data are rendered as the lists is scrolled, this is called “windowing”. Awesome React libraries have been built for this, there is the react-window and react-virtuaized 
+    3. React.PureComponent
+    4. Caching functions - > See, that useMemo(), useCallback()
+    5. Using reselect selectors
+    6. Web worker
+    7. Code splitting and Lazy Loading
+    8. React.memo()
+    9. useCallback()
+    10. shouldComponentUpdate()
+      Avoid Repetitive Code
+      Follow Naming Conventions
+     
+      Organize Files Related to the Same Component in One Folder
+
+
+
+How to Measure Performance
+
+Debouncing concepts
+Debouncing refers to ignoring the event handler call until the calls have stopped for a certain amount of time.
+Avoid Using Inline Style Attribute
+With inline styles, the browser spends a lot more time scripting and rendering.
+
+A lot of time is spent on scripting because it has to map all the style rules passed to the actual CSS properties, which increases the rendering time for the component.
+Let's imagine that we have an event with a debounce time of one second. The event handler for that event will be triggered after one second, once the user stops triggering the event.
+
+The first step in improving the performance of a React application is to measure its current performance. There are several tools available for measuring performance, including:
+
+Lighthouse – Lighthouse is an open-source tool from Google that audits web pages for performance, accessibility, and more. Lighthouse generates a report that includes suggestions for improving the performance of the application.
+WebPageTest – WebPageTest is a free tool that allows you to test the speed of your website from multiple locations around the world. WebPageTest provides detailed reports on the performance of your website, including suggestions for improvement.
+Google PageSpeed Insights – Google PageSpeed Insights analyzes the content of a web page and generates a report that identifies opportunities to improve the page's performance.
+
+*********************************************
+    
+---- 
+Testing code coverage: 
+1- Mocha,sinon,supertest
+2- Jest, supertest
+----
+---------------
+Testing framework: Jest with supertest
+---------------
+
+ 
+
+ReactJs:
+------------
+*************
+Higher-Order Components
+Portals : React portals come up with a way to render children into a DOM node that occurs outside the DOM hierarchy of the parent component.
+Reconciliation
+
+Get query params in React ? 
+React Hooks - How to get parameter value from query string?
+useSearchParams
+https://simplefrontend.com/get-query-params-in-react/
+import { useParams } from "react-router-dom";
+const { id } = useParams();
+
+
+how to pass data from parent to child and child to parent?
+
+*************
+use of callback function in setState ?
+
+Render prop : “render prop” refers to a technique for sharing code between React components using a prop whose value is a function. A component with a render prop takes a function that returns a React element and calls it instead of implementing its own render logic.
+
+prop drilling 
+
+portal in react
+
+
+lazy loading
+
+reconcilation
+React best practices (optimisation)
+https://www.makeuseof.com/must-follow-react-practices/
+
+Code-splitting : To avoid winding up with a large bundle, it’s good to get ahead of the problem and start “splitting” your bundle. Code-Splitting is a feature supported by bundlers like Webpack, Rollup and Browserify (via factor-bundle) which can create multiple bundles that can be dynamically loaded at runtime.
+Code-splitting your app can help you “lazy-load” just the things that are currently needed by the user, which can dramatically improve the performance of your app. While you haven’t reduced the overall amount of code in your app, you’ve avoided loading code that the user may never need, and reduced the amount of code needed during the initial load.
+Before:
+
+ 
+import { add } from './math';
+
+console.log(add(16, 26));
+After:
+import("./math").then(math => {
+  console.log(math.add(16, 26));
+});
+
+React.lazy :
+The React.lazy function lets you render a dynamic import as a regular component.
+React.lazy takes a function that must call a dynamic import(). This must return a Promise which resolves to a module with a default export containing a React component.
+
+Fallback prop : The fallback prop accepts any React elements that you want to render while waiting for the component to load. You can place the Suspense component anywhere above the lazy component. You can even wrap multiple lazy components with a single Suspense component.
+
+import React, { Suspense } from 'react';
+
+const OtherComponent = React.lazy(() => import('./OtherComponent'));
+8const AnotherComponent = React.lazy(() => import('./AnotherComponent'));
+
+function MyComponent() {
+  return (
+    <div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <section>
+          <OtherComponent />
+          <AnotherComponent />
+        </section>
+      </Suspense>
+    </div>
+  );
+}
+
+React final form
+
+Error handling in react : 
+Error boundaries: 
+https://legacy.reactjs.org/docs/code-splitting.html
+
+Context : Context provides a way to pass data through the component tree without having to pass props down manually at every level.
+Context is designed to share data that can be considered “global” for a tree of React components
+https://legacy.reactjs.org/docs/context.html
+
+Pure component :  React. Component doesn't implement shouldComponentUpdate() , but React. PureComponent implements it with a shallow prop and state comparison. If your React component's render() function renders the same result given the same props and state.
+
+
+ 
+
+It is the type of component which re-renders only when the props passed to it changes and not even if its parent component re-renders or if the shouldComponentUpdate() method is called. It is greatly used to enhance the performance of a web application.
+
+
+useMemo vs useCallback : The main difference between useCallback and useMemo is the type of value they return. useCallback returns a memoized callback function, while useMemo returns a memoized value. Both hooks can be used to optimize the performance of your React components by avoiding unnecessary re-creations of functions or values.
+
+Axios : Axios has built-in XSRF(Cross-Site Request Forgery) protection, while Fetch does not. Axios has the ability to intercept HTTP requests but Fetch, by default, does not. Axios allows canceling requests and request timeout but fetch does not.
+
+Redux - DataFlow
+Thunk - 
+
+Typescript
+
+Semantic Tags : A semantic element clearly describes its meaning to both the browser and the developer.
+Examples of non-semantic elements: <div> and <span> - Tells nothing about its content.
+Examples of semantic elements: <form>, <table>, and <article> - Clearly defines its content.
+--------------------
+Html 5
+Local Storage 
+Cookies more secure ?
+
+CSS : 
+--------
+SASS
+Mixins
+
+
+
+method refrence va constructure ref
+lambda expression
+
+runnable interface implementation 
+try with resources
+fin client
+solid design principle
+lisco substiyution
+executer framework
+async 
+creational design pattern
+sonar issues

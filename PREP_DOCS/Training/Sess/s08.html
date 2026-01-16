@@ -1,0 +1,206 @@
+
+
+JWT Token
+Authentication and Authorization
+
+USER Registration
+Email Verification
+USER Login
+
+---------------------------------------------------------------------------------------------------
+
+What are authentication and authorization?
+In simple terms, authentication is the process of verifying who a user is, while authorization is the process of verifying what they have access to.
+
+
+---------------------------- bcrypt ---------------------------------
+
+
+- What is bcrypt?
+	Bcrypt is a password hashing algorithm based on the Blowfish cipher. The name “bcrypt” is made of two parts: b and crypt, where b stands for Blowfish and crypt is the name of the hashing function used by the Unix password system.
+	Bcrypt was created as a result of the failure of Crypt to adapt to technology and hardware advancement. 
+	Bcrypt is designed to be a slow algorithm, which is a good thing when it comes to password hashing. Therefore, bcrypt is perfect for password hashing because it reduces brute-force attacks.
+	Additionally, Bcrypt uses a salt (random data) for each password, making it resistant to rainbow table attacks.
+
+ 
+Because hash algorithms always produce the same result for a specific password, they are predictable. If you only hash the password, a hacker can figure out the original password. Hashing is not enough.
+bcrypt takes a user-submitted plain password and converts it into a hash. The hash is what is stored in the database.
+
+The bcrypt algorithm offers several benefits over other password hashing algorithms. 
+1. It provides strong password storage security, making it difficult for attackers to utilize compromised data in credential-stuffing attacks or other attack vectors.
+2. Bcrypt is more resistant to simple attacks like brute force compared to algorithms such as SHA-256 and MD5 . 
+3. Bcrypt uses random salts, which prevent the creation of lookup tables and enhance security . It also has a cost factor and salt value, further increasing its resistance to brute force attacks . 
+	
+	In comparison, SHA-256 hashing algorithms, including SHA-256 with salt and MD5 chaining, are easily susceptible to simple attacks and should not be used in a production environment .  
+
+
+	Bcrypt is considered a secure method for password hashing due to its adaptability and resistance to brute force attacks. It uses a cost factor that determines the amount of computing power required to hash passwords. This means as computers become more powerful, the cost factor can be increased to maintain a high level of security. 
+---------------------------------------------------------------------------------------------------
+https://blog.logrocket.com/password-hashing-node-js-bcrypt/
+https://masteringjs.io/tutorials/node/bcrypt
+ 
+
+- How does bcrypt work?
+	
+
+	bcrypt uses the concept of salt.
+	This unique randomly generated string provides an additional level of security for a generated hash. Before the plain password is hashed, a salt is generated. Then, it is appended to the plain password, and everything is hashed (the plain password and salt). This help protects against rainbow table attacks because attackers can randomly guess users’ passwords, but they can’t guess the salt.
+	
+	Bcrypt also uses a cost factor (or work factor) to determine how long it takes to generate a hash. This cost factor can be increased to make it slower as hardware power increases. The higher the cost factor, the more secure the hash and the slower the process. Therefore, you need to find the right balance between security and speed.
+
+	The generated hash will include the salt and other things, like the hash algorithm identifier prefix, the cost factor, and the hash. The hashing process is irreversible. The hash cannot be converted back to the original plain password. Therefore, to determine whether a user provides the correct password, the provided password is hashed (using the original salt) and compared against the hash stored in the database.
+	
+Examples of password hashing with bcrypt in Node.js
+It is important to salt and hash users’ passwords before storing them for data safety intents. Bcrypt turns a simple password into fixed-length characters called a hash. Before hashing a password, bcrypt applies a salt — a unique random string that makes the hash unpredictable. Let’s create a Node.js project and use bcrypt to hash passwords.
+
+
+
+********************************************
+https://medium.com/@wanguiwawerub/user-registration-in-node-js-3e0ef7a61de7#:~:text=Create%20User%20Model,js%60%20file%20in%20this%20folder.
+
+
+USER Registration
+-------------------------------------
+During registration, the user provides a name,email and password which will be saved on the database allowing them to sign in later.
+
+We will create a schema to define how the data is stored in the database.
+
+Inside the `api` directory,create a `models` folder and add `user.js` file in this folder.
+
+
+Email Verification
+ -------------------------------------
+ Email Verification :
+ https://www.geeksforgeeks.org/email-verification/?ref=ml_lbp  
+
+ The node:crypto module provides cryptographic functionality that includes a set of wrappers for OpenSSL's hash, HMAC, cipher, decipher, sign, and verify funDuring registration, the user provides a name,email and password which will be saved on the database allowing them to sign in later.
+
+We will create a schema to define how the data is stored in the database.
+
+Inside the `api` directory,create a `models` folder and add `user.js` file in this folder.ctions.
+
+const { createHmac } = require('node:crypto');
+
+const secret = 'abcdefg';
+const hash = createHmac('sha256', secret)
+               .update('I love cupcakes')
+               .digest('hex');
+console.log(hash);
+
+
+ -------------------------------------
+ Email verification is a technique in node.js which is used to ensure whether the provided email corresponds to an existing user or not because otherwise the database will become filled up with unnecessary users. 
+
+The process goes like that we send some kind of token to email and the user sends get request along with that token, now if the get request consists of the exact token we earlier sent from the server then email is considered as verified
+
+Prerequisite: nodemailer, jwt, basic working of node and express.  
+
+Step 1: Create a node project & Initialize code with installation
+
+npm init            // To initialize the package
+npm install jsonwebtoken // To generate token 
+npm install express      // To create server
+npm install nodemailer   // To send email
+This would be our folder structure after installation and creating two empty files namely app.js and tokenSender.js
+
+Step 2: Create a route to generate tokens and send an email   
+
+After installation, we can proceed to generate a token with jwt and send an email with nodemailer here we are using Gmail as a service for simplification but the fundamental concepts remain the same.   
+
+Explanation: In the first line we have imported the nodemailer package which will later be used for sending mail, and then we have created a transporter object which is used to send mail and it contains some configurations about the email service and sender. And then we have created another object which will contain information about mail like the receiver, sender, text of the email, etc. 
+In the end, the sendMail method of the transporter object simply sends the mail to the given address. 
+
+----------------------------------------------------------------------------
+const nodemailer = require('nodemailer'); 
+const jwt = require('jsonwebtoken'); 
+
+const transporter = nodemailer.createTransport({ 
+	service: 'gmail', 
+	auth: { 
+		user: secure_configuration.EMAIL_USERNAME, 
+		pass: secure_configuration.PASSWORD 
+	} 
+}); 
+
+const token = jwt.sign({ 
+		data: 'Token Data' . 
+	}, 'ourSecretKey', { expiresIn: '10m' } 
+);	 
+
+const mailConfigurations = { 
+
+	// It should be a string of sender/server email 
+	from: 'mrtwinklesharma@gmail.com', 
+
+	to: 'smtwinkle451@gmail.com', 
+
+	// Subject of Email 
+	subject: 'Email Verification', 
+	
+	// This would be the text of email body 
+	text: `Hi! There, You have recently visited 
+		our website and entered your email. 
+		Please follow the given link to verify your email 
+		http://localhost:3000/verify/${token} 
+		Thanks` 
+	
+}; 
+
+transporter.sendMail(mailConfigurations, function(error, info){ 
+	if (error) throw Error(error); 
+	console.log('Email Sent Successfully'); 
+	console.log(info); 
+}); 
+----------------------------------------------------------------------------
+Output:We are executing the file with node command and as expected our email is being sent successfully.
+Step 3: Create a route to receive get request along with the token and verify email  
+
+After we have sent the token to the user the next step is to set up a route on the server, and the user will send the get request with the token in the parameter because the browser can send only data with URL. 
+
+Explanation: Here we have created a simple express server and there exists a get route. Inside that, we are extracting the information i.e. token from URL, and then we are verifying it with jwt like whether the token being sent is exactly the one which was generated from our server or not. 
+Finally, the route is sending the appropriate response according to the verification of the token.
+
+Filename:
+-------------------------------------------------------------------------------------
+const express = require('express'); 
+const jwt = require('jsonwebtoken'); 
+
+const app = express(); 
+const PORT = 3000; 
+
+app.get('/verify/:token', (req, res)=>{ 
+	const {token} = req.params; 
+
+	// Verifying the JWT token 
+	jwt.verify(token, 'ourSecretKey', function(err, decoded) { 
+		if (err) { 
+			console.log(err); 
+			res.send("Email verification failed, 
+					possibly the link is invalid or expired"); 
+		} 
+		else { 
+			res.send("Email verifified successfully"); 
+		} 
+	}); 
+}); 
+
+app.listen(PORT, (error) =>{ 
+	if(!error) 
+		console.log("Server is Successfully Running, 
+				and App is listening on port "+ PORT) 
+	else
+		console.log("Error occurred, server can't start", error); 
+	} 
+); 
+-------------------------------------------------------------------------------------
+Output: Run the server with node command.
+In the inbox, we will have our email sent by the server. After this, we are making a get request on the server by clicking on the link given and as expected the server will respond as email verified. Later we are changing the URL a little bit to make the URL invalid and correspondingly server is responding that email verification failed because of the invalid token. 
+Conclusion: This was the entire code and workflow of verifying email in nodejs. You can check out linked geeksforgeeks articles in the prerequisite section, to know more about these libraries. In some other examples the terms, libraries, techniques, design patterns may change a little bit but the general concept will remain the same. 
+
+
+Get 90% Course fee refund in just 90 Days! Also get 1:1 Mock Interview, Job assistance and more additional benefits on selected courses. Take up the Three 90 challenge today!
+“This course was packed with amazing and well-organized content! The project-based approach of this course made it even better to understand concepts faster. Also the instructor in the live classes is really good and knowledgeable.”- Tejas | Deutsche Bank
+
+With our revamped Full Stack Development Program: master Node.js and React that enables you to create dynamic web applications.
+
+So get ready for salary hike only with our Full Stack Development Course.

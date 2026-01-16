@@ -1,0 +1,40 @@
+Case Study on Data Lake
+
+We have our data lake in AWS n top of which we need to build ETL data pipelines. Need to implement the below scenarios. Scenario 1: ETL Pipeline
+
+- Create a Data Lake with three zones landing/raw/curated. Once the files would land up in landing zone, the same needs to be moved to raw zone with some sanity check, file structure validation and metadata addition for e.g. source name, date.
+- Once in raw zone build some utility validate the data quality, can move the processed file to curated zone. Kindly note the files moved to curated zone should be processed and optimized in other words should be compressed in columnar format preferably Parquet. Then we need some cataloging on the final data. 
+- The data should be ready for consumption and reporting.
+
+Notes: Demonstrate how to access the logs through Cloud watch and explore Cloud watch insights. X-ray should be enabled possible services. Kindly keep the worker nodes to min. in order to save cost.
+
+✓ Lambda function to move files from landing to raw and validate the columns. Else send notification and move.
+
+✓ Lambda function to be written to validate the data in raw zone. Once validated send out SES notification in case of success case of errors, log them in error folder for S3 bucket and send out SNS notification about the error. 4 Glue job to
+
+convert the CSV is raw to Parquet in curated zone and run crawler on that. Integrate the above lambda, glue jo crawler into a Step Function. Handle the errors and have provision to send out SNS notification. The Step Function
+
+should be triggered using Event Bridge.
+
+Also log the above activities in an AUDIT table in Dynamo DB with start time and last updated time against every file proce through the pipeline. .
+
+Display the final data in Athena
+
+Also try to integrate the setup with any reporting tool like Power BI (Optional).
+
+Case Study on Data Lake .... continued
+
+Scenario 2: Lifecycle Rules
+
+Set the lifecycle rules in your $3 bucket to move the processed/curated files to a different zone like Glacier. For eg you can move the files older than a month to a different zone to save cost. Consider the retrieval time before taking a decision to move it to deep archive. Also plan to do some versioning on the files. You can also implement replication strategies and explain the same as part of the implementation. Till here no hands on required but need to come up with the strategy.
+
+Hands on : Come up with an approach using which we can move files from Glacier storage tier to Standard tier and the same. You can explore multiple options and come up with their respective advantages/disadvantages. Also come with a custom logging mechanism to track the execution.
+
+Scenario 3: Pull Mechanism to extract data from external database or API
+
+Build a sample utility to pull data from an external database like Postgre (any DB) or even some sample API's and stage data into files in S3. Then perform some ETL operation for e.g. aggregation, transformation on the same. The same needs be automated through Glue workflow. Kindly restrict the no. of records fetched from API / database to 25 in order to save cost. To ensure that logs are getting generated in Cloud Watch.
+
+Try to integrate it with some reporting tool like Power Bl or any other tool (Optional).
+
+Notes: These are some generic guidelines. Candidates are expected to come up with their own approaches and strategies and do some innovation or value add to the above scenarios. Also come up with approaches for Health Checks for various AWS services.
+ 

@@ -1,0 +1,45 @@
+https://www.lambdatest.com/jest
+
+=> why to use supertest ?
+supertest is a powerful library used for testing HTTP requests in Node.js applications. It integrates seamlessly with testing frameworks like Jest or Mocha, and here's why it's commonly used:
+
+1. Simplifies API Testing
+Supertest allows you to test your API endpoints without needing to start your server explicitly. Instead of making external requests, it interacts directly with your app object, making the testing process much faster and more efficient.
+
+
+const request = require('supertest');
+const app = require('./app'); // Your Express app
+
+test('should respond to GET /api', async () => {
+  const response = await request(app).get('/api');
+  expect(response.status).toBe(200);
+  expect(response.body).toHaveProperty('message', 'Hello, world!');
+});
+2. Built-In Assertions
+It provides a chainable API to assert on response status, headers, and body content, making tests readable and easy to write.
+
+await request(app)
+  .post('/api/register')
+  .send({ username: 'test', email: 'test@example.com', password: '1234' })
+  .expect(201) // Asserts the status code
+  .expect('Content-Type', /json/) // Asserts the header
+  .expect((res) => {
+    if (!res.body.id) throw new Error('Missing user ID');
+  });
+3. No External HTTP Requests
+With supertest, you don’t have to worry about external requests or ports being open during tests. It interacts directly with the application object (like app in Express), making the tests self-contained and more reliable.
+
+4. Integrates Seamlessly with Jest
+supertest plays well with Jest, as it returns Promises for its assertions. This allows you to easily use async/await for cleaner code and avoid callback hell.
+
+5. Supports End-to-End Testing
+While supertest is great for unit tests, it can also be used for integration or end-to-end testing. You can simulate real-world scenarios like user registration, login, and fetching data with ease.
+
+6. Lightweight and Easy to Use
+It's a minimal dependency that requires no additional setup beyond installing it and importing your app object. This makes it beginner-friendly yet powerful enough for advanced use cases.
+
+When to Use Supertest?
+To test RESTful APIs or GraphQL endpoints in Node.js.
+To verify your routes, middlewares, and controllers behave as expected.
+To simulate user interactions like form submissions, authentication, and more.
+When you want fast, in-memory tests instead of hitting a live server.

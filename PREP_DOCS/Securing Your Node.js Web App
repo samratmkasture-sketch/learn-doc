@@ -1,0 +1,207 @@
+Securing Your Node.js 5 Web App
+1. Proper User Authentication
+   Implementing Bcrypt
+   Password Strength, the Missing Ingredient
+   Enforcing Validation Rules with Express-validator
+   Enforcing Validation at the Database level with Mongoose
+   Brute-force Safeguards
+   Brute-force Mitigation with Delayed Responses
+   Mitigating Parallel Brute-force Attacks
+
+2. Securing MongoDB from Injection Attacks
+	SQL Injection Attacks
+	Injection Demonstration with Burp
+	NoSQL and the Risk of Injection Attacks
+	MongoDB Injection Attacks
+	MongoDB and the Risk of JavaScript Expressions
+	Handling Untrusted Data
+
+3. Handling Untrusted Data
+	Fuzzing Data with Zed Attack Proxy
+	Identifying Untrusted Data
+	Where and When to Handle Untrusted Data
+	Whitelist Versus Blacklist Approaches
+	Validating Untrusted Data
+	Escaping Untrusted Data
+	Why Sanitizing Isn't So Sanitary
+
+4. Principle of Least Privilege
+	The Problem with Database Access
+	Overview of MongoDB Access Control
+	Implementing MongoDB Access Control
+	Role Based Access Control
+	Function Level Controls (with RBAC)
+	Server-side Function Level Control Failure
+	Access Control Misconfiguration
+
+5. Defending Against Cross-site Scripting (XSS)
+
+	Demo: Cross-site Scripting		
+	Identifying XSS with Netsparker		
+	Anatomy of Cross-site Scripting Attack		
+	Reflective Cross-site Scripting		
+	Persistent Cross-site Scripting		
+	DOM Based Cross-site Scripting		
+	Introduction to Content Security Policies		
+	Implementing Content Security Policies		
+	Enabling Cross-site Scripting Protection Filter		
+	Cookies Protection		
+	Escaping Untrusted Data		
+	Sanitizing and Validation of Untrusted Data
+
+6. Securing Your Connection	
+	Acronym Soup: TLS, SSL, and HTTPS		
+	The Importance of TLS		
+	Setting up a Secure Server		
+	Login Forms from the Top		
+	Introducing to HTTP Strict Transport Security		
+	Implementing the HSTS Header		
+	Introducing to Content Security Policy		
+	Implementing the CSP Header
+
+   
+    Use strict mode to avoid errors and bugs
+	Regularly log and monitor activities to detect vulnerabilities
+	Secure Your Stored Passwords with stong Encryption (bcrypt)
+	Protect from web security vulnerabilities using appropriate security headers
+
+	Limit the Number of Login Attempts per User per Unit of Time
+	Keep Your Node.js And Its Packages Up-to-Date
+			-> Outdated software so often acts as an open door for attacks. Update both your core Node.js as well as all its affiliate packages regularly to fit the security standards.
+
+	Always Validate Input and Output Data
+		-> JOI, Express Validator, Yup
+	Always Replace Default Cookie Names
+		->Using the default cookie names is a mistake that is characteristic of newbie programmers. Experienced developers always change cookie names to make them less recognizable for attackers.
+	Use Strict Mode
+	Don’t Block the Event Loop
+	Uncaught Exceptions
+		->uncaught exceptions when not handled often lead to different Node.js security vulnerabilities.
+		  You should always control your exceptions and customize the system’s behavior using an EventEmitter object.
+    Send Only What is Necessary
+    Use Access Control Actively
+
+ Now, we explore the best tools to secure NodeJS applications.
+
+1. Snyk
+	Snyk can be integrated into GitHub, Jenkins, Circle CI, Tarvis, Code Ship, and Bamboo to find and fixes known vulnerabilities.
+	You can understand your application dependencies and monitor real-time alerts when risk is found in your code.
+	On a high level, Snyk provides complete security protection, including the following.
+	Finding vulnerabilities in the code
+	Monitor code in real-time
+	Fix the vulnerable dependencies
+	Get notified when a new weakness impacts your application.
+	Collaborate with your team members
+	Snyk maintains its own vulnerabilities database, and currently, it supports Node.js, Ruby, Scala, Python, PHP, .NET, Go, etc.
+
+2.Jscrambler
+	Jscrambler takes an interesting, unique approach to provide code & web page integrity on the client side.
+	Jscrambler makes your web application self-defensive to fight fraud, avoid code modification in run-time, and data leakage, and protect from reputational loss and business.
+	Another exciting feature is application logic, and data is transformed so that it’s hard to understand and hidden on the client side. This makes it difficult to guess the algorithm, technologies used in the application.
+	Some of the Jscrambler featured include the following.
+	Real-time detection, notification & protection
+	Protection from code injection, DOM-tampering, man-in-the-browser, bots, zero-day attacks
+	Credential, credit card, private data loss prevention
+	Malware injection prevention
+	Jscrambler supports most JavaScript frameworks such as Angular, Ionic, Meteor, Vue.js, React, Express, Socket, React, Koa, etc.
+	So go ahead and give a try to make your JavaScript application bulletproof.
+
+3.Cloudflare WAF
+	Cloudflare WAF (Web Application Firewall) protects your web applications from the cloud (network edge). You don’t have to install anything in your node application.
+
+	There are three types of WAF rules you get.
+
+	OWASP – to protect an application from OWASP top 10 vulnerabilities
+	Custom rules – you can define the rule.
+	Cloudflare specials – Rules defined by Cloudflare based on application.
+	By utilizing Cloudflare, you don’t add security to your site and take advantage of their fast CDN for better content delivery. Cloudflare WAF is available in the Pro plan, which costs $20 per month.
+
+	Another cloud-based security provider option would be SUCURI and StackPath, a complete site security solution to protect from DDoS, malware, known vulnerabilities, etc.
+4. Helmet
+	Helmet is a middleware for express and Koa to provide OWASP best practices secure header. It let you implement HTTP response headers such as HSTS, CSP, Referrer-Policy, Expect CT, etc
+
+5. N|Solid
+	N|Solid is a drop-in replacement platform to run a mission-critical Node.js application. It got inbuilt real-time vulnerability scanning and custom security policies for enhanced application security. You can configure it to get alerted when a new security vulnerability is detected in your Nodejs applications.
+
+6. Rate Limit Flexible
+	Use this tiny package to limit the rate and trigger a function on the event. This will be handy to protect from DDoS and brute force attacks.
+
+	Some of the use cases would be as below.
+
+	Login endpoint protection
+	Crawler/bot rate limiting
+	In-memory block strategy
+	Dynamic block based on the user’s action
+	Rate limiting by IP
+	Block too many login attempts
+	Wondering if this will slow the application?
+
+	No, you won’t even notice that. It’s fast; the average request adds 0.7ms in the cluster environment.
+7. CSURF
+	Add CSRF protection by implementing csurf. It requires a session middleware or cookie parser to be initialized first.
+
+	Conclusion
+	I hope the above list of security protection helps you to secure your NodeJS application.
+
+	Next, don’t forget to check out the monitoring solution.
+
+Top 10 Node.js Security Best Practices
+Top 5 security risks of Node.js
+Like any application, those built with Node.js come with security risks. The following top five — and our top ten best practice recommendations to follow — are important takeaways from the OWASP Top Ten Vulnerabilities and Application Security Risks.
+
+1.Cross-site scripting (XSS)
+If a web application fails to adequately validate user input, malicious actors can inject modified JavaScript code into the web pages users are viewing. Because the browser can’t determine the trustworthiness of the code, it executes the script by default, potentially giving the attacker access to cookies, tokens, user information, and more.
+
+2. Cross-site request forgery (CSRF)
+A cross-site request forgery attack hijacks user sessions by hiding malicious code under seemingly trustworthy HTML elements. Because the user is already logged in and authenticated, clicking one of these masked links gives the hacker the ability to execute changes in the underlying systems.
+
+3. Code injection
+Attackers can use an input validation flaw to inject malicious code into your codebase, changing the way your application executes. Code injection can give them access to sensitive data, provide information about your environment, or infect your system with malware.
+
+4. Distributed denial of service (DDoS) attacks
+In a DDoS attack, an attacker floods production servers with internet traffic to disrupt their normal function. This traffic can overwhelm the system and cause significant damage and outages. Versions 4-4.1.1 of Node.js that contained a bug with the HTTP handling are one example of this.
+
+5. Regular expression denial of service attacks (ReDos)
+This type of denial-of-service (DoS) attack can take a system down by providing an input that makes it time-consuming for the program to evaluate a regular expression. This slows or even halts the program and produces a DoS to legitimate users.
+
+Top 10 best practices to keep Node.js secure
+To combat the most common Node.js risks, you need to put some important best practices in place. Here are the ten most valuable best practices that can help you avoid common security pitfalls in Node.js.
+
+	Logging & monitoring
+	Strong authentication policies
+	Avoid blocking event loop
+	Safe error handling
+	Don't send unnecessary information
+	Limit request sizes
+	Validate user inputs
+	Ensure secure deserialization
+	Security linters & SAST tools
+	Run as non-root user
+
+2. Ensure you have strong authentication policies in place
+	You may have noticed that several of the potential attacks identified above involve a malicious actor bypassing or exploiting user authentication. Having strong authentication policies in place is an important safeguard against these attackers. Here are a few authentication guidelines:
+	Require multi-factor authentication (MFA) and single sign-on (SSO)
+	Use the Scrypt or Bcrypt libraries over the Node.js crypto library
+	Implement consistent session-handling policies
+	Require strong user passwords
+	Restrict the number of failed login attempts
+4.  Safe error handling
+	A lot of application performance and security issues can be mitigated by prepping code to handle errors. Here are some best practices to keep your programs bug-free:
+	Instead of managing asynchronous errors with callbacks, use a reputable promise library or async-await.
+	Customized or string error handling introduces complexity; simplify errors by using the built-in error object every time.
+	Handling errors in middleware can lead to code duplication — error handling logic is best managed in a centralized location.
+	Test your error flows regularly so that you know they will not throw out false positives or outright misses.
+	Use a process management tool to restart when an unknown error pops up. Pm2 and forever are a couple of examples of Node.js process management tools.
+6. Limit request sizes
+	The default limit for requests in Node.js is 5MB. To avoid a DDoS attack where a hacker floods your servers, you can further limit the size of the requests Node.js will allow.
+	Here are two simple ways to accomplish this:
+	Configure the ‘limit’ option in the body-parser package to only accept small payloads.
+	Use reverse proxies or express middleware to set size limits for certain types of content.
+
+7. Validate user input
+ sanitize your user input with an NPM package like DOMPurify. From there, use a form validation library like express-validator or XSS-filters.  XSS-filters are developer-friendly and encode the minimal number of characters needed to thwart an XSS attack.
+
+9. Use security linters and SAST Tools
+	Linters like eslint-plugin-node-security analyze source code to identify and bubble up any insecure practices. SAST tools like Snyk Code monitor your Node.js code as you write and alert you of any potential vulnerabilities.
+10. Run Node.js as a non-root user
+	By running Node.js as a non-root user, you’re limiting the potential attack surface that malicious actors can take advantage of. This recommendation follows the principle of least privilege

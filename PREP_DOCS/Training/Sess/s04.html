@@ -1,0 +1,192 @@
+<pre>
+Session 4 : 
+---------------
+
+
+Events Module
+	1. Understanding Node.js Event-Driven Architecture
+	EventEmitter  (fs, streams and http extended from EventEmitter )
+
+Companies using Express in production
+
+Express.js Template Engine
+MVC Model
+Bootstrap integration : 
+	Resgistraion and Login : 
+
+Middleware
+	Application-level middleware
+	Router-level middleware
+	Error-handling middleware
+	Built-in middleware
+	Third-party middleware
+Body parsers and how they work POST requests.
+
+
+
+Connecting to Databases in Node.js 
+	Introduction to Mongoose.
+
+	• MongoDB, MySQL, and other options.
+    • Choosing the right database for your application.
+	Connecting to Databases with Mongoose (for MongoDB)
+    • Introduction to Mongoose.
+    • Performing basic CRUD operations.
+
+
+https://blog.logrocket.com/how-build-custom-node-js-event-emitters/
+https://medium.com/developers-arena/nodejs-event-emitters-for-beginners-and-for-experts-591e3368fdd2
+*************************************************************
+https://medium.com/developers-arena/nodejs-event-emitters-for-beginners-and-for-experts-591e3368fdd2
+https://www.tutorialspoint.com/nodejs/nodejs_event_emitter.htm
+https://www.geeksforgeeks.org/what-is-eventemitter-in-node-js/
+https://www.digitalocean.com/community/tutorials/using-event-emitters-in-node-js
+https://medium.com/@VOkeugo/understanding-node-js-event-emitters-with-example-13eb3894249d
+
+https://nodejs.org/api/events.html
+
+--------------------------------
+Event Modules AND 
+Event Emmiter
+-------------------------------
+https://www.freecodecamp.org/news/understanding-node-js-event-driven-architecture-223292fcbc2d/
+https://www.javascripttutorial.net/nodejs-tutorial/nodejs-events-module/
+
+ => 10 Use Cases of Event Emitters in Node.js
+ https://medium.com/deno-the-complete-reference/10-use-cases-of-event-emitters-in-node-js-d88c0b9bb536
+ https://medium.com/@VOkeugo/understanding-node-js-event-emitters-with-example-13eb3894249d
+
+ https://dev.to/ndulue/building-a-simple-real-time-chat-app-with-nodejs-and-socketio-e9i
+
+ 1. Interactive Apps — for e.g Terminal-based todo list manager
+ 2. Realtime chat
+ 3. Job Queue
+ 4. Notifications in real-time
+ 5. Logging
+ 6. Creating a plugin architecture
+ 7. Implementing a pub/sub system
+ 8. Managing database connections
+
+
+-------------------------------------
+What are Events in Node.js? -> 
+Node.js is asynchronous event-driven JavaScript runtime. 
+
+Every action on a computer is an event. Like when a connection is made or a file is opened. Objects in Node.js can fire events, like the readStream object fires events when opening and closing a file:
+
+Nodejs relies on the events core module to achieve the event-driven architecture.
+----------------------------------------
+=> Most of Node’s objects — like HTTP requests, responses, and streams — implement the EventEmitter module so they can provide a way to emit and listen to events.
+The simplest form of the event-driven nature is the callback style of some of the popular Node.js functions — for example, fs.readFile. In this analogy, the event will be fired once (when Node is ready to call the callback) and the callback acts as the event handler.
+
+Event emitters are a fundamental building block for creating responsive and efficient applications in Node.js.
+ They empower developers to implement a publisher-subscriber pattern, enabling components to communicate and react to events without tight coupling. 
+
+
+-------------------------------------------------------------------------------------
+
+
+Node.js has a built-in module, called "Events", where you can create-, fire-, and listen for- your own events.
+
+To include the built-in Events module use the require() method. In addition, all event properties and methods are an instance of an EventEmitter object. To be able to access these properties and methods, create an EventEmitter object:
+
+
+In the event-driven model, an EventEmitter object raises an event that causes the previously attached listeners of the event executed.
+
+First, include the events module using the require() function:
+
+-------------------------------------------------------------------------------------
+
+In essence, an event emitter acts as a central hub that:
+1 Publishes events: These are named signals indicating something happening within the application.
+2 Manages subscribers: Components interested in specific events register themselves as listeners.
+3 Triggers listener responses: When an event is emitted, all its subscribed listeners are notified and run their registered callback functions.
+
+This mechanism enables a loosely coupled communication, ensuring each component reacts only to relevant events without needing direct knowledge of other parts.
+-------------------------------------------------------------------------------------
+
+
+The EventEmitter class can be used to create and handle custom events module.
+
+Syntax:
+const EventEmitter = require('events');
+
+All EventEmitters emit the event :-
+ 1. newListener : when new listeners are added 
+ 2. removeListener :  when existing listeners are removed.
+
+- Listening events: Before emits any event,
+step 1 :  it must register functions(callbacks) to listen to the events.
+
+	Syntax:
+
+	eventEmitter.addListener(event, listener)
+	eventEmitter.on(event, listener)
+
+step to : Emitting events: Every event is named event in nodejs. We can trigger an event by emit(event, [arg1], [arg2], […]) function. We can pass an arbitrary set of arguments to the listener functions.
+
+Removing Listener: The eventEmitter.removeListener() takes two argument event and listener, and removes that listener from the listeners array that is subscribed to that event. While eventEmitter.removeAllListeners() removes all the listener from the array which are subscribed to the mentioned event.
+
+Syntax:
+
+eventEmitter.removeListener(event, listener)
+eventEmitter.removeAllListeners([event])
+
+
+Order of Listeners
+If we register multiple listeners for the same event, the invocation of those listeners will be in order. The first listener that we register is the first listener that gets invoked.
+
+
+Event: ‘error’ When an error occurs within an EventEmitter instance, the typical action is for an ‘error’ event to be emitted. If an EventEmitter does not have at least one listener registered for the ‘error’ event, and an ‘error’ event is emitted, the error is thrown, a stack trace is printed, and the Node.js process exits.
+eventEmitter.on('error', listener)
+
+
+
+*************************************************************
+Bootstrap is the most popular HTML, CSS and JavaScript framework for developing a responsive and mobile friendly website. 
+Adding Bootstrap CSS
+Using a CDN
+https://getbootstrap.com/docs/4.0/content/tables/
+select version 
+getting started
+
+form 
+	Register
+	Login
+Table : 
+
+*************************************************************
+
+=> Express.js Template Engine
+What is a template engine
+A template engine is a part of Express that enables us to use static template files in your applications. At runtime, it replaces variables in a template file with actual values, and transforms the template into an HTML file sent to the client. So this approach is preferred to design HTML pages easily.
+
+
+To render template files you have to set the following application setting properties:
+Views: It specifies a directory where the template files are located.
+For example: app.set('views', './views').
+
+view engine: It specifies the template engine that you use. For example, to use the Pug template engine: app.set('view engine', 'pug').
+
+
+
+https://www.pabbly.com/tutorials/template-engine-in-expressjs/
+
+HOW TO USE TEMPLATE ENGINE
+STEP 1: CONFIGURING SERVER.JS.
+ 1. First Install EJS into your project using NPM as below.
+	npm install --save ejs
+ 2. All the templates file are saved with template engine’s extension and in views folder. Here we are using EJS so all templates are saved with .ejs extension in views folder.
+
+
+STEP 3: CREATING PARTIALS.
+		 Partials are code blocks that are reused many times in an application.
+STEP 4: USING PARTIALS IN VIEW PAGES.
+STEP 5: PASSING DATA TO EJS FILES
+
+
+EJS files are simple to write because in this file we write simple HTML and write logic, backend variables between these tags:-
+
+<% %>(to write logics)
+<%= %>( when we want to display content use this)
+<%- %>

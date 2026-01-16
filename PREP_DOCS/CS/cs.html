@@ -1,0 +1,55 @@
+
+https://www.datacamp.com/tutorial/aws-glue
+https://dev.to/iilness2/practical-way-to-use-aws-glue-with-postgresql-1887
+
+https://kodekloud.com/blog/how-to-create-aws-s3-bucket-using-terraform/
+https://www.dheeraj3choudhary.com/automate-s3-data-etl-pipelines-with-aws-glue-using-terraform/#:~:text=By%20leveraging%20Terraform%2C%20you'll,transform%20your%20data%20processing%20capabilities.
+
+
+https://medium.com/@kazarmax/from-api-to-dashboard-building-an-end-to-end-etl-pipeline-with-aws-3c1f4048676d
+
+**************************************************
+Glue -database | Crawler | S3 sources bkt
+-------------------------------------------
+https://www.udemy.com/course/data-lake-mastery-the-key-to-big-data-data-engineering/learn/lecture/41708786#overview
+
+Trigger Event - Source bkt to Target bkt
+--------------------
+https://www.udemy.com/course/data-lake-mastery-the-key-to-big-data-data-engineering/learn/lecture/41708810#overview
+
+**************************************************
+ Main Repository : 
+ --------------------------
+ https://github.com/itvers ity/data-engineering-spark/tree/main/data
+
+ Senario 1: 
+  -> Setup a postgre database instance with all tables mentioned under repo.
+  -> Build a python program that would run in your download the files from Github repo, store it in your s3 bucket.
+  -> Then build inteligence around this file system to validate all the coulmns and once validated move it into the final bucket. From there the same needs to be populated to Postgre DB. 
+  -> The codebase can be prepared in your WSL from where it can be zipped and moved to EC2 instance and executed through shell script. 
+  -> Also as an alternate workaround the same could ne build using Jupyter notebook if developer finds it difficult to link WSL woth VS code or pycharm.
+https://github.com/itversity/data-engineering-spark/tree/main/data/hr_db
+
+
+1. Set up a AWS Glue cluster
+2. create S3_source_bucket
+3. create S3_source_raw_bucket
+4. create S3_source_validated_bucket
+
+Data Injestion -
+- Set up a ETL Glue job to tranfer data from bkt1 to bkt2
+
+
+
+Senario 2 : 
+	-> Setup a Postgre DB cluster with all tables mentioned in below repo. Write a python utility to download the retail data from below repo and store in a s3 bucket.
+	-> Build intelligence around the files to validate the file headers and columns and move them to another bucket.
+	->Once the files have to the processed S3 bucket, write a glue job to convert the CSV files to Parquet format and then load the same  to another bucket.
+	-> The same can be achived through PySpark devployed on EMR cluster or even simple Python code invoked through shell script in EC2.
+	->Also configure some notification to monitor the health check and performance.
+
+ https://github.com/itversity/data-engineering-spark/tree/main/data/retail_db
+
+ Senario 3 :
+ 	-> Write a python code to download the data from below repo and store it in S3. This can be built a glue job invoke the script on demand. Then build an intelligence using Lambda functions that the file would poll the S3 bucket and once the file arrives the same would be picked up and moved to another bucket for JSON files.
+ https://github.com/itversity/data-engineering-spark/tree/main/data/retail_db_json

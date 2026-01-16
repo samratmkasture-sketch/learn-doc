@@ -1,0 +1,245 @@
+<pre>
+Agenda Overview : Session 5
+---------------
+
+Buffers
+Environment variables management (dotenv | nconf)
+
+FolderStructure (MVC pattern and component based structure)
+
+
+App :
+ Admin Pages : 
+ Properties Crud: 
+  
+
+
+******************Buffer*********************************
+----------------------------------------------------------------------------------------
+https://blog.logrocket.com/node-js-buffer-complete-guide/
+
+Computers only understand binary language, 
+For computers to understand, process, and store data, data has to be converted to binary code. This is mainly because the computer processor is made of transistors, electronic machines that are activated by on (1) and off (0) signals.
+
+ buffer is a space in computer memory, that stores binaries.
+
+What is binary code?
+
+
+Every piece of data sent to the computer is first converted to binary by a microprocessor before processing and outputting the result. Therefore, it’s crucial to be able to distinguish between different data types.
+ Through a process called encoding, the computer encodes dissimilar data types differently to tell one type from another.
+
+A binary stream is a collection of large amounts of binary data. Due to their massive size, binary streams are not sent together. Instead, they are broken into smaller pieces before sending.
+
+When the data processing unit cannot accept any more data streams, excess data is stored in a buffer until the data processing unit is ready to receive more data.
+
+The buffer class in Node.js
+Node.js servers most often need to read and write to the filesystem and, of course, files are stored in binaries. 
+Node.js also deals with TCP streams, which secure connections to receivers before sending binary data in small chunks.
+
+Streams of data being sent to the receiver need to be stored somewhere until the receiver is ready to take in more chunks of data for processing. Node.js buffer class handles and stores binary data outside of the V8 engine.
+
+The default value of bufferSize for a stream is 64 KB; 
+
+
+-> Buffer objects are used to represent a fixed-length sequence of bytes. Many Node.js APIs support Buffers.
+
+The Buffer class is a subclass of JavaScript's Uint8Array class and extends it with methods that cover additional use cases. Node.js APIs accept plain Uint8Arrays wherever Buffers are supported as well.
+Buffer provide a fast and efficient way to store and manipulate binary data in Node.js.
+ Binary data refers to data that consists of binary values, as opposed to text data, which consists of characters and symbols. Examples of binary data include images, audio and video files, and raw data from a network.
+
+ The Buffer object is a global object in Node.js, and it is not necessary to import it using the require keyword.
+ 
+ The Buffer class in Node.js is used to perform operations on raw binary data. Generally, Buffer refers to the particular memory location in memory. 
+
+--------------------------------------
+
+Encoding | Decoding 
+--------------------------
+// encode 
+Buffer.from('base64string').toString("base64")
+// decode 
+Buffer.from('YmFzZTY0c3RyaW5n').toString("utf8")
+
+
+https://nodejs.org/api/buffer.html
+Buffers and character encodings
+
+Node.js buffers accept all case variations of encoding strings that they receive. For example, UTF-8 can be specified as 'utf8', 'UTF8', or 'uTf8'.
+
+- binary-to-text encodings
+Node.js also supports the following binary-to-text encodings. For binary-to-text encodings, the naming convention is reversed: Converting a Buffer into a string is typically referred to as encoding, and converting a string into a Buffer as decoding.
+
+- The following legacy character encodings are also supported:
+
+
+Buffer instances are also JavaScript Uint8Array and TypedArray instances. All TypedArray methods are available on Buffers. 
+
+So, how do you use Buffers in Node.js? First, you need to create a Buffer object using the “Buffer” constructor. For example, you might create a Buffer with a fixed size like this:
+
+const myBuffer = Buffer.alloc(10);
+const myBuffer = Buffer.from('Hello, world!');
+
+Once you have a Buffer, you can use its various methods to manipulate the binary data it contains. For example, you might use the “slice” method to extract a portion of the binary data:
+
+const slice = myBuffer.slice(0, 5);
+console.log(slice.toString()); // Output: "Hello"
+
+You can also use the “concat” method to concatenate two or more Buffers:
+
+	const firstBuffer = Buffer.from('Hello, ');
+	const secondBuffer = Buffer.from('world!');
+	const combinedBuffer = Buffer.concat([firstBuffer, secondBuffer]);
+	console.log(combinedBuffer.toString()); // Output: "Hello, world!"
+
+As you can see, Buffers provide a flexible and efficient way to store and manipulate binary data in Node.js. Whether you’re working with images, audio, video, or raw data, you’ll find that Buffers are a powerful tool that can help you build high-performance and scalable applications.
+----------------------------------------
+
+Node.js buffer methods
+Buffer.alloc()
+The Buffer.alloc() method creates a new buffer of any size. When you use this method, you assign the size of the buffer in bytes. The expression below creates a buffer with a byte size of 6:
+const buf = Buffer.alloc(6);
+
+console.log(buf);
+Buffer.write()
+The Buffer.write() method writes a string to the buffer, which can be useful when you need to stream strings in the form of buffers. You can write a string to a buffer using the below method:
+
+const buf = Buffer.alloc(100); // Creating a new Buffer
+const len = buf.write("Hello world!"); // Writing to the Buffer
+Buffer.byteLength()
+You can check the length of a buffer object with the Buffer.byteLength() method. The code below demonstrates how to create a buffer, attach a size to it, and check the size of the buffer you just created:
+
+var buf = Buffer.alloc(6);
+
+//check the length of buffer created
+var buffLen = Buffer.byteLength(buf);
+
+//print buffer length
+console.log(buffLen);
+// This will print <6>
+
+--------------------
+
+
+let originalString = "GeeksforGeeks"; 
+
+let bufferObj = Buffer.from(originalString, "utf8"); 
+
+// Encode the Buffer as a base64 string 
+let base64String = bufferObj.toString("base64"); 
+
+console.log("The encoded base64 string is:", base64String); 
+
+
+// The base64 encoded input string 
+let base64string = "R2Vla3Nmb3JHZWVrcw=="; 
+
+// Create a buffer from the string 
+let bufferObj = Buffer.from(base64string, "base64"); 
+
+// Encode the Buffer as a utf8 string 
+let decodedString = bufferObj.toString("utf8"); 
+
+console.log("The decoded string:", decodedString); 
+
+
+// Create buffer object, specifying utf8 as encoding
+let bufferObj = Buffer.from(originalString, "utf8");
+
+// Encode the Buffer as a base64 string
+let base64String = bufferObj.toString("base64");
+---------------------
+
+
+	Buffer.compare()
+The Buffer.compare() method enables you to compare two buffer objects to check whether they are equal. This method returns -1, 0, or 1, depending on the result of the comparison.
+
+You can compare buffer objects with the Buffer.compare() method as seen below:
+
+Buffer.concat()
+
+Buffer.from()
+The buffer.from() method enables you to create a new buffer from any object, like strings, buffer, arrays, and ArrayBuffer(). All you have to do is specify the object you want to create a buffer from.The syntax for using this method is Buffer.from(object[, offsetOrEncoding[,length]]).
+
+/ Create a buffer from a string
+var mybuff = Buffer.from("Nigeria");
+//Print Buffer Created
+console.log(mybuff);
+
+// Create a buffer from a buffer
+// Create buffer from string
+var mybuff = Buffer.from("Nigeria");
+// Create buffer from the first buffer created
+var buff = Buffer.from(mybuff);
+// Print out final buffer created.
+console.log(buff);
+----------------------------------------------------------------------------------------
+ 
+
+
+*************************** Environment Variables ***********************************
+https://kinsta.com/knowledgebase/what-is-an-environment-variable/#:~:text=Environment%20Type%3A%20Environment%20variables%20are,or%20sections%20of%20the%20app.
+
+Environment Variables
+Environment variables are a key-value pair data set that are avaiable at the operating system level. These data set are available in all major operating system command line shells Windows, Mac and Linux
+
+Why are env variable important?
+-> Sepration of concerns :
+		- The design principle states that computer programs should be divided into distinct sections to manage them efficiently. Each section should be based on one of the program’s primary concerns, and there should be minimal coupling between such sections.
+		We can consider application configuration as one of such concerns. hence it needs to be separated from the main program.
+		One of the best ways to do it is to store it in an external file and inject it as and when needed.
+Security : 
+
+	- Your app secrets fall under sensitive information. If wrong people get their hands on them, they can access your app’s internal architecture and third-party resources. 
+	Therefore it is vital that you protect these secrets.
+	Environment variable configuration is crucial for effective secret management
+Portability
+Scalability
+Interoperability : 
+		Interoperability is a characteristic of a product or system to work with other products or systems. 
+
+
+https://dev.to/asifroyal/effortlessly-manage-configuration-data-in-your-nodejs-microservices-with-nconf-1hl6
+Why Should You Use nconf?
+There are several good reasons why you should consider using nconf as the configuration management tool for your Node.js microservices, including the following:
+ 
+
+------------------------------------------------------------------
+Example Use Cases of Environment Variables
+Now that you have a clear idea of how environment variables work and how you should use them effectively, here are some common scenarios where you can use environment variables:
+
+1. Environment Type: Environment variables are often used to store the name of the environment in which the app is currently running. 
+	The app’s logic can use this value to access the right set of resources or enable/disable certain features or sections of the app.
+2. Domain Name: The domain name of an application can vary based on its environment. Isolating it also helps you easily make changes to your app’s domain name without searching for its occurrences throughout the codebase.
+3. API URLs: Each environment of your app can have APIs deployed in different environments as well.
+4. Private Keys: Keys to paid services and resources need to be isolated from the app’s source code so that they do not accidentally fall into the wrong hands.
+5. Service Account Numbers, etc.: You can vary other system-specific information, such as service account numbers, keytabs, etc., based on the app’s environment for resource management and monitoring.
+-------------------------------------------------------------------
+How To Store Environment Variables
+Command Line
+Using .env Files
+
+Remember Your .gitignore File
+
+
+NODE_ENV=development
+PORT=8626
+# Set your database/API connection information here
+API_KEY=**************************
+API_URL=**************************
+
+DB_URL = mongodb://localhost/mybary
+DB_NAME = ''
+DB_USER=user
+DB_PASS=pass
+SECRET_KEY=mysecretkey
+
+
+**********************MVC*****************************   
+MVC is a software design pattern that helps developers organize code by separating concerns into three distinct components: Model, View, and Controller. Each component has a specific role:
+
+Model: The model represents the data and the business logic of the application. It handles data storage, retrieval, and manipulation, and interacts with the database or external APIs.
+View: The view represents the user interface of the application. It handles the presentation of data to the user and receives input from the user.
+Controller: The controller acts as the mediator between the model and the view. It receives input from the user via the view, interacts with the model to retrieve or manipulate data, and updates the view accordingly.
+
+

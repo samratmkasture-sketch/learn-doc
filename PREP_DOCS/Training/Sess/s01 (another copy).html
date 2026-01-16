@@ -1,0 +1,383 @@
+<pre>
+	https://www.youtube.com/watch?v=LAUi8pPlcUM&list=PLC3y8-rFHvwh8shCMHFA5kWxD9PaPwxaY
+Session 1 : 
+**************************************************************************
+Good day, everyone!
+
+ 
+What is Node.js?
+	Web, JavaScript, and NodeJS
+	Advantages and Use Cases
+
+Setting Up the Development Environment
+Installing Node.js and npm (Node Package Manager).
+Verifying the installation
+Nodejs RELP or Node Shell 
+
+Nodejs First Program Example
+	Console App
+	Web App
+
+Node.js runtime environment
+	V8 Engine
+	System API (Web API)
+
+Q&A 
+
+ I am a MERN stack developer,
+
+[/afternoon/evening],
+
+
+I guess we are good to start
+
+Good morning everyone!
+
+Welcome to Node.js Training program. My name is Samrat Kasture and I'll'be your guide to this node js Training.
+
+
+By the end of this training our aim is to 
+- Learn different nodejs concepts 
+- we are going to create a  web application and Implement web apis
+which can be consumed by a wide variety of application
+
+ using node.js as the backend
+
+
+what is nodejs & why do we need it?
+What is the advantages of using nodejs over other technologies?
+Where should we use node js and where not ?
+what are the features of node js ?
+
+create a web app
+
+Let look for the Agenda of this session
+In this session we are going to 
+These are the topics which we are going to discuss today.
+
+
+
+- Among the Programming, scripting, and markup languages
+	Javascript is the most popular one
+- Web frameworks and technologies
+	Node.js and React.js are the two most common web technologies used by all respondents.
+
+
+https://survey.stackoverflow.co/2023/#section-most-popular-technologies-web-frameworks-and-technologies
+
+
+Professional Developers use both fairly equally and those learning to code use Node.js more than React (52% vs. 48%)
+
+Javascript is must for learning nodejs 
+https://nodejs.org/en/learn/getting-started/how-much-javascript-do-you-need-to-know-to-use-nodejs
+
+In simple language Nodejs is runtime environment which allows as to run javascript out of the browser.
+for long time javascript used as clientside scripting laguage
+but advent of nodejs opened the doors to use javascript as a serverside language.
+
+Nodejs invented in 2009 by Ryan Dhal from that time lots of changes and modification are made to nodejs and new versions of nodejs come into existance. 
+
+A basic understanding of JavaScript is necessary to learn Node.js, as it is built on top of JavaScript and uses the same syntax.
+
+Let's explore a bit about the web and JavaScript.
+
+Quick History :
+Tim Berners-Lee, a British scientist, invented the World Wide Web (WWW) in 1989 while he was working at Netscape Communications Corporation. It is opened to the public in 1991. 
+World Wide Web, Web 1.0 was “read-only.” Users could exchange information but not interact with websites. 
+
+JavaScript primarily used for web. Initially created to bring to bring interactivity to websites. Javascript is a lightweight, object-oriented scripting language that is used to build dynamic HTML pages
+
+Netscape vs. Microsoft: After its introduction, JavaScript quickly gained popularity among web developers. 
+However, it also sparked a browser war between Netscape and Microsoft, 
+as Microsoft introduced its own version of JavaScript called JScript in Internet Explorer. 
+This led to inconsistencies in JavaScript implementations across different browsers, making it challenging for developers to write cross-browser compatible code. 
+Offen websites working in one browser and failing in other due to this inconsistencies.
+
+Standardization (ECMAScript): To address the issues of browser incompatibility and to ensure the long-term viability of JavaScript, Netscape submitted JavaScript to the European Computer Manufacturers Association (ECMA International) for standardization.
+Ecma International  is a nonprofit standards organization for information and communication systems.
+
+ The standardized specification was named ECMAScript, and the first edition was published in 1997. 
+Since then, ECMAScript has evolved through several editions, with each edition introducing new features and improvements to the language.
+
+lets look into the ECMAScript_version_history
+https://en.wikipedia.org/wiki/ECMAScript_version_history
+
+Modern JavaScript (ES6+): In recent years, JavaScript has undergone significant enhancements with the introduction of ECMAScript 6 (ES6) and subsequent editions. ES6 introduced new language features such as arrow functions, classes, template literals, destructuring assignments, and promises, among others. Subsequent editions of ECMAScript have continued to expand the capabilities of JavaScript, making it a more powerful and expressive language for building modern web applications.
+
+
+
+How much JavaScript do you need to know to use Node.js?
+https://nodejs.org/en/learn/getting-started/how-much-javascript-do-you-need-to-know-to-use-nodejs
+Understanding of the below topics will help us in developing our nodejs applications.
+
+In Node.js the new ECMAScript standards can be used without problems
+ECMAScript® 2023 language specification, 14th edition - ECMAScript is a programming language based on several technologies like JavaScript.
+
+JavaScript VS Node.js 
+
+Browser VS Node.js 
+	Javascript is not same when running on browser and nodejs 
+	Some features which are available in browser anre not available in node and vice versa
+	- we don't have the document window and all the other objects that are provided by the browser 
+		similarly in the browser we don't have all the nice apis that node.js provides through its modules for example the file system access functionality and this is the primary difference 
+	-	Another note worthy difference is that with node.js you control the environment we know which version of node.js the application runs on and that means we can write all the modern es6+ JavaScript features that are node.js version supports. On the browser we are at the mercy of what the user chooses if they're using 
+
+	=> Environment: 
+		Browser: JavaScript in the browser runs in a client-side environment, typically within a web browser like Chrome, Firefox, or Safari. It interacts with the Document Object Model (DOM) to manipulate web pages dynamically and respond to user actions or other web platform apis like cookies .
+		Node.js: JavaScript in Node.js runs on the server-side, outside of the browser environment. It provides access to various built-in modules for file system operations, networking, and other server-side functionalities.
+	=> File System Access:
+		Browser: JavaScript in the browser has limited access to the file system due to security restrictions. It cannot read or write files directly from the user's file system for security reasons.
+		Node.js: JavaScript in Node.js has full access to the file system, allowing it to read, write, and manipulate files on the server's file system.
+	=> Concurrency Model:
+		Browser: JavaScript in the browser follows a single-threaded event-driven concurrency model, where asynchronous operations (such as fetching resources or handling events) are non-blocking and are handled by the event loop.
+		Node.js: JavaScript in Node.js also follows a single-threaded event-driven concurrency model, but it utilizes a different event loop implementation optimized for server-side I/O operations. Node.js also supports worker threads and asynchronous operations for CPU-bound tasks.
+	=> Environment Variables:
+		Browser: JavaScript in the browser does not have direct access to environment variables set on the user's system.
+		Node.js: JavaScript in Node.js can access environment variables using the process.env object, which provides information about the environment in which Node.js is running.
+
+	
+What is Nodejs. 
+	If we go by nodejs official site it says.
+	Node.js® is an open-source, cross-platform JavaScript runtime environment.
+	It is a popular tool for almost any kind of project! whether it is console app, web app 
+	real time application, desktop application variety of applications can be created with nodejs.
+	Popular implementation of nodejs is with 
+	web apps and realtime application where we need to handle large no of i/o .
+
+	Node.js runs on the V8 JavaScript engine, the core of Google Chrome, outside of the browser. This allows Node.js to be very performant.
+	Node.js app runs in a single process, without creating a new thread for every request. Node.js provides a set of asynchronous I/O primitives in its standard library that prevent JavaScript code from blocking and generally, libraries in Node.js are written using non-blocking pattern paradigms, making blocking behavior the exception rather than the norm.
+
+	Nodejs is Heighly scalable 
+	When Node.js performs an I/O operation, like reading from the network, accessing a database or the filesystem, instead of blocking the thread and wasting CPU cycles waiting, Node.js will resume the operations when the response comes back.
+	This allows Node.js to handle thousands of concurrent connections with a single server without introducing the burden of managing thread concurrency.
+
+	Current Version : 
+	current version of nodejs is 20.11.1
+	and LTS version is 
+	LTS stands for long term support version and it is recomended to use in production.
+
+	current version is always a beta version
+
+	nodejs follows even odd patter for versioning
+	LTS is always even no and current beta version is odd no.
+
+Project Governance : 
+	Nodejs is opensource and maintained by the Collaborators who are added by the Technical Steering Committee (TSC) on an ongoing basis.
+
+	The TSC is responsible for the Node.js Core project, some projects depended upon by Node.js Core, and several projects adjacent to Node.js Core.
+	TSC : works with openjs Foundation which is home of a wide range of JavaScript projects including Appium, Electron, jQuery, Node.js, webpack, and many more. 
+ 
+Advantages and Use Cases
+
+now there is also some type of apps that we should not build with node.js the
+apps which need very heavy server-side processing like heavy image manipulation
+or video conversion or file compression or anything like that we should not
+build such type of apps with node.js and you will learn why that is when we
+will dive deeper into how node.js Works node.js was simply not developed for
+these use cases although there are solutions for dealing with them but we
+should always use the right tool for dealing with the task at hand for such
+apps we should use other Technologies like PHP or python
+
+=> Setting Up the Development Environment
+	Download and Install
+	https://nodejs.org/en/download
+Installing Node.js and npm
+Windows :
+		Step 1: Download Node.js Installer (https://nodejs.org/en/download)
+
+		Step 2: Install Node.js and NPM. Launch the installer by double-clicking the downloaded file.
+
+		Step 3:  Follow installation step and click the Install button to start the installation.
+
+		Verifying the installation: Run the following command in a command prompt or PowerShell :
+		node –v , node --version
+Using Ubuntu : 
+	curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - &&\
+	sudo apt-get install -y nodejs
+
+	Verifying the installation: Run the following command in a command prompt or PowerShell ::
+	node –v , node --version
+--watch : This feature was only introduced on v18.11 
+
+=> Introduction to NPM (Nodejs Package Manager): ( www.npmjs.com )
+	
+	NPM stands for Node Package Manager. NPM is a Command line utility to install Node.js packages, perform version management and dependency management of Node.js packages.
+	
+	npm is the world's largest software registry. Open source developers from every continent use npm to share and borrow packages
+ 	A package in Node.js contains all the files you need for a JavaScript libraries you can include in your project.
+  
+	www.npmjs.com hosts thousands of free packages to download and use.
+
+	The NPM program is installed on your computer when you install Node.js
+
+	 - `npm --version`: current. 
+
+	 - `npm init`: Initializes a new Node.js project, creating a `package.json` file. 
+
+	- `npm install`: Installs dependencies listed in the `package.json` file. 
+
+	- `npm install package-name`: Installs a specific package as a project dependency. 
+
+	- `npm install -g package-name`: Installs a package globally, making it available in the command-line interface. 
+
+	- `npm update`: update command present in npm to update all packages to their latest versions:
+
+	package-lock.json : package-lock.json is automatically generated for any operations where npm modifies either the node_modules tree, or package.json. 
+	install with flag : -g , -D,  --save-dev
+
+https://docs.npmjs.com/cli/v6/using-npm/scripts
+	npm scripts :   “npm scripts” are the entries in the scripts field of the package.json file. The scripts field holds an object where you can specify various commands and scripts that you want to expose.
+	{
+	  "scripts": {
+	    "precompress": "{{ executes BEFORE the `compress` script }}",
+	    "compress": "{{ run command to compress files }}",
+	    "postcompress": "{{ executes AFTER `compress` script }}"
+	  }
+	}
+
+https://docs.npmjs.com/cli/v6/commands
+npm help
+npm-ci : Install a project with a clean slate, Make sure you have a package-lock and an up-to-date install:
+npm-audit -  Run a security audit, Scan your project for vulnerabilities and automatically install any compatible updates to vulnerable dependencies:
+npm docs morgan
+
+
+=> Nodejs RELP or Node Shell (Commandline interface) https://nodejs.org/api/repl.html
+ Nodejs RELP module provides a Read-Eval-Print-Loop (REPL) implementation that is available both as a standalone program or includible in other applications. 
+
+ 
+Commands and special keys
+
+Creating Node Application:
+	Nodejs First Program Example
+	Node.js runtime environment
+
+
+
+=> Nodejs Hellow World Example
+Creating Web-based Node Application:
+A web-based Node application consists of the following three important components:
+Import required module
+Create server
+Read Request and return response
+
+
+executing files default looks for .js and then .json
+
+
+const http = require('node:http');
+const hostname = '127.0.0.1';
+const port = 3000;
+const server = http.createServer((req, res) => { 
+                res.statusCode = 200; 
+               res.setHeader('Content-Type', 'text/plain'); 
+               res.end('Hello World\n');
+});server.listen(port, hostname, () => { console.log(`Server running at http://${hostname}:${port}/`);});
+
+
+
+
+
+Disadvantages of Node.js
+	Performance bottlenecks with heavy computation tasks
+
+inability to process CPU bound tasks fast. 
+ Callback hell issue
+
+
+The V8 JavaScript Engine
+https://nodejs.org/en/learn/getting-started/the-v8-javascript-engine
+
+
+
+
+
+
+
+
+*********************************************
+
+
+Before we dive in here are some stats of the servey cunducted by stackoverflow.
+In which around 90k dev and professionals participated.
+
+
+
+
+   
+
+Features : 
+https://medium.com/@shikha.ritu17/understanding-node-js-ecosystem-and-tooling-fe7466d686c9
+ 
+In addition, the Google Chrome Developer Tools can potentially be used by your Node.js developers for any purpose, including coding, debugging, and building. 
+ 
+
+=> Key Features Of Node.js 
+	Feature	Description
+	Asynchronous I/O	Node.js is designed to handle I/O operations asynchronously, allowing it to handle large numbers of connections efficiently.
+	Event-driven architecture	Node.js uses an event-driven architecture, allowing it to respond to events such as incoming requests quickly and efficiently.
+	Single-threaded	Node.js uses a single-threaded event loop to handle requests, but it can make use of worker threads to handle heavy computational tasks.
+	Non-blocking I/O	Node.js uses non-blocking I/O operations to handle requests, meaning that it does not wait for I/O operations to complete before moving on to the next task.
+	NPM	Node.js comes with its own package manager, NPM, which allows developers to easily install and manage third-party packages and libraries.
+	Server-side scripting	Node.js is often used for server-side scripting, allowing developers to create highly scalable and performant web applications.
+	Cross-platform	Node.js can be run on a variety of platforms, including Windows, macOS, and Linux.
+	Large community	Node.js has a large and active community of developers, which means that there are many resources available for learning and troubleshooting.
+   
+
+
+
+Node.Js and V8
+As an asynchronous event-driven JavaScript runtime, Node.js is designed to build scalable network applications.
+
+
+https://medium.com/@nirosha_82959/top-10-outstanding-features-of-node-js-2913a683f716
+Features of Node Js
+1. Cross Platform : Node js is cross-platform meaning it works on various platforms like Windows, and Linux. Node js developed with the correct structure can be packaged into an executable containing all its own dependencies.
+2. Open Source package on NPM (Node Package Manager) : NPM is the heart of Node Js. The Node community is enormous and the number of permissive open source projects available to help you save time is mind-boggling.
+3. Front-end and Back-end Developers using the Same Language
+4. Sockets and two-way Data Binding - The two-way data binding is request and response. The clients asked a request to the server, the server responds to clients simultaneously. If one user changes some data, all the other users can be updated in milliseconds.
+5. Non-Blocking Thread Execution: Gain the Enormous Speed : Non-blocking means, we can execute the code simultaneously without waiting for the end of the first level execution. The execution performs under the stack method. This concept makes node js extremely fast and efficient. 
+
+
+
+Nodejs Architechture 
+https://medium.com/@shikha.ritu17/understanding-node-js-ecosystem-and-tooling-fe7466d686c9
+
+
+https://www.freecodecamp.org/news/node-js-basics/#:~:text=David%20Clinton-,Node.,%2C%20and%20event%2Ddriven%20applications.
+Node.js heighly scallable and can be used o build vairiety of applications
+
+Web applications
+Scalable APIs
+Real-time applications requiring instant data updates and bidirectional communication like chat applications and multiplayer games
+Streaming applications like audio or video processing or real-time analytics
+Single-page applications
+
+
+
+
+
+Session 1 : 
+**************************************************************************
+  
+
+
+https://nodejs.org/docs/latest/api/addons.html
+
+What Can Node.js Do?
+Node.js can generate dynamic page content
+Node.js can create, open, read, write, delete, and close files on the server
+Node.js can collect form data
+Node.js can add, delete, modify data in your database
+What is a Node.js File?
+Node.js files contain tasks that will be executed on certain events
+A typical event is someone trying to access a port on the server
+Node.js files must be initiated on the server before having any effect
+Node.js files have extension ".js"
+
+Differences between Node.js and the Browser -> 
+ 
+https://www.geeksforgeeks.org/why-node-js-is-a-single-threaded-language/
+ 
+
+ https://www.altexsoft.com/blog/the-good-and-the-bad-of-node-js-web-app-development/

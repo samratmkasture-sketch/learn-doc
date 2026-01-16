@@ -1,0 +1,97 @@
+1. Validate User Inputs
+Injection-based attacks have over the years made their way into the OWASP (Open Web Application Security Project) and SANS Top 25 CWE (Common Weakness Enumeration) time and time again.
+
+Accordingly, Injection-based attacks can come in many forms; XSS, SQL injections, host header injection, and OS command injection are a few examples of these attacks.
+
+In this context, we need to validate all inputs before the application processes the data to mitigate injection-based attacks.
+
+For example, the phone number field must only accept an acceptable format with specific numeric and special characters.
+
+2. Using a Reverse Proxy to add a layer of security
+Allowing access to the web application via a reverse proxy provides an additional layer to filter out the requests before they reach the web application. However, we can configure this layer only to allow a specific number of requests to be accepted and ensure that the server is not flooded with requests.
+
+For example, we can use the open-source NGINX webserver to act as a reverse proxy. The following example shows how we can set the rate limit on NGINX proxy configuration.
+
+limit_req_zone $binary_remote_addr zone=mylimit:10m rate=10r/s;
+ 
+server {
+    location /login/ {
+        limit_req zone=mylimit;
+        
+        proxy_pass http://my_upstream;
+    }
+}
+We can implement connection timeouts using reverse proxies. It ensures that a single connection is not kept alive by the webserver for longer than required.
+
+3. Managing Application Secrets
+Managing sensitive secrets such as database connection strings, API keys, and credentials is mandatory in any application. Therefore, we should prevent keeping these secrets in the codebase at all costs and follow standard methods to store them.
+
+For instance, environment variables within the operating system can store this sensitive information, and we can use Node.js to call these environment variables.
+
+However, there are instances where the application would require more than one variable instantiated. At this time, the best way to manage secrets is to use the dotenv package.
+
+The dotenv library has more than 22 Million weekly NPM downloads, and you can easily install it using npm or Yarn as follows:
+
+# NPM
+﻿npm install dotenv
+
+# Yarn
+yarn add dotenv
+Then, create a .env file at the project root and define all the secrets in that file.
+
+host=awdoij3225kjbasd 
+USERNAME=topsecret 
+PASSWORD=definitelynotasecret
+Finally, you can require and use these secrets in the application like below:
+
+require('dotenv').config();
+
+db.connect({
+  host: process.env.DB_HOST,
+  username: process.env.DB_USER,
+  password: process.env.DB_PASS
+})
+Most importantly, make sure to include .env files in the .gitignore file to prevent them from being pushed to the Git repository.
+
+4. Using HTTP Response Headers
+An HTTP header consists of a case-insensitive name followed by a colon (:), and then by its value.
+
+strict-transport-security:max-age=63072000
+x-frame-options:DENY
+The web servers use HTTP response headers to communicate additional information regarding the response. But they are not related to the content of the message. These HTTP headers instruct browsers to follow certain operations or process the response in specific modes.
+
+Now, let’s see how we can use these HTTP headers to improve application security.
+
+HTTP Strict Transport Security
+We can use the HTTP Strict Transport Security response header to ensure that the browser is only using a secure HTTPS connection to interact with the application. This HTTP response header helps protect against attacks such as cookie high jacking and protocol downgrade.
+
+Strict-Transport-Security: max-age=31536000 ; includeSubDomains
+X-Frame-Options
+X-Frame Options header prevents clickjacking attacks by instructing the browser to display the content within frames. The following options are available with this specific HTTP response header:
+
+X-Frame-Options: deny
+X-Frame-Options: sameorigin
+X-Frame-Options: allow-from: CUSTOM_DOMAIN
+X-Content-Type-Options
+X-Content-Type-Options header will prevent the browsers from changing the MIME types advertised in the Content-Type headers. This header allows you to avoid MIME type sniffing by saying that the MIME types are deliberately configured.
+
+X-Content-Type-Options: nosniff
+
+5. Server-side Logging and Monitoring
+Using a good logging library would give the developer more robust features to troubleshoot and monitor activities. On the other hand, logging unwanted or too many logs can impact the application’s performance and utilize more resources. Therefore, we should only use a reasonable logging level when deploying the application in a production environment.
+
+When structuring the log messages, it is essential to format them to make it easy for humans and machines to read and understand the logs. Logging vague messages will lead to misunderstandings among the developers.
+
+The following example shows how we can write a descriptive log message.
+
+Incorrect Description: Service Failed, Not Working
+
+Correct Description: Application worker service failed due to insufficient disk space, ensure that adequate disk space is available and restart the Application worker service.
+Further, it is important to ensure that the logging mechanism captures all relevant information, including the IP address, username, actions performed, etc.
+
+Capturing or storing sensitive information within the application logs is not recommended. It is a violation of major application compliance requirements such as PCI, GDPR, etc. However, there can be scenarios where we need to log such information. In such cases, it is recommended to mask the sensitive information before it is collected and written into the logs.
+
+6. Using Security Linters that Capture Vulnerabilities in Code
+Code linters help developers identify various issues in the code before compiling. They can detect the most common issues and force developers to follow best practices.
+
+These code linters come with their own rules that the developers can customize depending on the requirement. So, developers must enable the rules related to security vulnerability detection from the linter configuration before using them.

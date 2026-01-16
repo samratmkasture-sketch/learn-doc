@@ -1,0 +1,562 @@
+<pre>
+Interview Prep
+*****************************
+TODO : 
+---------------
+Jasmine, Karma, Cypress, Protractor
+Responsive design, crossbrowser Compatibility,
+
+Sequelize:
+
+Github vs GitLab vs Bitbucket
+
+Jenkins, GitLab CICD, GitHub Actions
+
+new relic
+
+*****************************
+-> How SSL Certificate works
+
+*****************************
+PROFILING :=>
+
+https://medium.com/@rishabh171192/performance-analysis-node-js-68cc4628205c
+
+*****************************
+Javascript : - 
+ - Expain Hoisting in javascript
+ - What is closure?
+ - local storage | session storage | Cokie
+ 
+ - Call back Hell how to avoid it
+ - Generator Funtion
+ - Event bubbling vs Event Capturing
+ - What is debouncing
+ - map vs reduce 
+
+Exception handling,
+
+display:none turns off the layout of the elements, so they are not rendered. visibility:hidden hides the elements without changing their layouts.
+- Grid layout vs flexbox
+
+=> Event Bubbling vs Event Capturing
+-> call(), apply(), and bind() 
+
+
+Q21 Lazy loading ?
+
+Angular :
+---------------
+What are directives?
+What is a service?
+What is dependency injection in Angular?
+What is dependency injection in Angular?
+What are observables?
+RxJS?
+Multi-casting is
+tvpe narrowing?
+
+------------
+*************
+Higher-Order Components
+Portals : React portals come up with a way to render children into a DOM node that occurs outside the DOM hierarchy of the parent component.
+Reconciliation
+
+Get query params in React ? 
+React Hooks - How to get parameter value from query string?
+useSearchParams
+https://simplefrontend.com/get-query-params-in-react/
+import { useParams } from "react-router-dom";
+const { id } = useParams();
+
+
+how to pass data from parent to child and child to parent?
+Pure component : 
+
+Error handling in react : 
+Error boundaries: 
+
+useMemo vs useCallback :
+React best practices (optimisation)
+
+ type vs interface?
+ - What are generics and how to use them in TypeScript?
+
+- What is the difference between union and intersection types?
+
+- What is the difference between extends and implements in TypeScript?
+-  What are abstract classes?
+- What are type assertions in TypeScript?
+*********************************************************
+New React 18 Features ::
+----------------------
+Nodejs : 
+https://www.geeksforgeeks.org/node-js-event-loop/
+The event loop in Node.js consists of several phases, each of which performs a specific task
+
+1.Timers , 2.Pending Callbacks ,3. Idle, Prepare , 4. Poll, 5.Check, 6. Close Callbacks
+Eventloop in NodeJS: MacroTasks and MicroTasks
+https://medium.com/dkatalis/eventloop-in-nodejs-macrotasks-and-microtasks-164417e619b9
+ANS :
+    V8 Engine works by enqueuing tasks into the event loop.
+    The tasks are broken down further into microtask and macrotask
+       1. macroTasks: setTimeout, setInterval, setImmediate, requestAnimationFrame, I/O, UI rendering
+       2. microTasks: process.nextTick, Promises, queueMicrotask, MutationObserver
+    Only after tasks in microTasks are completed/ excahusted, event loop will next pick up one task from macroTasks. And this repeats.
+
+**********
+Node.js - Global Objects : __filename,__dirname, setTimeout(cb, ms), clearTimeout(t), setInterval(cb, ms)
+                             Console:Used to print information on stdout and stderr.
+
+                           2  Process:Used to get information on current process. Provides multiple events related to process activities.
+
+Node.js - Utility Modules : 
+1  OS Module
+Provides basic operating-system related utility functions.
+
+2  Path Module
+Provides utilities for handling and transforming file paths.
+
+3  Net Module
+Provides both servers and clients as streams. Acts as a network wrapper.
+
+4  DNS Module
+Provides functions to do actual DNS lookup as well as to use underlying operating system name resolution functionalities.
+
+5  Domain Module
+Provides ways to handle multiple different I/O operations as a single group.
+
+
+************
+Explain the concept of middleware in Node.js.
+next()
+What is callback hell?
+
+Core Modules : HTTP, util, fs , url, query string, stream, zib
+
+Node.js Cluster Process Module
+   The cluster module provides a way of creating child processes that runs simultaneously and share the same server port.
+
+   Node.js runs single threaded programming, which is very memory efficient, but to take advantage of computers multi-core systems, the Cluster module allows you to easily create child processes that each runs on their own single thread, to handle the load.
+
+The Child Processes Module
+   We can easily spin a child process using Node’s child_process module and those child processes can easily communicate with each other with a messaging system.
+   There are four different ways to create a child process in Node: spawn(), fork(), exec(), and execFile().
+   https://www.freecodecamp.org/news/node-js-child-processes-everything-you-need-to-know-e69498fe970a/
+
+CORS (Cross-Origin Resource Sharing) 
+
+how request processed once
+What are streams in Node.js?
+Readable – Used for reading operations
+Writable − Used for write operation
+Duplex − Can be used for both reading and write operations
+Transform − A type of duplex stream where the output is computed based on input
+
+Process Model : https://www.tutorialsteacher.com/nodejs/nodejs-process-model
+   Event loop : 
+   Event loops handle asynchronous callbacks in Node.js. It is the foundation of the non-blocking input/output in Node.js, making it one of the most important environmental features.
+
+   Thread Pool : Node.js uses libev for the event loop which in turn uses internal C++ thread pool to provide asynchronous I/O.
+
+Express.js is based on the Node.js middleware module called connect which in turn uses http module. 
+   Advantages of Express.js
+   Makes Node.js web application development fast and easy.
+   Easy to configure and customize.
+   Allows you to define routes of your application based on HTTP methods and URLs.
+   Includes various middleware modules which you can use to perform additional tasks on request and response.
+   Easy to integrate with different template engines like Jade, Vash, EJS etc.
+   Allows you to define an error handling middleware.
+   Easy to serve static files and resources of your application.
+   Allows you to create REST API server.
+   Easy to connect with databases such as MongoDB, Redis, MySQL
+
+24. What are the two types of API functions in Node.js?
+The two types of API functions in Node.js are:
+
+Asynchronous, non-blocking functions
+Synchronous, blocking functions
+
+4. Why is Node.js preferred over other backend technologies like Java and PHP?
+         Some of the reasons why Node.js is preferred include:
+         Node.js is very fast
+         Node Package Manager has over 50,000 bundles available at the developer’s disposal
+         Perfect for data-intensive, real-time web applications, as Node.js never waits for an API to return data
+         Better synchronization of code between server and client due to same code base
+         Easy for web developers to start using Node.js in their projects as it is a JavaScript library
+
+5. Differentiate between process.nextTick() and setImmediate()?
+The distinction between method and product. This is accomplished through the use of nextTick() and setImmediate(). next Tick() postpones the execution of action until the next pass around the event loop, or it simply calls the callback function once the event loop's current execution is complete, whereas setImmediate() executes a callback on the next cycle of the event loop and returns control to the event loop for any I/O operations.
+**********************
+Socket.IO
+-----------
+https://www.javatpoint.com/socket-io
+**********************
+SQL Injection ?
+----------------------
+- Higher-Order Components
+- Name some of the hooks you have worked on?
+- How to get query parameters in React Router v4?
+- What is "key" prop and what is the benefit of using it in arrays of elements?
+- What is children prop?
+- What is Lifting State Up in React?
+- What is shallow copy and deep copy in JavaScript ?
+   https://www.javatpoint.com/shallow-copy-and-deep-copy-in-javascript
+- What are Pure Components?
+- What are synthetic events in React?
+- What are portals in React?
+- How to perform automatic redirect after login?
+
+- How to get query parameters in React Router v4?
+
+
+Testing : 
+-
+- What is Shallow Renderer in React testing?
+
+Redux : 
+- Prop drilling
+- Redux flow
+- What are the core principles of Redux?
+- What is the difference between React context and React Redux?
+- What is the difference between component and container in React Redux?
+- What is Redux Thunk?
+
+
+BEST PRACTICES Error handling ?
+*********************************************
+
+1.  Manage and administer MySQL instances, including configuration, monitoring, performance tuning, and troubleshooting.
+2.  Design, implement, and maintain database backup, replication, and recovery strategies for MySQL databases.
+3.  Monitor database performance, identify bottlenecks, and optimize queries and schema design for improved efficiency.
+4.  Implement and maintain database security measures, including access controls, user management, and data encryption.
+5.  Collaborate with development teams to assist in database design, schema changes, and query optimization.
+6.  Perform database capacity planning and scaling to accommodate growth and ensure high availability.
+8.  Manage and support MongoDB database instances, including installation, configuration, and monitoring.
+9.  Design and implement MongoDB data models, indexes, and sharding strategies for optimal performance.
+10. Implement replication and high availability solutions, ensuring data redundancy and disaster recovery.
+11. Maintain comprehensive documentation of database systems, configurations, and procedures.
+12. Work with SRE (Site reliability engineering) team in supporting database deployments and handle database alerts
+13. Perform database tuning and optimization to improve query performance and overall system efficiency.
+14. Perform regular Audits on the database to maintain the standard security.
+15. Stay updated with the latest trends and technologies in database administration, AWS, and MongoDB, and make recommendations for improvements to the existing database infrastructure.
+16. Knowledge on other databases(Redshift and Postgresql) and experience on AWS services (RDS, Aurora EC2, S3, IAM, CloudWatch) are added advantage
+
+*********************************************
+
+Husky 
+Monorepo
+preventDefault vs propogation
+github Actions
+nodejs patterns : example of them
+
+
+
+*********************************************
+
+
+BEST PRACTICES 
+------------------
+https://github.com/WebDevSimplified
+Profiling
+Creating a Production Build
+Measuring Performance
+Analyzing the Bundle Size
+
+React :=>
+1. https://www.makeuseof.com/must-follow-react-practices/
+2. https://kinsta.com/blog/react-best-practices/
+3. https://www.codementor.io/blog/react-optimization-5wiwjnf9hj
+4. https://blog.bitsrc.io/10-ways-to-optimize-your-react-apps-performance-e5e437c9abce
+    
+    1. Use React Fragments to Avoid Extra Tag
+    2. Virtualize long lists 
+    If you render large lists of data, it is recommended that you render only a small portion of the datasets at a time within the visible viewport of a browser, then the next data are rendered as the lists is scrolled, this is called “windowing”. Awesome React libraries have been built for this, there is the react-window and react-virtuaized 
+    3. React.PureComponent
+    4. Caching functions - > See, that useMemo(), useCallback()
+    5. Using reselect selectors
+    6. Web worker
+    7. Code splitting and Lazy Loading
+    8. React.memo()
+    9. useCallback()
+10. shouldComponentUpdate()
+
+Enable gzip Compression on the Web Server
+Optimizing Images
+How to Measure Performance
+
+Debouncing concepts
+Debouncing refers to ignoring the event handler call until the calls have stopped for a certain amount of time.
+Avoid Using Inline Style Attribute
+With inline styles, the browser spends a lot more time scripting and rendering.
+
+A lot of time is spent on scripting because it has to map all the style rules passed to the actual CSS properties, which increases the rendering time for the component.
+Let's imagine that we have an event with a debounce time of one second. The event handler for that event will be triggered after one second, once the user stops triggering the event.
+
+The first step in improving the performance of a React application is to measure its current performance. There are several tools available for measuring performance, including:
+
+Lighthouse – Lighthouse is an open-source tool from Google that audits web pages for performance, accessibility, and more. Lighthouse generates a report that includes suggestions for improving the performance of the application.
+WebPageTest – WebPageTest is a free tool that allows you to test the speed of your website from multiple locations around the world. WebPageTest provides detailed reports on the performance of your website, including suggestions for improvement.
+Google PageSpeed Insights – Google PageSpeed Insights analyzes the content of a web page and generates a report that identifies opportunities to improve the page's performance.
+
+*********************************************
+---------
+Linux Interview Questions
+https://www.interviewbit.com/linux-interview-questions/
+https://www.javatpoint.com/linux-interview-questions
+https://www.edureka.co/blog/interview-questions/linux-interview-questions-for-beginners/
+---------------
+Top 25 Docker Interview Questions and Answers for 2023
+https://www.edureka.co/blog/interview-questions/docker-interview-questions/
+https://www.simplilearn.com/tutorials/docker-tutorial/docker-interview-questions
+https://www.interviewbit.com/docker-interview-questions/
+https://www.guru99.com/docker-interview-questions.html
+
+devops_docker_swarm
+https://www.interviewgrid.com/interview_questions/devops/devops_docker_swarm
+
+DPCKER compose
+file, image, container
+docker machine
+
+---------------
+Top 55 Kubernetes Interview Questions and Answers (2023)
+https://www.guru99.com/kubernetes-interview-questions-answers.html
+https://www.edureka.co/blog/interview-questions/kubernetes-interview-questions/
+https://www.interviewbit.com/kubernetes-interview-questions/
+
+---------------
+ AWS Amplify setup
+20 AWS Cognito Interview Questions and Answers
+https://climbtheladder.com/aws-cognito-interview-questions/
+https://www.gangboard.com/blog/aws-cognito
+
+Top 100+ AWS Interview Questions and Answers for 2023
+https://www.simplilearn.com/tutorials/aws-tutorial/aws-interview-questions
+https://mindmajix.com/aws-interview-questions
+---------------
+
+node --inspect --inspect-brk ./app.js
+
+upload big files using stream?
+error handling in stream
+validation in stream
+
+default buffer limit in nodejs?
+1gb 32bit 2gb for 64bit system
+----
+Benchmark test of node application
+Apachec bench tool
+Testing code coverage: 
+1- Mocha,sinon,supertest
+2- Jest, supertest
+----
+***********
+SonarQube
+Docker 
+Docker-swarm
+Kubernates
+***********
+---------------
+Testing framework: Jest with supertest
+---------------
+
+MongoDB:
+---------------
+ESR Guideance 
+Projection
+
+pipline
+TTL 
+Capped Collection 
+
+
+Explain Indexes in MongoDB?
+
+db.<collection>.deleteMany({})
+
+
+What is sharding in MongoDB?
+Explain the significance of the covered query?
+What is a replica set?
+Explain the primary and secondary replica set?
+MongoDB aggregation framework: 
+Which are the two storage engines used by MongoDB?
+      MongoDB uses MMAPv1 and WiredTiger.
+utilities for backup and restore in MongoDB?
+1. mongoimport, 2. mongoexport, 3. mongodump, 4. mongorestore
+
+
+SQL injection
+mongo/nosql injection
+OWASP
+npm i express-mongo-sanitizeZ
+1. https://owasp.org/www-pdf-archive/GOD16-NOSQL.pdf
+2. https://www.imperva.com/learn/application-security/nosql-injection/
+
+
+---------------------
+REST API (Representational state transfer)
+-------------------------------------
+Passport supported Oauth authentication
+JWT token based authentication
+-------------------------------------
+
+Javascript Q :
+-----------
+Expain Hoisting in javascript
+What is closure?
+differenciate between var and let
+
+es6+ features
+
+map vs reduce 
+
+fn vs flat arrow fn
+-+
+local storage 
+session storage
+Cokie
+
+
+Nodejs :
+-----------
+***************
+How to create npm package ready to distribute from scratch?
+***************
+https://www.jsv9000.app/
+
+
+
+ReactJs:
+------------
+*************
+Higher-Order Components
+Portals
+Reconciliation
+
+*************
+use of callback function in setState ?
+
+Render prop : “render prop” refers to a technique for sharing code between React components using a prop whose value is a function. A component with a render prop takes a function that returns a React element and calls it instead of implementing its own render logic.
+
+prop drilling 
+
+portal in react
+
+
+lazy loading
+
+reconcilation
+React best practices (optimisation)
+https://www.makeuseof.com/must-follow-react-practices/
+
+Code-splitting : To avoid winding up with a large bundle, it’s good to get ahead of the problem and start “splitting” your bundle. Code-Splitting is a feature supported by bundlers like Webpack, Rollup and Browserify (via factor-bundle) which can create multiple bundles that can be dynamically loaded at runtime.
+Code-splitting your app can help you “lazy-load” just the things that are currently needed by the user, which can dramatically improve the performance of your app. While you haven’t reduced the overall amount of code in your app, you’ve avoided loading code that the user may never need, and reduced the amount of code needed during the initial load.
+Before:
+
+
+
+
+
+
+import { add } from './math';
+
+console.log(add(16, 26));
+After:
+import("./math").then(math => {
+  console.log(math.add(16, 26));
+});
+
+React.lazy :
+The React.lazy function lets you render a dynamic import as a regular component.
+React.lazy takes a function that must call a dynamic import(). This must return a Promise which resolves to a module with a default export containing a React component.
+
+Fallback prop : The fallback prop accepts any React elements that you want to render while waiting for the component to load. You can place the Suspense component anywhere above the lazy component. You can even wrap multiple lazy components with a single Suspense component.
+
+import React, { Suspense } from 'react';
+
+const OtherComponent = React.lazy(() => import('./OtherComponent'));
+8const AnotherComponent = React.lazy(() => import('./AnotherComponent'));
+
+function MyComponent() {
+  return (
+    <div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <section>
+          <OtherComponent />
+          <AnotherComponent />
+        </section>
+      </Suspense>
+    </div>
+  );
+}
+
+React final form
+
+Error handling in react : 
+Error boundaries: 
+https://legacy.reactjs.org/docs/code-splitting.html
+
+Context : Context provides a way to pass data through the component tree without having to pass props down manually at every level.
+Context is designed to share data that can be considered “global” for a tree of React components
+https://legacy.reactjs.org/docs/context.html
+
+Pure component :  React. Component doesn't implement shouldComponentUpdate() , but React. PureComponent implements it with a shallow prop and state comparison. If your React component's render() function renders the same result given the same props and state.
+
+ 
+
+It is the type of component which re-renders only when the props passed to it changes and not even if its parent component re-renders or if the shouldComponentUpdate() method is called. It is greatly used to enhance the performance of a web application.
+
+
+useMemo vs useCallback : The main difference between useCallback and useMemo is the type of value they return. useCallback returns a memoized callback function, while useMemo returns a memoized value. Both hooks can be used to optimize the performance of your React components by avoiding unnecessary re-creations of functions or values.
+
+Axios : Axios has built-in XSRF(Cross-Site Request Forgery) protection, while Fetch does not. Axios has the ability to intercept HTTP requests but Fetch, by default, does not. Axios allows canceling requests and request timeout but fetch does not.
+
+Redux - DataFlow
+Thunk - 
+
+Typescript
+
+Semantic Tags : A semantic element clearly describes its meaning to both the browser and the developer.
+Examples of non-semantic elements: <div> and <span> - Tells nothing about its content.
+Examples of semantic elements: <form>, <table>, and <article> - Clearly defines its content.
+--------------------
+Html 5
+Local Storage 
+Cookies more secure ?
+
+CSS : 
+--------
+SASS
+Mixins
+
+---------------------
+AWS LAMBDA
+---------------------
+=> Deployment package size is calculated based on the combination of all the layers and the function code
+=> You can add up to five layers to a Lambda function. The total unzipped size of the function 
+and all layers cannot exceed the unzipped deployment package size quota of 250 MB.
+=> By default, Lambda provides your account with a total concurrency limit of 1,000 across all functions in a region.
+   To support your specific account needs, you can request a quota increase and configure function-level concurrency controls so that your critical functions don't experience throttling.
+
+=> In Lambda, concurrency is the number of requests your function can handle at the same time. There are two types of concurrency controls available:
+
+Reserved concurrency – Reserved concurrency guarantees the maximum number of concurrent instances for the function. When a function has reserved concurrency, no other function can use that concurrency. There is no charge for configuring reserved concurrency for a function.
+
+Provisioned concurrency – Provisioned concurrency initializes a requested number of execution environments so that they are prepared to respond immediately to your function's invocations. Note that configuring provisioned concurrency incurs charges to your AWS account.
+-----------------------
+
+
+method refrence va constructure ref
+lambda expression
+
+runnable interface implementation 
+try with resources
+fin client
+solid design principle
+lisco substiyution
+executer framework
+async 
+creational design pattern
+sonar issues

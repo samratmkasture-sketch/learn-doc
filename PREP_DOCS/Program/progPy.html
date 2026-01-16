@@ -1,0 +1,61 @@
+<pre>
+--------------------------------------------------------
+*Reverse a string* :
+https://www.geeksforgeeks.org/reverse-string-python-5-different-ways/
+
+----------Check String is Palindrome or Not -------------------------------
+def isPalindrome(str):
+    rev="".join(reversed(str))
+    return str ==rev
+    
+    
+result = isPalindrome("malayalam")
+print (result)
+
+---------Fiboonaci-------------------------------------
+def genFibo(nolimit):
+    fibArr=[0,1]
+    for i in range(2,nolimit,1):
+        # print(fibArr[i-2] )
+        # print( fibArr[i-1])
+        temp=fibArr[i-2] + fibArr[i-1]
+        fibArr.append(temp) 
+        
+        
+    return fibArr
+    
+result = genFibo(10)
+print(result)
+--------------------------------------------------------
+https://www.prepbytes.com/blog/python/top-20-coding-questions-for-basic-python-programming/
+
+Armstrong no
+leap year check
+factorial of a no 0000000000000000111111111
+--------------------------------------------------------
+# Program to display the Fibonacci sequence up to n-th term
+
+def genFibonacci(n=10):
+  fiboList=[0,1]
+  for i in range(2,n):
+     fiboList.append(fiboList[i-1]+fiboList[i-2])
+     
+  return fiboList
+    
+
+print(len(genFibonacci(20)))
+--------------------------------------------------------
+
+# wap to check no is event or odd
+
+def checkEvenOdd(n):
+    is_even=(True, False) [(n%2)]
+    print(is_even)
+    return is_even
+    
+
+result=checkEvenOdd(10)
+print('Result Event/Odd {0} '.format(result))
+ 
+  
+--------------------------------------------------------

@@ -1,0 +1,115 @@
+Globals :
+https://nodejs.org/api/globals.html
+
+In Node.js, there are several built-in global objects and variables that are available without needing to import them explicitly. Here's a comprehensive list of commonly used globals in Node.js:
+
+     global: The global object is the global namespace object in Node.js. All global variables are properties of the global object. 
+    process: The process object provides information and control over the current Node.js process.
+    console: The console object provides methods for writing to the standard output and standard error streams.
+
+    Buffer: The Buffer class provides methods for handling binary data directly. 
+
+    setImmediate(callback[, ...args]): A function that queues a callback to be executed in the next iteration of the event loop. 
+
+    clearImmediate(immediate): A function that cancels a callback queued with setImmediate. 
+
+    setTimeout(callback, delay[, ...args]): A function that schedules a callback to be executed after a delay (in milliseconds).
+
+    clearTimeout(timeout): A function that cancels a timeout previously established by setTimeout.
+
+    setInterval(callback, delay[, ...args]): A function that schedules a callback to be executed repeatedly with a fixed time delay between each execution. 
+
+    clearInterval(interval): A function that cancels a timeout previously established by setInterval. 
+
+    URL: The URL class provides methods for parsing, formatting, and resolving URLs. 
+
+    URLSearchParams: The URLSearchParams class provides methods for working with the query string of a URL. 
+
+    fetch: A function to make HTTP requests similar to the Fetch API in web browsers (available in recent versions of Node.js, but not a standard built-in global). 
+
+
+ 
+
+Please note that this list includes commonly used globals, but there may be additional globals or variations depending on the Node.js version and any modules you have installed. Always refer to the official Node.js documentation for the most accurate and up-to-date information.
+
+
+fetch('https://jsonplaceholder.typicode.com/todos/1').then(response => response.json()).then(json => console.log(json)) 
+
+
+-*********** CommonJS (Node.js Modules) and ES Modules **********************
+CommonJS is a module system for JavaScript that was initially designed for server-side environments, particularly for the Node.js runtime. It provides a way to organize code into reusable modules, encapsulating functionality and data within each module. CommonJS modules use the require() function to import dependencies and the module.exports or exports objects to export values from a module.
+CommonJS was introduced around 2009 as a project to standardize JavaScript development outside the web browser, primarily focusing on server-side JavaScript environments. The primary goal of CommonJS was to provide a standardized module system for JavaScript .
+
+ES Modules (ECMAScript Modules) (Modern/Advance javascript) were introduced as part of the ECMAScript 6 (ES6) specification, which was finalized in June 2015. ES Modules aimed to provide a standardized module system for JavaScript that could be used in both browser and server-side environments. Unlike CommonJS, which was primarily designed for server-side JavaScript (Node.js), ES Modules were designed to be compatible with all JavaScript environments.
+introduced significant enhancements to the JavaScript language. Among these enhancements were the introduction of classes, arrow functions, and, notably, the inclusion of a standardized module system in the form of ES Modules.
+
+https://nodejs.org/api/modules.html
+https://nodejs.org/api/esm.html
+
+CommonJS (Node.js Modules) and ES Modules (ECMAScript Modules) are two different module systems used in JavaScript. Here are the key differences between them:
+
+Syntax:
+
+CommonJS: Uses require() to import modules and module.exports or exports to export values.
+ES Modules: Uses import to import modules and export to export values.
+Asynchronous vs. Static:
+
+CommonJS: Modules are loaded synchronously. require() is a synchronous operation.
+ES Modules: Modules are loaded asynchronously. import is a declarative statement and is hoisted to the top of the module, but the actual module loading is asynchronous.
+Static Analysis:
+
+CommonJS: Modules are loaded dynamically at runtime, making it difficult for static analysis tools to determine module dependencies.
+ES Modules: Modules are loaded statically at compile time, which allows for easier static analysis and optimizations like tree-shaking.
+Top-Level Scope:
+
+CommonJS: Each module has its own top-level scope. When a module is required, it is executed, and its exports are cached for subsequent calls to require().
+ES Modules: Each module has its own top-level scope, similar to CommonJS. However, ES Modules are evaluated once and are singletons by default. Changes to the module exports after the initial evaluation do not affect other modules that import it.
+Circular Dependencies:
+
+CommonJS: Supports circular dependencies. When a module is required, its exports are partially initialized, allowing other modules to access them even before the module is fully executed.
+ES Modules: Does not support circular dependencies directly. Circular dependencies in ES Modules result in a reference error. However, circular dependencies can be managed using techniques like dependency injection or restructuring the code.
+Browser Support:
+
+CommonJS: Primarily used in server-side environments like Node.js. Although some bundlers and tools support CommonJS in the browser, it's not native to browsers.
+ES Modules: Supported in modern browsers and can be used natively without transpilation in the latest versions. Browsers understand import and export statements.
+Named Exports:
+
+CommonJS: Supports only default exports (module.exports or exports). Named exports are not directly supported, but they can be simulated by exporting an object containing named properties.
+ES Modules: Supports both default exports and named exports. Named exports allow exporting multiple values from a module using the export keyword.
+Overall, while CommonJS has been the standard for server-side JavaScript (especially in Node.js), ES Modules provide a more standardized, static, and future-proof module system suitable for both server-side and client-side JavaScript development.
+
+
+
+Differences : 
+
+CommonJS (Node.js Modules) and ES Modules (ECMAScript Modules) are two different module systems used in JavaScript. Here are the key differences between them:
+
+Syntax:
+
+CommonJS: Uses require() to import modules and module.exports or exports to export values.
+ES Modules: Uses import to import modules and export to export values.
+Asynchronous vs. Static:
+
+CommonJS: Modules are loaded synchronously. require() is a synchronous operation.
+ES Modules: Modules are loaded asynchronously. import is a declarative statement and is hoisted to the top of the module, but the actual module loading is asynchronous.
+Static Analysis:
+
+CommonJS: Modules are loaded dynamically at runtime, making it difficult for static analysis tools to determine module dependencies.
+ES Modules: Modules are loaded statically at compile time, which allows for easier static analysis and optimizations like tree-shaking.
+Top-Level Scope:
+
+CommonJS: Each module has its own top-level scope. When a module is required, it is executed, and its exports are cached for subsequent calls to require().
+ES Modules: Each module has its own top-level scope, similar to CommonJS. However, ES Modules are evaluated once and are singletons by default. Changes to the module exports after the initial evaluation do not affect other modules that import it.
+Circular Dependencies:
+
+CommonJS: Supports circular dependencies. When a module is required, its exports are partially initialized, allowing other modules to access them even before the module is fully executed.
+ES Modules: Does not support circular dependencies directly. Circular dependencies in ES Modules result in a reference error. However, circular dependencies can be managed using techniques like dependency injection or restructuring the code.
+Browser Support:
+
+CommonJS: Primarily used in server-side environments like Node.js. Although some bundlers and tools support CommonJS in the browser, it's not native to browsers.
+ES Modules: Supported in modern browsers and can be used natively without transpilation in the latest versions. Browsers understand import and export statements.
+Named Exports:
+
+CommonJS: Supports only default exports (module.exports or exports). Named exports are not directly supported, but they can be simulated by exporting an object containing named properties.
+ES Modules: Supports both default exports and named exports. Named exports allow exporting multiple values from a module using the export keyword.
+Overall, while CommonJS has been the standard for server-side JavaScript (especially in Node.js), ES Modules provide a more standardized, static, and future-proof module system suitable for both server-side and client-side JavaScript development.

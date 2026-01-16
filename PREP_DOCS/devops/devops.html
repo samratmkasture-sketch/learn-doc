@@ -1,0 +1,105 @@
+index.html
+
+***********
+DevOps Project - Automate deploying to AWS using Terraform with GitLab CICD pipeline
+https://www.youtube.com/watch?v=oqOzM_WBqZc
+
+
+***********
+SonarQube
+Docker 
+Docker-swarm
+Kubernates
+***********
+********************************************
+8. Docker Practices (15)
+   8.1  Use multi-stage builds for leaner and more secure Docker images #strategic
+   8.2. Bootstrap using node command, avoid npm start
+   8.3. Let the Docker runtime handle replication and uptime #strategic
+   8.4. Use .dockerignore to prevent leaking secrets
+   8.5. Clean-up dependencies before production
+   8.6. Shutdown smartly and gracefully #advanced
+   8.7. Set memory limits using both Docker and v8 #advanced #strategic
+   8.8. Plan for efficient caching
+   8.9. Use explicit image reference, avoid latest tag
+  8.10. Prefer smaller Docker base images
+  8.11. Clean-out build-time secrets, avoid secrets in args #strategic #new
+  8.12. Scan images for multi layers of vulnerabilities #advanced
+  8.13 Clean NODE_MODULE cache
+  8.14. Generic Docker practices
+  8.15. Lint your Dockerfile #new
+********************************************
+---------------------
+AWS LAMBDA
+---------------------
+=> Deployment package size is calculated based on the combination of all the layers and the function code
+
+=> You can add up to five layers to a Lambda function. The total unzipped size of the function and all layers cannot exceed the unzipped deployment package size quota of 250 MB.
+
+=> By default, Lambda provides your account with a total concurrency limit of 1,000 across all functions in a region. To support your specific account needs, you can request a quota increase and configure function-level concurrency controls so that your critical functions don't experience throttling.
+
+=> In Lambda, concurrency is the number of requests your function can handle at the same time. There are two types of concurrency controls available:
+
+Reserved concurrency – Reserved concurrency guarantees the maximum number of concurrent instances for the function. When a function has reserved concurrency, no other function can use that concurrency. There is no charge for configuring reserved concurrency for a function.
+
+Provisioned concurrency – Provisioned concurrency initializes a requested number of execution environments so that they are prepared to respond immediately to your function's invocations. Note that configuring provisioned concurrency incurs charges to your AWS account.
+-----------------------
+
+=> What is a lambda function ? 
+ your answer should be aws lambda is a compute service by amazon which allows you to essentially run code on cloud without provisioning or managing servers and all the heavy
+lifting such as uh uh you know logging such as uh maintenance auto scaling is all handled
+by cloud so that should be your answer the second question okay so could you
+=> what is the maximum time our aws lambda function can run?
+  AWS lambda can maximum run for 15 minutes  
+
+=>could you tell me different mechanism in which a lambda function can be invoked ?
+ Basically in general there are three of them that is synchronous which means you
+wait for a response which is invoked through an api gateway 
+- then you have a asynchronous which is essentially sns or an s3 you know etc and 
+-the last one is essentially a pole based model such as kinesious data stream or an sqs etc.
+so these are the mechanism or three ways in which a lambda function can be invoked now 
+
+=> How many layers can you attach on a lambda function?
+   at maximum you can attach five external python packages or layers into a lambda function
+
+=> What if you have more than five layers what are we gonna do ? 
+We could try a couple of options the first option is essentially creating a local deployment zip package and essentially having everything inside a zip file and deploying the zip to the s3 and then using that and using the zip in your lambda function 
+- if that doesn't work aws lambda has a new feature where you can run your lambda functions on a docker container with this now you can have much more python packages and all the heavy lifting python packages such as tensorflow scikit-learn all these stuff could be easily run on a lambda function with a docker container.
+
+=> What is the maximum amount of memory a lambda function can have?
+lambda function can have up to a 10 gb of memory that is 6 v cpus 
+
+=> How would you know whether you have under up under provision or over provision the amount of memory allocated to a lambda function? 
+ It would essentially do aws lambda power tuning exercise so these are um
+essentially you could power tune your lambda using a step function which will
+essentially show you at which place you will have the best cost and performance
+for a lambda function so you'll get a graph and through this graph i can
+essentially select the optimum memory uh for my lambda function.
+
+=> Could you tell me about what is a lambda destination your answer should be if uh
+on failure or if on success?
+=> When a lambda function is invoked asynchronously if you want to push this
+events to either sqs or sms lambda destination essentially allows you
+=> What is the maximum try what is the maximum time a lambda
+can retry ?
+ At the maximum of lambda can retry for three times 
+
+=> Could you tell me what is the difference between a reserved concurrency
+and provisional concurrency?
+
+ The reserved concurrency essentially allows you to reserve a set of number of invocation
+for that particular application
+=> Why do you want to set reserved concurrancy? 
+The reason you want to set a reserved concurrency because if you do not set a reserved concurrency and if there are a burst of of requests coming in by default aws with lambda will use the all the account reserved concurrency so all the other applications that are using they might throttle due to which hence to prevent other applications from being throttled we're gonna use a reserved concurrency.
+=> What is provisional concurrency?
+Provisional concurrency essentially allows you to of have lambda in a hot state?
+  hot and cold state so you can say you know during a flash sale or during a black friday sale event right you need these lambdas to be you know in a hot state ready to respond so you can set up provisional concurrency provisional concurrency does come at a cost but that essentially puts your lambda in a hot state.
+=> What is functional url?
+What's the difference between using an api gateway versus a functional url?
+Functional url you can use a lambda with a simple url like a web hook.
+
+=>Where do we even use lambda? When shall i use lambda?
+Lambdas are used in pretty much a lot of applications such as event driven application of creating microservices and back-end of data processing right of data real-time data processing. It is also used in the asynchronous based of architecture.
+When you have an sql  the data comes into sqs and you want to asynchronously process your data from the queue. We can also develop fanout model essentially through sms and lambda so you can have multiple subscribers so lambdas are pretty much used in a lot of aspects.
+Data processing, developing apis, event driven application and so on.
+  

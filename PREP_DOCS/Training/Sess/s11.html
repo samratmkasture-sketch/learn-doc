@@ -1,0 +1,88 @@
+
+
+
+--------------------------------------------------
+lib uv
+	Thread Pool
+
+cluster module
+
+
+--------------------------------------------------
+
+
+**********************************************************
+https://www.geeksforgeeks.org/how-to-troubleshoot-common-http-error-codes/
+
+*************************** EcmaScript Modules ***********************************
+https://dmitripavlutin.com/ecmascript-modules-nodejs/
+
+The ECMAScript modules (in short ES modules) is a JavaScript modules format that uses import and export statements:
+
+Enabling ECMAScript modules in Node.js
+The default format of modules in Node.js is the CommonJS.
+
+But Node.js will treat a JavaScript file as an ECMAScript modules format if:
+
+The module's file extension is .mjs
+Or the module's nearest parent folder has { "type": "module" } in package.json
+Or the argument --input-type=module is present, and the module's code is passed as a string using --eval="<module-code>" argument or from STDIN.
+Let's detail into the first (.mjs extension) and second ({ "type": "module" } in package.json) ways.
+
+Authors can tell Node.js to interpret JavaScript as an ES module via the .mjs file extension, the package.json "type" field with a value "module", the --input-type flag with a value of "module",
+
+
+**************************************************
+Cluster Module
+
+Child process
+Cluster
+DNS
+--------------------------------------------
+
+https://nodejs.org/api/errors.html
+Errors
+Error propagation and interception
+
+--------------------------------------------
+**************************************************
+https://nodejs.org/docs/latest/api/cluster.html
+--------------
+
+Clusters of Node.js processes can be used to run multiple instances of Node.js that can distribute workloads among their application threads. When process isolation is not needed, use the worker_threads module instead, which allows running multiple application threads within a single Node.js instance.
+
+The cluster module allows easy creation of child processes that all share server ports.
+
+
+**************************************************
+
+Child process
+----------------------------
+https://nodejs.org/docs/latest/api/child_process.html
+
+The node:child_process module provides the ability to spawn subprocesses in a manner that is similar, but not identical, to popen(3). This capability is primarily provided by the child_process.spawn() function:
+
+**************************************************
+
+How much JavaScript do you need to know to use Node.js?
+
+
+
+*************************************
+https://www.youtube.com/watch?v=DYme1m4RiwI
+Security Best Practices
+	1.  Rate limiting 
+	2. Password Encryption
+	3. JWT Black Listing
+	4. JSON Schema validation
+	5. escaping HTML & CSS (html encode decode ) (npm escap-html)
+	6. Data Sanitization : sql/nosql injection  
+		ORM/ODM aganins Injections
+	7. Security linters (eslint-plugin-security)
+
+https://portswigger.net/web-security/nosql-injection#:~:text=NoSQL%20operator%20injection,-NoSQL%20databases%20often&text=Examples%20of%20MongoDB%20query%20operators,values%20specified%20in%20an%20array.
+
+
+
+****************************************************
+https://www.freecodecamp.org/news/the-express-handbook/#how-to-sanitize-input-in-express

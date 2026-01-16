@@ -1,0 +1,351 @@
+<pre>
+AWS Identity and Access Management (IAM) is a fundamental service that allows you to securely control who can access your AWS resources and what they can do. Here's a breakdown of common questions and their answers:
+
+1. What is AWS IAM and why is it important?
+Answer: AWS IAM (Identity and Access Management) is a web service that enables you to securely control access to AWS services and resources for your users. It's crucial because it:
+
+Enhances Security: It ensures only authenticated and authorized entities can interact with your AWS environment.
+Enables Fine-Grained Access Control: You can define highly specific permissions, granting only the necessary access to users or services.
+Supports Compliance Requirements: Many regulatory standards require robust access control, and IAM helps you meet these.
+Facilitates Auditing: It integrates with AWS CloudTrail to log all API calls, allowing you to track who did what, when, and where.
+2. Explain the core components of AWS IAM.
+Answer: The key components of AWS IAM are:
+
+IAM Users: Individual identities created in AWS for people or applications. Each user has their own credentials (username, password, access keys).
+
+IAM Groups: Collections of IAM users. Permissions are often assigned to groups rather than individual users, simplifying management. All users in a group inherit the permissions assigned to that group.
+IAM Roles: Secure AWS identities that you can create with specific permissions. Roles are meant to be assumed by trusted entities (users, applications, or AWS services) to obtain temporary security credentials. They don't have permanent long-term credentials like users.
+
+IAM Policies: JSON documents that define permissions. They specify what actions are allowed or denied on which AWS resources. Policies are attached to users, groups, or roles to grant or restrict access.
+
+
+3. What is the Principle of Least Privilege in IAM?
+Answer: The Principle of Least Privilege is a security best practice that dictates that any user, program, or process should have only the bare minimum privileges necessary to perform its function. In IAM, this means:
+
+Starting with no permissions for new users/roles.
+Gradually adding only the permissions explicitly required for their tasks.
+Regularly reviewing and removing any unnecessary permissions. This minimizes the potential impact of a security breach or misuse of credentials.
+
+4. How do IAM Policies work and what are the different types?
+Answer: IAM policies are JSON documents that define a set of permissions. When an entity (user, group, or role) makes a request to an AWS service, IAM evaluates the policies attached to that entity (and any resource-based policies) to determine if the request should be allowed or denied.
+
+
+There are two main types of IAM policies:
+
+Managed Policies:
+AWS Managed Policies: Predefined policies created and managed by AWS for common use cases (e.g., AmazonS3ReadOnlyAccess). You cannot edit these.
+Customer Managed Policies: Policies you create and manage in your AWS account. These are standalone entities that can be attached to multiple users, groups, or roles.
+
+Inline Policies: Policies embedded directly into a single IAM user, group, or role. They are deleted when the associated entity is deleted.
+5. What is the difference between IAM Users and IAM Roles?
+Answer:
+
+IAM Users: Represent individual people or applications that need long-term access to your AWS account. They have their own credentials (password for console, access keys for programmatic access).
+
+IAM Roles: Are meant to be assumed by trusted entities (users, services, or applications) to obtain temporary security credentials. They don't have their own permanent credentials. Roles are ideal for granting temporary access, cross-account access, or giving permissions to AWS services (e.g., an EC2 instance needing to access S3).
+
+6. What is the policy evaluation logic in IAM?
+Answer: When an AWS principal makes a request, IAM evaluates all applicable policies (identity-based, resource-based, permissions boundaries, session policies, and SCPs if using AWS Organizations) to determine whether to allow or deny access. The general logic is:
+
+Default Deny: By default, all requests are denied.
+Explicit Allow: If any policy explicitly allows an action, the request is allowed, unless an explicit deny exists.
+Explicit Deny: An explicit deny in any applicable policy (identity-based, resource-based, permissions boundary, session policy, or SCP) always overrides any explicit allows. If there's an explicit deny, the request is denied immediately.
+Implicit Deny: If no policy explicitly allows or denies the action, the request is implicitly denied.
+7. How do you secure your AWS account with IAM best practices?
+Answer: Key IAM best practices include:
+
+Never use the root user for daily tasks. Use IAM users with appropriate permissions instead.
+Enable Multi-Factor Authentication (MFA) for your root user and all IAM users, especially privileged ones.
+Implement the Principle of Least Privilege. Grant only the necessary permissions.
+Use IAM Roles for applications and AWS services to access resources, rather than embedding long-term credentials.
+Regularly review and audit IAM policies and permissions using tools like IAM Access Analyzer and CloudTrail.
+Rotate access keys regularly.
+Set strong password policies for IAM users.
+Utilize IAM groups to manage permissions for multiple users.
+Leverage AWS Organizations for multi-account environments to centrally manage policies with Service Control Policies (SCPs).
+8. What are resource-based policies and how do they differ from identity-based policies?
+Answer:
+
+Identity-based policies: Attached to IAM users, groups, or roles, defining what those identities can do.
+Resource-based policies: Attached directly to an AWS resource (e.g., an S3 bucket policy, SQS queue policy, KMS key policy). They define who can access that specific resource and what actions they can perform on it. Resource-based policies can also grant cross-account access without requiring an IAM role to be assumed in the target account.
+
+
+9. What is AWS STS and how does it work with IAM?
+Answer: AWS Security Token Service (STS) is a web service that enables you to request temporary, limited-privilege credentials for IAM users or for users that you authenticate (federated users). STS works closely with IAM roles. When an entity assumes an IAM role, STS provides temporary security credentials (an access key ID, secret access key, and a session token) that are valid for a specified duration. This is fundamental for enabling temporary access and cross-account access.
+
+
+10. How can you implement Multi-Factor Authentication (MFA) in IAM?
+Answer: MFA adds an extra layer of security by requiring users to provide two or more authentication factors to verify their identity. In IAM, you can enable MFA for:
+
+Root Account: Highly recommended for the root user.
+IAM Users: For individual users.
+MFA devices can be:
+
+Virtual MFA devices: Applications on a smartphone or computer (e.g., Google Authenticator, Authy) that generate a time-based one-time password (TOTP).
+Hardware MFA devices: Physical devices that generate codes.
+Security Keys (e.g., FIDO U2F): USB devices.
+When MFA is enabled, users will provide their password and then a code from their MFA device to sign in.
+-----------------------------------------
+CloudFront : Cache Invalidation
+-----------------------------------------
+
+1. Introduction =>
+   a. Account shgnup
+---------------------------------------------------------------
+2.
+
+---------------------------------------------------------------
+3. AWS CLOUD =>
+	Regions->
+	AZs ->
+
+---------------------------------------------------------------
+4. IAM & AWS CLI =>
+	User ->
+	Groups->
+	Policies ->
+	MFA ->
+	Accesskey->
+	CLI -> 
+	SDK ->
+	CloudShell ->
+
+	IAM Security Tools =>
+
+	IAM Best Practices =>
+
+	Shared Responsibilty Model For IAM ->
+
+---------------------------------------------------------------
+5. EC2 Fundamentals =>
+	EC2 ->
+	Instance Types -> 
+	Security Groups->
+	Clasic Ports ->
+	SSH ->
+---------------------------------------------------------------
+6. EC2 Instance Storage => 
+	EBS ->
+	EBS Snapshot ->
+	AMI->
+	EC2 Instance Store ->
+	EBS Volume Types->	
+	EBS Multi Attach ->
+
+	EFS -> 
+---------------------------------------------------------------
+7.  AWS Fundamentals =>
+	ELB ->
+	ASG ->	
+---------------------------------------------------------------
+8. AWS Fundamentals : RDS + ElasticCache => 
+---------------------------------------------------------------
+9. Route 53 ->
+---------------------------------------------------------------
+10. VPC ->
+	Subnet ->
+	Internet Gateways
+	NAT Gateways ->
+	Security Groups ->
+	Network ACL (NACL) ->
+	VPC Flow Logs ->
+					1. VPC  Flow Logs, 
+					2. Subnet Flow Logs, 
+					3. Elastic Network Interface Frlow Logs
+	VPC Peering ->
+	VPC Endpoints
+	Site to Site VPN 
+	Direct Connect ->
+	AWS Elastic Network Interface (ENI) :- is a virtual network interface controller/card (NIC) that is attached to an EC2 instance in a Virtual Private Cloud (VPC).
+
+	CIDR -> Classless Inter-Domain Routing (CIDR) is an IP address allocation method that improves data routing efficiency on the internet. Every machine, server, and end-user device that connects to the internet has a unique number, called an IP address, associated with it. Devices find and communicate with one another by using these IP addresses. Organizations use CIDR to allocate IP addresses flexibly and efficiently in their networks.
+------------------------------------------------------------
+---
+28. Step function => 
+AWS Step Functions is a low-code visual workflow service used to orchestrate AWS services, automate business processes, and build Serverless applications. It manages failures, retries, parallelization, service integrations, .
+
+AWS Amplify => https://intellipaat.com/blog/what-is-aws-amplify/
+AWS amplify was released to help front-end developers of both web and mobile applications convert their static applications to scalable full-stack applications.
+With the help of the AWS amplify, the developer can configure the app backends, connect their application in minutes and deploy static web apps in few clicks. It also enables the developer to manage the content outside the AWS console.
+
+AWS amplify is for those who do not want to configure backends and building components from scratch. AWS amplify comes with a lot of benefits. They are listed below.
+1. Quick configuration of backends
+2. Easy connection with the frontend
+3. Easy deployment
+4. Content management is simple
+
+
+AppSync => 
+AWS AppSync is a fully managed service that makes it easy to develop GraphQL APIs by handling the heavy lifting of securely connecting to data sources like DynamoDB, Lambda, and more.
+1. it's a managed service that we uses GraphQL. So if she wants to build a GraphQL API on AWS, look no further than AppSync.
+
+What does GraphQL?
+Well, GraphQL makes it easy for applications
+to get exactly the data they need it's a new style of API.
+The idea is that you just ask for the fields you want and GraphQL returns just that's.
+
+The idea with GraphQL though is that you can combine data
+
+from one or more sources into a graph, so that means that the data sets behind GraphQL, can include NoSQL data stores, Relational databases, HTTP APIs, and they're all combined together. 
+
+GraphQL in AppSync has direct integrations with DynamoDB, Aurora, OpenSearch and other sources and you can get any data from anywhere if you want to with Lambda to extend the pattern.
+
+2. The second angle for using AppSync in AWS, is to have real time WebSockets integration or MQTT on WebSockets.
+
+The idea is that if you're building a real time application that needs to access a data feel, you have many ways, but one of these ways is AppSync with a WebSockets. You could also use an application on the balancer or the API gateway, but AppSync is one of these options.
+
+Then if you have a mobile application and you want you to have local data access and data synchronization,
+
+AppSync is also a replacement for something we've seen that was outdated called cookie to sync. So this can come up in the exam as well. Finally, to get started with AppSync, you just need to upload one GraphQL schema and We'll see this in the hands on.
+
+So, in a diagram we have AppSync in the middle, and to get start with AppSync, you need to create a GraphSQL schema.
+So we upload the schema and this is what a schema may look like. And then you have a client and the client will say,
+"Hey, I want you to do this query on AppSync?" And you're specifying, for example, in this research, the name of the human and then the fact you want its name, the fact that we want to know which movies it appears in and the Starships. And then AppSync will run its own resolver, so this is the way, this is the magic of GraphQL.
+
+It works with resolvers and one of these results resolver may be DynamoDB so that means fetch the data from DynamoDB. And then AppSync knows how to automatically return the data in JSON form to the clients to comply exactly with the exact query that was asked. And as we can see, it is a very JSON.  But with GraphQL you can ask for any fields and it will be returned automatically by AppSync.
+So that's the general idea, obviously going into an exam, you do not know how to write a Schema or a query and so on. Just need you to know the high level, but I want to show you the behind the scenes. So at a high level AppSync has integrations for your web applications, your mobile apps that all use GraphQL, but also anything that's going to be Real-time. So it could be a Real-time dashboard, for example, or any application that needs offline data synchronization and a replacement for convene to sync. 
+
+For AppSync at its core you have GraphQL schema, you upload and resolvers to tell how to fetch data. For these resolvers we have direct integration with DynamoDB, Aurora, OpenSearch or anything you want through a Lambda function or an already existing public HTTP endpoints with the HTTP integration. And if you're an into log, anything that was happening in AppSync, it is integrated with CloudWatch Metrics and CloudWatch logs to get this information. Finally, because we're creating an API in AWS, we need to talk about security. 
+
+So there's four ways you can authorize applications to interact with your AppSync GraphQL API. 
+ 1. The first one is with API_KEY, so you generate these keys just like for the API gateway and give them to users. 
+ 2. The second one is use AWS_IAM to allow IAM users roles or across account access to your absent API, which is also very similar to what we saw for the API gateway. 
+
+ 3. Then we have OPENID_CONNECT if you wanted to have an integration with an OpenID Connect provider and a JSONWeb Token and finally AMAZON_COGNITO_USER_POOL to integrate with already existing User pools, you upgraded in Cognito and through Cognito User pools, then you can federate through other social login providers for example.  
+
+ 4.Finally, if you want you to get HTTPs security on AppSync with a custom domain, the recommended solution is used CloudFront in front of AppSync. So that's it for this theory lecture we gonnaa hands on to get some practice.
+
+---------------------------------------------------------------
+29. Advanced Identity =>
+ 
+ STS (Security Token Service)-> 
+ AWS STS (Security Token Service) allows you to get cross-account access through the creation of an IAM Role in your AWS account authorized to assume an IAM Role in another AWS account. See more here: https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html
+  -> STS allows you to get temporary security credentials up to one hour to access those resources directly. And so there's a bunch of API you need to know them at a high level going into the exam. So the first one is AssumeRole, to assume roles within your accounts or cross accounts, which is fundamental. 
+  AssumeRoleWithSAML in case your users are logged in with SAML, this is allowing us to get them allowing them to get temporary credentials. 
+  -> AssumeRoleWithWebIdentity - to return roles for users if they're logged with an identity provider. So Facebook Login, Google Login, or OIDC compatible. But we don't use this really anymore. Now we use Cognito Identity Pools instead. Instead of AssumeRoleWithWebIdentity. 
+  Then we have GetSessionToken - and we will see this very in-depth so this is when you have MFA for a user or AWS root account. Then GetFederationToken to get temporary credentials for a federated user. GetCallerIdentity, which is return details about the IAM user or role used into the API call. 
+  So if you don't know who you are while using AWS, just call the STS GetCallerIdentity and you'll get information about who you are and what's your account number. And then we've seen that one as well in the beginning. 
+  -> DecodeAuthorizationMessage to decode an error message when it AWS API is denied. So the most important ones going into the exam is going to be AssumeRole, GetSessionToken, GetCallerIdentity and DecodeAuthorizationMessage. 
+  So STS can assume, can be used to assume a role, so let's see how that works. So first we define an IAM role in our accounts if we want to AssumeRole within our accounts. Or in another account if you want to do cross-accounts. Then you define which principles can access this IAM role and we authorize everything with IAM policies. And then we would use the STS API to do the AssumeRole API call to impersonate the IAM role we have access to. Then the credentials valid between 15 minutes up to one hour. So in the diagram, our users wants to access a role within the same or another account. And to do so, it's going to do the AssumeRole API onto STS. 
+  STS will check the permissions are correct or not. And then will return to us the temporary security credentials, which would allow us to act as if we were the role. 
+  Then for cross accounts access, this is pretty similar, we would create the role in another account. Then we would write the correct permissions in to our own account and the target account, and finally run the AssumeRole API to access the target accounts. And for example, the role allowed us to access an S3 bucket, then we can access that S3 bucket in to our account, great. 
+  -> Finally, for STS with MFA, so this is very important to understand, going in to certified developer exam. So for this, you use the GetSessionToken API from STS to get a session token. Once you're logged in with an API with an MFA device, and we've seen this in the CLS section. Then we need the IAM policy with the proper IAM conditions. And then in the IAM policy, you need to add this aws:MultiFactorAuthPresent:true, which is very explicit and this looks like this. 
+  For example, this role only allows us to stop instances or terminate instances only if we have MFA on, so MultiFactorAuthPresent:true. And this is how we would use it. So GetSessionToken is the API to use, and why is it? Well because it returns an Access ID, a secret key but also a session token that we have to include. So three things to do our API call, and the last one, GetSessionToken returns the expiry date of our credentials, so we know when to renew them. Okay, so that's it for STS, I hope you liked it and I will see you in the next lecture!
+
+  Trust Relationship : 
+
+ ---------------------------------------------------------------
+30. AWS Security And Encryption : KMS, Encryption SDK, SSM, SSM Parameter Store, IAM & STS
+
+Encryption at flight
+Encryption At rest
+Server side encryption 
+Client side encryption 
+
+KMS -> 
+Symetric key (AES-256) | Asymetric key (RSA & ECC)
+KMS keys can be symmetric or asymmetric. Symmetric KMS key represents a 256-bit key used for encryption and decryption. An asymmetric KMS key represents an RSA key pair used for encryption and decryption or signing and verification, but not both. Or it represents an elliptic curve (ECC) key pair used for signing and verification.
+
+SSM Parameter Store : 
+
+Diff KMS VS SSM
+https://medium.com/awesome-cloud/aws-difference-between-secrets-manager-and-parameter-store-systems-manager-f02686604eae
+AWS Nitro Enclaves :-> 
+
+SSM Parameter Store -> https://medium.com/nordcloud-engineering/ssm-parameter-store-for-keeping-secrets-in-a-structured-way-53a25d48166a
+AWS Systems Manager Parameter Store (SSM) provides you with a secure way to store config variables for your applications. You can access SSM via AWS API directly from within the app or just use from AWS CLI. SSM can store plaintext parameters or KMS encrypted secure strings. Since parameters are identified by ARNs, you can set a fine grain access control to your configuration bits with IAM. A truely versatile service !
+
+Common use cases of SSM are storing configuration for Docker containers initialisation during the runtime, storing secrets for Lambda functions and app, and even using SSM Parameters in CloudFormation.
+
+So first, an overview of encryption mechanism. And the first one is going to be encryption in flights. Then, why would we want even encryption in flights? Well, we want encryption in flight because if I send a very sensitive secret, for example, my credit card to a server, to make a payment online, I want to make sure that no one else, on the way, where my network packet is going to travel, can see my credit card number. So I want to make sure that when I make a payment online, I have that green lock, I have that HTTPS website which guarantees me, that it is an SSL enabled website, and I will get encryption in flight. And so when you have encryption in flight, the data will be encrypted before I sent it, and then the server will be decrypting it after receiving it. But, only myself and the server know how to do these things. Now the SSL certificates are what's going to help with the encryption, and so another way to see it is HTTPS. So anytime we've been dealing with with an Amazon service, and it had an HTTPS endpoint, that guaranteed us that it was encryption in flight. And now the whole web, almost the whole web, needs to run on SSL and HTTPS. Basically, when you have this enabled, you're protected against the 'man in the middle' attack. And so, this guarantees that, when you have that green lock, and that the server certificate is valid, that no one can retrieve your sensitive information. So let's do a quick example. Here is us, and we want to talk to an HTTP website on AWS; could be DynamoDB, could be whatever we want. And then what we're going to do, is that we're going to have add the super secret data, we're going to encrypt it with SSL encryption, and send it over the network, and then the website will receive the data, and know how to decrypt it. Very, very simple; the idea of it, but the execution is not as easy, so this is how much I'll give you. The good news is that all programming languages know how to do SSL encryption and decryption, and already do this for you, so you don't have to worry about anything. This is not something you have to deal with directly. The second thing is going to be called server side encryption at rest. And so that is when the data is encrypted, after being received by the server. So before that, the server was receiving data, decrypting it, and using it in its decrypted form. Here, the server is going to store the data on its disk, and so we need to know that the server is storing the data in an encrypted form. Because, in case the server gets hijacked by someone else, we don't want that someone else to be able to decrypt that data. And so the data will be decrypted before being sent back to our client. So, thanks to a key, usually called a data key, then that data is going to be stored in an encrypted form, and the encryption and decryption keys must be managed somewhere, usually called a KMS, or key management service, and the server must have the right to talk to that key management service. So here's our object, and we're going to transfer it, for example, to EBS. So it's gonna be transferred over whatever mechanism, and EBS will use a data key, and using a data key will perform encryption of that data, and now it's stored in an encrypted form, and then the day we need to retrieve the data for whatever reason, then EBS, the AWS service, will do decryption for us using the data key again, and we'll get the de-encrypted data, and back to us over at HTTP, HTTPS, for example. So this is how server side encryption works, and as you can see, the server side itself of the service, manages the encryption and the decryption, and uses a data key it has access to. So this is, for server side encryption at rest. And we've seen that many AWS services do use that encryption at rest. Now let's talk about client side encryption. In client side encryption, the data will be encrypted by the client, and the client is us. The server will never be able to decrypt that data. The data will then be decrypted by a receiving client. So all in all, the data is just stored on the server, but the server doesn't know what the data means. And the server, as best practice, should never be able to decrypt the data anyway. And for this, we could leverage something called envelope encryption, but I have a whole lecture on this later on, because this is pretty advanced, but the example asks you about envelope encryption, so for now, let's just do an abstraction of it. So we have our object, and on our client, we're going to use a data key, and we're going to encrypt our data client side. So we perform encryption with that data key. Now we send that data to any store of data we want; could be FTP, could be S3, could be whatever you want really. You put your data wherever you want, say Amazon or somewhere else. And then, when you receive it, your client will receive an encrypted object, and if it has access to the data key, if it can manage to retrieve the data key from somewhere, then it will be able to perform a decryption, and get the decrypted object as a result. So as you can see now, the encryption happens client side. The server, the data store, does not know how to decrypt or encrypt the data, it just receives encrypted data. And so that's quite secure as well. So here are the three kinds of encryption you can get, overall, except envelope encryption that we'll show you later on. So this is not using any KMS just yet. This is just an abstraction of how encryption works.
+---------------------------------------------------------------
+
+30. AWS Other Servises 
+SES ->
+Amazon OpenSearch Service -> An Amazon OpenSearch is a successor to something you may have heard before called, Amazon ElasticSearch. So the name change was due to some licensing issues. So in DynamoDB, just to do a comparison, you can only query the data by primary key or if you have indexes on your database. 
+But with OpenSearch, you can actually, as the name indicates, search any fields, even for partial matches. So it's very common to use OpenSearch to provide search to your application. And so you would use OpenSearch as a compliment to another database. So OpenSearch can be used for search, but also as the name doesn't indicate, you can also do analytic queries on top of OpenSearch. 
+So you have two modes to provision an OpenSearch Cluster. Either you use the managed cluster option and then actual physical instances will be provisioned for you and you will see them. Or you can go the serverless route and have a serverless cluster, where everything from scaling to operations is handled by AWS. And OpenSearch has its own query language, it does not natively support SQL, but you can enable SQL compatibility via a plugin. 
+So you can ingest data from different places, such as Kinesis Data Firehose, IoT, CloudWatch Logs, or any of your custom-built application. You have security provided through integration with Cognito, IAM, you get at rest encryption and in-flight encryption. And as I said, you can do analytics on top of the OpenSearch Service, so you can use something called OpenSearch Dashboards to create visualizations on top of your OpenSearch Data. 
+So here are some common patterns to use OpenSearch. So you would have DynamoDB and it will contain your data. This is where your users will insert and delete and update data. And then you send all the streams in a DynamoDB Stream, which is then picked up by a Lambda Function. And that Lambda Function will insert the data into Amazon OpenSearch in real time. And through this process, what happens that your application now has the ability to search for a specific item. For example, to do a partial search with the item name and then find the item ID out of it. And then once the item ID is obtained, then it will call DynamoDB to actually retrieve the full item from your DynamoDB Table.
+ So that's a common pattern in which OpenSearch provides the search capability, whereas your main source of data still remains your DynamoDB Table. There's also other ways you can ingest CloudWatch Logs into OpenSearch. So the first one is to use what's called a CloudWatch Log Subscription Filter, sending data in real time to a Lambda Function that is managed by AWS. And then the Lambda Function in real time sends all the data into Amazon OpenSearch. Or you can also use a CloudWatch Logs and then Subscription Filter. But this time Kinesis Data Firehose can read it from the Subscription Filter. And then near real time, because this is Data Firehose, data will be inserted in Amazon OpenSearch. 
+ Other patterns are on Kinesis, so to send Kinesis Data Streams into Amazon OpenSearch, you have two strategies. The first one is to use Kinesis Data Firehose. This is a near real time again type of service. You can optionally do some data transformation, using a Lambda Function and then send data into Amazon OpenSearch. Or you can use Kinesis Data Streams again, but this time, you would create a Lambda Function that would read the data stream in real time. And then you would write custom code to have the Lambda Function write to Amazon OpenSearch in real time. So all these patterns are valid, and now you know pretty much all the possible architectures for using Amazon OpenSearch. So that's it for this lecture.
+
+Amazon Shield : 
+ Athena :->
+ Glue :->
+ Amazon MSK (Mannaged Streaming Kafka) :->
+ACM AWS Certificate Manager ( ACM)
+Amazon Macie:->  Macie is a fully managed data security and data privacy service that will use machine learning and pattern matching to discover and protect your sensitive data in AWS. More specifically, it will alert you around sensitive data such as personally identifiable information, which is named PII. So very simply, your PII data will be in your S3 buckets and it will be analyzed by Macie which will discover what data can be classified as PII. And then will notify you through EventBridge of the discoveries. 
+Then you can have integrations into an SNS topic, Lambda functions and so on. So Macie in this instance will be used to find the sensitive data in your S3 buckets and that's the only thing it will do.
+ It's just one click to enable it. You just specify the S3 buckets you want to have and that will be it. So that's it for this lecture, very, very short, but that's enough on Macie. I hope you liked it, and I will see you in the next lecture.
+
+AWS AppConfig :->
+Cloudwatch :->So now let's talk about CloudWatch Evidently.So this is a feature of CloudWatchto allow you to test new features in your applicationand only serve these featuresto a small amount of percentage of your users.So why would you want to do this?Well, first of all,if you release a new feature but you want to reduce risk,you can do this for example, by only having, for example,5% of your users using that new featureand therefore you identify unintended consequences.
+Also, you may want to test the feature itselfby collecting experiment databy analyzing it with statisticsand by monitoring the performance of this new feature.So there are two use cases that are enabledby CloudWatch Evidently.The first one is launchesor called feature flags in common dev world.And so this allows you to enableor disable features for a subset of user.For example, say for example, that's some usershave the ability to like comments on your appbut you don't want everyone to have this new featureand you want to test this new featurebefore you actually reach it to everyone.
+So this would be a feature flagwhere some users see this like buttonand some users don't see this like button.The other thing is experiments.So this is A/B testing.This is to compare multiple versions of this same feature.So for example, you say,what if this like button was on the leftand what if this like button was on the right?Which one is going to be the most successful?
+So to summarize, in CloudWatch Evidently,as developers, we create a projectand then we create a feature, an experiment.We get back a code snippetsthat we embed into our application.And then once embedded into our application,our users access our application normally so far.But then we're going to go back into CloudWatch Evidentlyand we're going to specify the percentage of usersthat should have access to the new feature.For example, to feature flag or the percentage of usersthat must see version B versus version Ain case of A/B testing.And then when the users access their application,they will see whatever we have configuredin CloudWatch Evidently.
+So this really allows you to test new features launchesor do A/B testing experiments.So remember the terms launches experimentsand one last term to remember is called override.So say we have a beta tester within the organizationand we wanna make sure that beta tester only has accessto this new feature we release because we wanna make surethat that beta tester can test it. 
+In that case, well we can't allow it to go through evidentlybecause there is some kind of randomnesswhether or not the feature will be enabledfor the beta tester.Instead, we create an override.So an override is something we define directlywithin CloudWatch Evidently.And so we say, hey, for that user with a specific user ID,for example, the user ID of our beta tester,then only display the new featureor only display the version B.And so therefore, whenever our beta testeris accessing our application,the override will come into playand then the beta tester will seewhatever we set the override to.And this is something the exam may test you on.Finally, to store your experiment data,you can use CloudWatch logs or Amazon S3.So that's it for this lecture.I hope you liked it and I will see you in the next lecture.
+---------------------------------------------------------------
+AWS Autoscaling | Autoscaling and Load Balancing in AWS | AWS Training |
+https://www.youtube.com/watch?v=qxXoUEYdIyM
+
+https://www.edureka.co/community/49245/difference-between-working-of-auto-scaling-and-elb
+ 
+ https://www.youtube.com/watch?v=qePhmKyZfcM 
+
+---------------------------------------------------------------
+Cognito :
+ 
+---------------------------------------------------------------
+
+IAM Security Tools:
+→ There are two tools we should know security-wise:
+	a. IAM credential reports
+	b. IAM access advisor
+---------------------------------------------------------------
+
+ Elastic Beanstalk(Free)=> Elastic Beanstalk is a service for deploying and scaling web applications and services. Upload your code and Elastic Beanstalk automatically handles the deployment—from capacity provisioning, load balancing, and auto scaling to application health monitoring.
+
+AWS Elastic Beanstalk is an orchestration service offered by Amazon Web Services for deploying applications which orchestrates various AWS services, including EC2, S3, Simple Notification Service (SNS), CloudWatch, autoscaling, and Elastic Load Balancers.
+Elastic Beanstalk provides an additional layer of abstraction over the bare server and OS; users instead see a pre-built combination of OS and platform, such as "64bit Amazon Linux 2014.03 v1.1.0 running Ruby 2.0 (Puma)" or "64bit Debian jessie v2.0.7 running Python 3.4 (Preconfigured - Docker)".Deployment requires a number of components to be defined: an 'application' as a logical container for the project, a 'version' which is a deployable build of the application executable, a 'configuration template' that contains configuration information for both the Beanstalk environment and for the product.
+ Finally an 'environment' combines a 'version' with a 'configuration' and deploys them.[3] Executables themselves are uploaded as archive files to S3 beforehand and the 'version' is just a pointer to this.
+Initial release: January 19, 2011
+License: Proprietary
+Q/A =>
+https://climbtheladder.com/aws-elastic-beanstalk-interview-questions/
+---------------------------------------------------------------
+Site-to-Site VPN :
+AWS PrivateLink : 
+EventBridge : 
+AWS Diect Connect :
+---------------------------------------------------------------
+Amazon CloudWatch alarms  =>
+---------------------------------------------------------------
+vpc =>
+Security Group->
+NACLS ->
+Subnet ->
+NAT Gateway -> 
+Nat instatances with Source/Destinations Check flag off
+VPC Flow Logs -> is a VPC feature that enables you to capture information about the IP traffic going to and from network interfaces in your VPC.
+----------------------------------------
+ =>
+----------------------------------------
+Cloudformation (IAC) => AWS CloudFormation lets you model, provision, and manage AWS and third-party resources by treating infrastructure as code.
+
+S3:CloudFormation references a template from Amazon S3, no matter what. If you upload the template from the AWS console, it gets uploaded to Amazon S3 behind the scenes, and CloudFormation references that template from there.
+
+StackSet - AWS CloudFormation StackSets extends the capability of stacks by enabling you to create, update, or delete stacks across multiple accounts and AWS Regions with a single operation. Using an administrator account, you define and manage an AWS CloudFormation template, and use the template as the basis for provisioning stacks into selected target accounts across specified AWS Regions.
+
+
+
+ChangeSet - When you need to update a stack, understanding how your changes will affect running resources before you implement them can help you update stacks with confidence. Change sets allow you to preview how proposed changes to a stack might impact your running resources, for example, whether your changes will delete or replace any critical resources, AWS CloudFormation makes the changes to your stack only when you decide to execute the change set, allowing you to decide whether to proceed with your proposed changes or explore other changes by creating another change set. You can create and manage change sets using the CloudFormation console, AWS CLI, or CloudFormation API.
+
+Cloudformation Drift - use to detect changes made to your stack resources outside CloudFormation
+
+Pseudo Parameters :- Pseudo parameters are parameters that are predefined by AWS CloudFormation. You don't declare them in your template. Use them the same way as you would a parameter, as the argument for the Ref function.
+https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/pseudo-parameter-reference.html
+
+
+----------------------------------------

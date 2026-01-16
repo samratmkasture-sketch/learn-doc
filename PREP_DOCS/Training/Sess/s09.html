@@ -1,0 +1,341 @@
+
+Nodemailer 
+JWT
+User Verification
+Login 
+cookie
+
+
+*************************************
+What are Cookies ?
+
+In JavaScript, cookies are piece of data stored in the user's web browser. The cookies are stored in the key-value pair inside the browser. We can manipulate the cookies using cookie property of document object. We can set or store a cookie in key-value pair using the cookie property. 
+ 
+ 
+Web Browsers and Servers use HTTP protocol to communicate and HTTP is a stateless protocol. But for a commercial website, it is required to maintain session information among different pages.
+For example, you have logged in to a particular website on a particular web page. How do other webpages of the same website know your state that you have already completed the logged-in process? In this case, cookies are used.
+
+In many situations, using cookies is the most efficient method of remembering 
+
+Your server sends some data to the visitor's browser in the form of a cookie. The browser may accept the cookie. If it does, it is stored as a plain text record on the visitor's hard drive. Now, when the visitor arrives at another page on your site, the browser sends the same cookie to the server for retrieval. Once retrieved, your server knows/remembers what was stored earlier
+
+Cookies are a plain text data record of 5 variable-length fields −
+
+- Expires − The date the cookie will expire. If this is blank, the cookie will expire when the visitor quits the browser.
+- Domain − The domain name of your site.
+- Path − The path to the directory or web page that set the cookie. This may be blank if you want to retrieve the cookie from any directory or page.
+- Secure − If this field contains the word "secure", then the cookie may only be retrieved with a secure server. If this field is blank, no such restriction exists.
+- Name=Value − Cookies are set and retrieved in the form of key-value pairs
+
+  
+Cookie are domain specific
+storage is limited to 80 KB (20 cookies, 4 KB each)
+ 
+Http Only cookies cannot be accessed (read from or written to) in client side 
+ 
+
+signed:true
+httpOnly:true
+secure:true
+maxAge:1000*60*5
+
+res.cookie("uc1","value1")
+res.cookie("uc1","value1",{signed:true, httpOnly:true})
+
+res.clearCookie('name')
+--------------------------------------------------------------------------------------
+
+By default, the cookie is destroyed when the current browser window is closed, but it can be made to persist for a length of time after the page is closed. 
+
+
+
+How To Handle Cookies In Node.js Express App
+app.get('/cookie',function(req, res){
+let minute = 60 * 1000;
+res.cookie(cookie_name, 'cookie_value', { maxAge: minute });
+return res.send('cookie has been set!');
+});
+We have set the maximum age of a Cookie, Which is optional. We can also set the expire time in milliseconds like below
+
+res.cookie(cookie_name , 'cookie_value', {expire : 24 * 60 * 60 * 1000 });
+
+We can also set cookie only over HttpOnly.This flag tells the browsers to not allow client-side script access to the Cookie.
+res.cookie(cookie_name , 'cookie_value', { HttpOnly: true});
+
+We can tell express to use https encrypted channel to exchange cookie data with secure flag.
+res.cookie(cookie_name , 'cookie_value', { secure: true});
+
+
+Read Cookies
+We can access Cookies via request object, req.cookies.cookie_nameor req.cookies.
+
+Delete cookies
+W can also easily delete Cookies by using res.clearCookie function, which accepts the name of the Cookie which we want to delete. W can also delete Cookies from browser developers tools.
+app.get('/deletecookie', function(req,res){
+res.clearCookie('cookie_name');
+res.send('Cookie deleted');
+});
+
+
+res.cookie('jwt', newRefreshToken, {
+    httpOnly: true, 
+    secure: true,
+    sameSite: 'Strict',  // or 'Lax', it depends
+    maxAge: 604800000,  // 7 days
+});
+
+
+Advantages of Bearer Tokens:
+Simplicity: Bearer tokens are simple to implement and use, making them user-friendly for developers.
+Statelessness: Bearer tokens are typically stateless, meaning the server does not need to store token information. This simplifies server-side implementation and scalability.
+Versatility: Bearer tokens are versatile and can be used in various authentication scenarios, including single sign-on (SSO) and third-party application access.
+Token Revocation: When using a centralized authentication server (e.g., OAuth 2.0), bearer tokens can be easily revoked if compromised or when access needs to be terminated.
+Disadvantages of Bearer Tokens:
+Security Dependency: Bearer tokens rely heavily on the security of the communication channel (usually HTTPS). If intercepted, they can be misused.
+Token Stolen Risks: If a bearer token is leaked or stolen, there is a potential risk as anyone possessing the token can access the associated resources.
+Limited Context: Bearer tokens are typically self-contained, providing limited context about the user or the application. Additional queries may be needed to obtain more information.
+Token Management: Managing the lifecycle of bearer tokens, including issuing, refreshing, and revoking, requires careful implementation to ensure security.
+Scope Concerns: Bearer tokens often have broad access scopes, which might pose a security risk if not appropriately managed, especially in scenarios where fine-grained control is essential.
+*************************************
+ 
+
+https://www.geeksforgeeks.org/email-verification/?ref=ml_lbp
+
+
+*************************************
+What is NodeMailer?
+NodeMailer is a Node JS module that allows us to send emails from server . It is a zero dependency module for all Node JS-compatible applications. The emails sent can be plain text, attachments, or HTML. We can use Gmail accounts or Mailtrap to set up fake SMTP servers for testing.
+
+
+Nodemailer’s API is pretty simple and requires us to do the following:
+
+1. Create a Transporter object
+2. Create a MailOptions Object
+3. Use the Transporter.sendMail method
+
+
+const transporter = nodemailer.createTransport({
+  host: 'smtp.gmail.com',
+  port: 587,
+  secure: false, // use SSL
+  auth: {
+    user: 'your_email@gmail.com',
+    pass: 'your_password',
+  }
+});
+
+*************************************
+---------------------------- JWT Token ---------------------------------
+https://auth0.com/learn/json-web-tokens
+JWTs are encoded JSON data with a cryptographic signature at the end.
+
+- What is JSON Web Token?
+	JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed. JWTs can be signed using a secret (with HMAC algorithm) or a public/private key pair using RSA.
+
+	Let’s explain some concepts of this definition further.
+
+	1. Compact: Because of its size, it can be sent through an URL, POST parameter, or inside an HTTP header. Additionally, due to its size its transmission is fast.
+	2. Self-contained: The payload contains all the required information about the user, to avoid querying the database more than once.
+
+-	When should you use JSON Web Tokens?
+	These are some scenarios where JSON Web Tokens are useful:
+
+	1. Authentication:  once the user is logged in, each subsequent request will include the JWT, allowing the user to access routes, services, and resources that are permitted with that token. Single Sign On is a feature that widely uses JWT nowadays, because of its small overhead and its ability to be easily used among systems of different domains.
+	2. Information Exchange: JWTs are a good way of securely transmitting information between parties, because as they can be signed, 
+	for example using a public/private key pair, you can be sure that the sender is who they say they are. Additionally, as the signature is calculated using the header and the payload, you can also verify that the content hasn’t changed.
+
+
+How JWTs Are Used
+JWTs are usually used to manage user sessions on a website. While they're an important part of the token based authentication process.
+
+
+ 
+------------------------------------------------------------------------------------------------
+ https://www.linkedin.com/advice/3/how-do-you-handle-jwt-expiration-refresh-spa-skills-programming#:~:text=If%20the%20JWT%20has%20expired,has%20expired%20or%20is%20invalid.
+
+
+Why JWT expiration and refresh matter
+How to refresh JWT in a SPA
+
+When to refresh JWT in a SPA
+How to implement JWT refresh in a SPA
+
+https://www.geeksforgeeks.org/jwt-authentication-with-refresh-tokens/
+
+------------------------------------------------------------------------------------------------
+ Advantages of Node.js authentication with JWT
+Node.js authentication with JWT has several advantages over the traditional authentication process, primarily the scalability of stateless applications. And since it’s becoming popular among such heavyweights as Facebook and Google, it’s adoption across the industry likely will continue to grow. 
+
+Other advantages include:
+
+Simple verification through a JSON Web Token 
+You can use an authentication service or outsource it
+Provides more trustworthiness than cookies or sessions
+
+
+Session-based Authentication & Token-based Authentication
+https://www.bezkoder.com/jwt-json-web-token/#google_vignette
+
+Payload
+The Payload helps us to answer: What do we want to store in JWT?
+This is a payload sample:
+
+{
+  "userId": "abcd12345ghijk",
+  "username": "bezkoder",
+  "email": "contact@bezkoder.com",
+  // standard fields
+  "iss": "zKoder, author of bezkoder.com",
+  "iat": 1570238918,
+  "exp": 1570238992
+}
+------------------------------------------------------------------------------------------------
+
+- Which is the JSON Web Token structure?
+	JWTs consist of three parts separated by dots (.), which are:
+
+	Header
+	Payload
+	Signature
+	Therefore, a JWT typically looks like the following.
+
+	xxxxx.yyyyy.zzzzz
+
+	Let’s break down the different parts.
+
+Header
+The header typically consists of two parts: the type of the token, which is JWT, and the hashing algorithm such as HMAC SHA256 or RSA.
+
+For example:
+
+{
+  'alg': 'HS256',
+  'typ': 'JWT'
+}
+Then, this JSON is Base64Url encoded to form the first part of the JWT.
+
+Payload
+The second part of the token is the payload, which contains the claims. Claims are statements about an entity (typically, the user) and additional metadata. There are three types of claims: reserved, public, and private claims.
+
+Reserved claims: These are a set of predefined claims, which are not mandatory but recommended, thought to provide a set of useful, interoperable claims.
+ Some of them are: iss (issuer), exp (expiration time), sub (subject), aud (audience), among others.
+Notice that the claim names are only three characters long as JWT is meant to be compact.
+
+Public claims: These can be defined at will by those using JWTs. But to avoid collisions they should be defined in the IANA JSON Web Token Registry or be defined as a URI that contains a collision resistant namespace.
+Private claims: These are the custom claims created to share information between parties that agree on using them.
+An example of payload could be:
+
+{
+  'sub': '1234567890',
+  'name': 'John Doe',
+  'admin': true
+}
+The payload is then Base64Url encoded to form the second part of the JWT.
+
+	Signature
+	To create the signature part you have to take the encoded header, the encoded payload, a secret, the algorithm specified in the header, and sign that.
+
+	For example if you want to use the HMAC SHA256 algorithm, the signature will be created in the following way.
+
+	HMACSHA256(
+	  base64UrlEncode(header) + '.' +
+	  base64UrlEncode(payload),
+	  secret)
+	The signature is used to verify that the sender of the JWT is who it says it is and to ensure that the message was’t changed in the way.
+
+	Putting all together
+	The output is three Base64 strings separated by dots that can be easily passed in HTML and HTTP environments, while being more compact compared to XML-based standards such as SAML.
+
+	The following shows a JWT that has the previous header and payload encoded and it is signed with a secret.
+
+	An encoded JWT
+
+	You can browse to jwt.io where you can play with a JWT and put these concepts in practice. jwt.io allows you to decode, verify and generate JWT.
+
+
+
+---------------------------------------------------------------------------------------------------
+
+
+-------------------------------------------------------------
+
+
+************************* JWT **********************************
+
+ A Detailed Introduction to JWT Authentication and Authorization
+
+ ***********************************************************
+https://javascript.plainenglish.io/introduction-and-detail-about-the-jwt-authentication-and-authorization-5a812e6d154c
+
+ We will discuss authentication and authorization using JWT Token and different cryptographic algorithms and techniques. So, we will be looking at the following things one by one.
+
+ 		Introduction of JWT Token
+		Why JWT Token
+		Structure of JWT Token
+		Client-Server Scenario with JWT Token
+		Client-Server Scenario with JWT Refresh Token
+
+Basically, JWT is used for the Authentication and Authorization of different Users.
+Authentication
+-------------------------
+	In this process, we send the username and password to the authentication server.
+	Authentication Server will validate those credentials and store them somewhere on the browser Session and Cookies and Send the ID to the end-user.
+Authorization
+-------------------------
+	In, the Authorization we check whatever credential entered by the user while the Authentication process and that same user will have granted access to the resource using the credential which we store in the Authentication Process and then Authorize that particular user.
+	So, this is all about Authentication and Authorization normally.
+
+Introduction of JWT Token
+-------------------------
+	JSON Web Token is the Open Standard (RFC 7519) Self-Contained way that will be used to transmit the data securely over the different environments as a JSON Object.
+	RFC (Request for Comment) is the shortened form of Remote Function Call and Formal Document from the Internet Engineering Task Force. RFC 7519 JSON Web Token (JWT) May 2015 Copyright Notice Copyright © 2015 IETF Trust and the persons identified as the document authors. All rights reserved.
+	JWT is the trusted way of authentication because it is digitally signed and secret using HMAC Algorithm or sometimes using a public/private key using RSA.
+	Basically, HMAC stands for Hashed-based Message Authentication Code, it uses some great cryptographic hashing technique that provides us great security.
+	Also, the JWT is part of great Authentication and Authorization Framework like OAuth and OpenID which will provide a great mechanism to transfer data securely.
+Why JWT Token
+-------------------------
+	The User will Authenticate using JWT Token and It is a digitally signed signature with a secret key issued by the issuer. So that will use to Authenticate the User Securely and Also, manage the claims, and many more.
+	Instead of storing information User Credentials somewhere on the Server that will get easily by attackers over the internet. So, we use JWT, and using that we maintain user secrets with different Cryptographic Algorithms and Encoded that to Authenticate Users.
+	That’s why many web applications use JWT for authentication of users securely
+
+Structure of JWT Token
+-------------------------
+	Basically, The JSON Web Token consists of three parts which are used to store user information in the Token separated by dots(.)
+
+	For example –
+	As you see in the above diagram it is Encoded Base64Url which stores User Secrets and Information in three parts.
+
+1. Header
+
+	The header stores the information about the JWT Token like the Type of the Token and whatever Algorithm we use while creating the JWT Token.
+
+	For Example –
+
+	{
+	  "alg": "HS256",
+	  "typ": "JWT"
+	}
+2. Payload
+
+	Payload is the second part of the JWT Token which is used to store information about users like claims, role, subject, and some additional information related to a user.
+
+	For Example-
+
+	{
+	  "sub": "1234567890",
+	  "name": "Jaydeep Patil",
+	  "admin": "true"
+	}
+3. Signature
+
+	Signature is used to check user information that is present in the Header and Payload and validates things with Secret Key and data is present in Base64Url Encoded string. Basically, Secret Key is present at the server and which we use while creating the Token. That secret key prevents the user from external attackers to crack the token. So, in this process, while Base64Url Encoded string is created to use for Authentication and Authorization.
+
+	HMACSHA256(
+	  base64UrlEncode(header) + "." +
+	  base64UrlEncode(payload),
+	//This is the Secret Key which is store at server side and use in signature
+	your-256-bit-secret
+	)
+	So, these are the three parts of the token that are present in the Base64Url string which is separated by a dot and stores secret information of the user for validating users.
+
+********************************************

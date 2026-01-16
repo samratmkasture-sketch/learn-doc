@@ -1,0 +1,203 @@
+<pre>
+Hi My name is Samrat kasture, I am MERN stack developer my core skills are React and nodeJS, I am more experienced to work as a ui developer I have also have some experience to work in back-end using node and aws.
+
+ 
+	
+Hi, I'm Samrat Kasture. I'm a web developer with focus on UI development. 
+I also have some experience to work in back-end as well using node, GraphQL and aws. 
+My Core skills are React,Node I have worked on Express, NextJS, GraphQL
+Earlier I have worked in real-estate and education domain.
+
+I am adaptable and looking forward to contribute to team.
+
+
+Javascript Q :
+-------------------------------------------------------
+https://dev.to/spukas/curring-in-javascript-1o45
+
+Curring In Javascript :- Currying is a technique of transforming function with multiple arguments into a sequence of functions, each with a single argument.
+-------------------------------------------------------
+First-class functions : A programming language is said to have First-class functions when functions in that language are treated like any other variable. For example, in such a language, a function can be passed as an argument to other functions, can be returned by another function and can be assigned as a value to a variable.
+
+In JavaScript, functions are first-class objects, because they can be passed to other functions, returned from functions, and assigned to variables and properties. They can also have properties and methods just like any other object.
+-----------------------------------------------------------------------------
+map | filter | reduce
+JavaScript Array reduce() Method
+The JavaScript Array.reduce() method iterates over an array, applying a reducer function to each element, accumulating a single output value. It takes an initial value and processes elements from left to right, reducing the array to a single result.
+
+Syntax: 
+array.reduce( function(total, currentValue, currentIndex, arr), 
+initialValue )
+
+PROTOTYPE IN JS
+=> preventDefault vs propogation:
+	event.preventDefault() is used to prevent the browser from executing the default action associated with the event. It tells the browser not to perform its default behavior for the event.
+
+	event.stopPropagation() is used to stop the event from propagating further in the DOM hierarchy. Once this method is called, the event won't reach other event listeners on parent elements (capturing phase) or sibling elements (bubbling phase).
+
+=> Expain Hoisting in javascript : Hoisting is the default behavior in JavaScript where variable and function declarations are moved to the top of their respective scopes during the compilation phase.  
+**Features of Hoisting : **
+	1. Declarations are hoisted, not initialization.
+	2. Allows calling functions before their declarations.
+	3. All variable and function declarations are processed before any code execution.
+	4. Undeclared variables are implicitly created as global variables when assigned a value.
+
+ 	var,let,const: hoisting allows variables declared with var to be accessed before declaration, but not those declared with let or const. Thus, a is accessible, but b throws a ReferenceError
+    - Variables declared with let or const are hoisted WITHOUT a default initialization. So accessing them before the line they were declared throws ReferenceError: Cannot access 'variable' before initialization.
+
+	Note: There’s a difference between ReferenceError and undefined errors. An undefined error occurs when we have a variable that is either not defined or explicitly defined as type undefined. ReferenceError is thrown when trying to access a previously undeclared variable. 
+	Temporal Dead Zone - the period during execution where let/const variables are hoisted but not accessible: it's called the Temporal Dead Zone.
+   https://stackoverflow.com/questions/30559411/use-strict-not-stopping-hoisting-in-function-scope
+
+=> What is closure?
+	- Closures in JavaScript are functions that retain access to variables from their containing scope even after the parent function has finished executing. They’re useful for maintaining private data, creating modular code, and implementing callback functions with persistent state.
+	- Lexical scoping refers to how a parser resolves variable names when functions are nested.
+	- Closure is the concept of function + lexical environment in which function was created. so every function declared within another function has access to the scope chain of the outer function and the variables created within the scope of the outer function will not get destroyed.
+
+=> differenciate between var and let
+	The main difference between var and let in JavaScript is the scope of the variables they create:
+	var :	Variables declared with var are function-scoped, meaning they are accessible throughout the function they are declared in. They can also be accessed globally if declared outside of a function.
+	let :	Variables declared with let are block-scoped, meaning they are only accessible within the block ({}) where they are declared. This can include loops or conditionals. 
+	Here are some other differences between var and let: 
+	Redeclaration :	Variables declared with var can be re-declared and updated within the same scope. Variables declared with let can be updated but not re-declared within the same scope. 
+	Safety :	Using let instead of var can help avoid accidental overwriting of variables. 
+
+=> es6+ features : 
+https://medium.com/@bluetch/javascript-es6-es7-es8-es9-es10-es11-and-es12-519d8be7d48c
+https://webreference.com/javascript/basics/versions/#ecma-script-5-2009
+	ECMAScript 6 (2015) : introduced several important features such as let and const,   template literals, Arrow Functions, Classes, Default Parameters, Destructuring, Maps
+	Promise
+	ECMAScript 7 (2016) : Array.prototype.includes(), Exponential Operator e.g (2**10)
+	ECMAScript 2017 (ES8) : It introduced several new features, including async/await, Object.values(), Object.entries(),  4. String padStart() & padEnd(), 5. Trailing commas, 6. Object.getOwnPropertyDescriptors(), 7. SharedArrayBuffer
+
+	ECMAScript 2018 (ES9) : Promise.prototype.finally(), and rest/spread operators.
+	await in loop
+	ES9 adds asynchronous iterators, allowing await to be used with for-loops to perform asynchronous operations step by step.
+
+	async function process(array) {
+	  for await (const i of array) {
+	    doSomething(i);
+	  }
+	}
+
+	ECMAScript 2019 (ES10) : Array.prototype.flat(), Array.prototype.flatMap(), and Object.fromEntries()., 7. BigInt (new number type)
+
+
+	ECMAScript 2020 (ES11) : Promise.allSettled(), Nullish Coalescing Operator (??), and Optional Chaining (?.). 
+	5. GlobalThis -
+	Dynamic-import :  
+	Literally, it should be easy to understand. It is to load the relevant logic when necessary.
+
+	el.onclick = () => {
+	    import(`/js/current-logic.js`)
+	    .then((module) => {
+	        module.doSomthing();
+	    })
+	    .catch((err) => {
+	        handleError(err);
+	    })
+	}
+	ECMAScript 2021 (ES12) : Promise.any(), and String.prototype.replaceAll().
+	ECMAScript 2022 (ES13) : 
+	- The ability to use top-level await, making it possible to use the keyword outside of an async function
+	- New class elements: private and public instance fields, private and public static fields, private instance methods and accessors, and private static methods and accessors
+	- The ability to use static blocks inside classes, which allows for per-class evaluation initialization
+    - The #x in obj syntax which allows you to test for the presence of private fields on objects
+	- Regular expression match indices via the /d flag, which provides start and end - indices for matched substrings
+	- The cause property on Error objects, that can be used to record a causation chain in errors
+	- The at method for Strings, Arrays, and TypedArrays, which allows relative indexing
+	- Object.hasOwn, a convenient alternative to Object.prototype.hasOwnProperty
+	ECMAScript 2023 (ES14) :
+	  findLast() and findLastIndex() 
+	  WeakMap, providing more options for developers to use symbols as unique identifiers for data storage and retrieval.
+	  toSorted() : The toSorted() method is like sort(), but it returns a new sorted array, leaving the original array unchanged. 
+	  toReversed()
+	  with()
+	  Array.prototype.toSpliced()
+
+	  
+Ecmascript => 
+https://gist.github.com/rajaramtt/7df3702a04c644b0b62c9a64f48f3dbf
+	=> es6 features -> Classes | Arrow functions | Default + Rest + Spread | Backtick '`' or template strings | Destructuring |  Let + Const | Generators | Modules | Map + Set + WeakMap + WeakSet | Symbols | Promises | ||
+
+		 -> spread operator (...), which is used to either gather or spread a sequence of values (e.g., a list of parameters) into or across an array
+		->  ES6 adds syntax that allows you to treat individual .js files as modules that can communicate with one another. These are known as ES6 Modules.
+	=> es7 -> Array.prototype.includes() | Exponential Operator | Class Properties ||
+	=> es7 -> async function |Object.entries() | Object.values() | Object.getOwnPropertyDescriptors() |  Trailing Commas| string.padEnd() and string.padStart()
+	=> ES9 -> Async iterators | Object rest and spread properties |Promise prototype finally|
+	=> ES10 -> Array.prototype.{flat,flatMap} | Object.fromEntries |String.prototype.{trimStart,trimEnd}| Symbol.prototype.description
+	=> ES11 => BigInt | Dynamic import | Exporting modules| Optional Chaining| Nullish coalescing operator | Promise.AllSettled | String.matchAll() | For-in order
+	=>ES12 -> Numberic separators | String.protype.replaceAll |Logical assignment operator|Promise.any method|
+	=> ES13 -> Top-level await
+
+
+https://www.freecodecamp.org/news/javascript-map-reduce-and-filter-explained-with-examples/
+=> map vs reduce 
+
+=> fn vs flat arrow fn
+https://www.freecodecamp.org/news/the-difference-between-arrow-functions-and-normal-functions/
+	1. No arguments object in arrow functions
+	2. Arrow functions do not create their own this binding
+	3. Arrow functions cannot be used as constructors
+	4. Arrow functions cannot be declared ( Normal functions can be declared when you use the function keyword and a name)
+	5 Arrow functions cannot be accessed before initialization
+
+=> local storage  | session storage | Cokie
+https://www.geeksforgeeks.org/difference-between-local-storage-session-storage-and-cookies/
+
+-> Event Bubbling vs Event Capturing
+
+=> Debouncing concepts - Debouncing refers to ignoring the event handler call until the calls have stopped for a certain amount of time.
+
+=> Debouncing concepts - Debouncing refers to ignoring the event handler call until the calls have stopped for a certain amount of time.
+=> Throttling or sometimes also called throttle function is a practice used in websites. Throttling is used to call a function after every millisecond or a particular interval of time only the first click is executed immediately.
+
+-> Avoid Using Inline Style Attribute With inline styles, the browser spends a lot more time scripting and rendering.
+
+
+Javascript Q :
+-----------
+PROTOTYPE IN JS : Prototypes are the mechanism by which JavaScript objects inherit features from one another. 
+
+Polyfill: Polyfills are the implementation of the features that are given by our browsers, but may not be present in the previous versions of it.
+
+-> call(), apply(), and bind() 
+https://www.geeksforgeeks.org/explain-call-apply-and-bind-methods-in-javascript/
+ 
+
+1. Bind() Method: The bind() method creates a new function and when that new function is called it set this keyword to the first argument which is passed to the bind method, and if any other sequences of arguments preceding the first argument are passed to the bind method then they are passed as an argument to the new function when the new function is called.
+let nameObj = {
+	name: "Tony"
+}
+
+let PrintName = {
+	name: "steve",
+	sayHi: function () {
+
+		// Here "this" points to nameObj
+		console.log(this.name);
+	}
+}
+
+let HiFun = PrintName.sayHi.bind(nameObj);
+HiFun();
+
+
+->Event Capturing vs event bubbling :: 
+	Capturing phase : the event moves down towards the element. 
+	Target phase: the event reaches the target element. 
+	Bubbling phase: the event bubbles up from the element.
+
+-> What is error-first callback?
+	- The first argument in the function is reserved for the error object. If any error has occurred during the execution of the function, it will be returned by the first argument
+-> How can you avoid callbacks?
+-> Generator-Function: A generator-function is defined like a normal function, but whenever it needs to generate a value, it does so with the yield keyword rather than return. The yield statement suspends the function’s execution and sends a value back to the caller, but retains enough state to enable the function to resume where it is left off. When resumed, the function continues execution immediately after the last yield run. 
+-> local storage  | session storage | Cokie
+https://www.geeksforgeeks.org/difference-between-local-storage-session-storage-and-cookies/
+ 
+
+JavaScript | Performance : => https://www.geeksforgeeks.org/javascript-performance/?ref=lbp
+-> Delay JavaScript Loading : use defer in the script tag. The defer attribute specifies that the script should be executed after the page has finished parsing, but it only works for external scripts.
+-> Use ‘switch’ instead of lengthy ‘if-then-else’ statements.
+-> Get rid of unnecessary loops and calls made inside loops.
+

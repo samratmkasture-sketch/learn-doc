@@ -1,0 +1,160 @@
+Interview  :->
+--------------------------------------------------------------------   
+https://github.com/sudheerj/javascript-interview-questions
+--------------------------------------------------------------------
+Javascript:
+differenciate between var and let
+What is promise ?
+promise.all vs .all settled
+Expain Hoisting in javascript
+What is closure?
+map vs reduce
+local storage  | session storage | Cokie | sequre cookie | signed cookie
+
+Debouncing concepts - Debouncing refers to ignoring the event handler call until the calls have stopped for a certain amount of time.
+modules 
+IIFE
+Generator function *
+ how can you access history in javascript
+ what is difference between window and document
+
+
+
+Singleton pattern:
+  A Singleton is an object which can only be instantiated one time. Repeated calls to its constructor return the same instance. This way one can ensure that they don't accidentally create multiple instances.
+
+  var object = new (function () {
+    this.name = "Sudheer";
+  })();
+
+What is a prototype chain
+  Prototype chaining is used to build new types of objects based on existing ones. It is similar to inheritance in a class based language. i.e, When you create an object using a constructor function or a class, the created object inherits properties from a prototype object.
+
+What is the difference between Call, Apply and Bind
+
+What is the purpose of the array slice method
+What is the purpose of the array splice method
+--------------------------------------------------------------------
+
+1. CORS concept and why do we need it
+2. client side and serverside changes for CORS
+3. AWS lambda deployment and configurations
+4. cold start in Lambda
+5. Hooks in react
+6. useEffect hook dependency
+7. if block within useEffect vs useEffect in if block
+8. React.fragment vs <></>
+9. usage of key in loop
+10. Progran for finding index of tow elements that has sum equal to provided value e.g[1,2,3,4,5] result would be [1,3]
+11 Call Stack, Event Queue, Event Loop
+12. Spread operator 
+13. Error Handling in Nodejs 
+14. assembly of the browser
+15. use of aria-labelby
+16. create custom hook to incrment a number
+17. why do we need react Fragment
+18. API Gateways for AWS
+
+Portals in react
+
+
+
+
+React : -> 
+
+prop drilling  how to avoid it
+What is Children Props | render prop
+portal in react
+
+Higher-Order Components
+Portals
+Reconciliation
+
+
+one way data communication
+how to update parent state data
+
+Get query params in React ? 
+React Hooks - How to get parameter value from query string?
+useSearchParams
+https://simplefrontend.com/get-query-params-in-react/
+import { useParams } from "react-router-dom";
+const { id } = useParams();
+
+lazy loading?f
+form vlidation? 
+api calls ?
+
+React best practices (optimisation)
+file upload
+error handling
+Context
+reducer
+ref 
+testing package (Jest | mocha | supertest)
+intercepters
+how to update state of prent from child?
+
+
+how to fetch data with hook
+
+
+Nodejs:
+Modules :
+Node.js - Global Objects
+Differentiate between process.nextTick() and setImmediate()?
+nodejs process model
+
+middleware in Node.js.
+CORS (Cross-Origin Resource Sharing) 
+streams in Node.js?
+
+file upload ? multer multiparty type of data (content type)
+name some npm packages you have worked on
+
+multithreading
+ Explain the concept of middleware in Node.js.
+   next()
+
+MongoDB:
+---------------
+ESR Guideance 
+Projection 
+pipline
+TTL 
+aggregation framework
+lookup
+
+
+Dynamodb :
+--------------
+What do you know about DynamoDB's partition keys and sort keys?
+pagination in dynamodb ?
+
+AWS :
+
+
+--------------------------------------------
+L2 :
+
+display:none turns off the layout of the elements, so they are not rendered. visibility:hidden hides the elements without changing their layouts. 
+
+-> call(), apply(), and bind() 
+Web worker
+  
+
+What is redux middleware 
+redux toolkit
+react optimisation technichs
+use memo vs use call back
+Error handling file upload
+  7. Code splitting and Lazy Loading
+    8. React.memo()
+    9. useCallback()
+
+How to Measure Performance
+
+how can you improve loading time of app
+SOLID
+
+JWT token based authentication

@@ -1,0 +1,259 @@
+<pre>
+Agenda Overview : Session 3
+---------------
+
+3.2  Nodejs Architechture Event Loop
+4.   Microtasks and (Macro)tasks in Event Loop
+5.   Express.js
+		Installing Express.js
+		Hello World
+		Serving static files
+		Basic Crud App
+		Routing
+		Middleware
+
+
+
+***********************************************************
+ 
+
+Nodejs Architechture 
+https://medium.com/@shikha.ritu17/understanding-node-js-ecosystem-and-tooling-fe7466d686c9
+https://www.simplilearn.com/understanding-node-js-architecture-article  
+
+
+
+Node.js server architecture
+Parts of the Node.js architecture
+Workflow of Node.js architecture
+Advantages of Node.js architecture
+   
+(Nodejs Process Model | EVENT Loop, Architechture more or less are same )
+ 
+
+Node.js Server Architecture : 
+
+Node.js follows a single-threaded, event-driven architecture that allows it to handle multiple concurrent connections without getting blocked. 
+The architecture of Node.js is designed to take advantage of JavaScript’s event-driven, non-blocking I/O model, making it highly efficient and scalable for building server-side applications. 
+
+Nodejs runs in single process and application code runs in single thread and there by needs less resources than other platforms.
+
+
+-> Key architectural components of Node.js : 
+	1. V8 Engine: Node.js uses the V8 JavaScript engine, . V8 compiles JavaScript code to native machine code, making it highly performant. This engine enables Node.js to execute JavaScript code efficiently outside of a browser environment.
+
+	2. Event Emitters and Listeners: In Node.js, many objects are capable of emitting events. These objects are known as Event Emitters. Examples of event emitters include HTTP servers, file system operations, and database connections. Other parts of the application can register event listeners to handle specific events emitted by these objects. When an event occurs, the corresponding listener’s callback function is executed asynchronously.
+
+	3. Callbacks and Non-Blocking I/O:  Node.js relies heavily on callbacks, which are functions passed as arguments to asynchronous functions. 
+
+	4. Event Loop: The Event Loop is the heart of Node.js architecture. It allows Node.js to handle asynchronous operations efficiently. When a Node.js application starts, it initializes the Event Loop, which continuously listens for events and executes their associated callback functions. The Event Loop is single-threaded, meaning it runs on a single main thread, but it can process multiple I/O operations concurrently.	
+
+	5.  Libuv: Libuv is a C library that provides the platform-specific implementation of the Event Loop and handles I/O operations for Node.js. It abstracts the underlying operating system’s asynchronous I/O capabilities, allowing Node.js to be cross-platform. Libuv handles tasks such as file system operations, timers, and networking.
+
+	6. Thread Pool
+	Thread pool consists of all the threads available for carrying out some tasks that might be required to fulfill client requests 
+
+	7. Modules: Node.js follows a modular architecture, where functionality is encapsulated into reusable modules. Modules can be custom-built or obtained from the Node Package Manager (NPM). The modular approach promotes code reusability and maintainability, as each module is responsible for specific functionality.
+
+	8. Buffer and Streams: Node.js provides the Buffer and Streams API, which allows efficient handling of binary data and large amounts of data. Streams enable developers to process data in small chunks, reducing memory overhead and improving performance for I/O operations.
+
+	9. Cluster: Node.js provides a Cluster module that allows applications to take advantage of multi-core processors. By creating child processes (workers), each running on a separate core, Node.js can distribute the workload across multiple cores, improving application performance and scalability.
+
+Requests
+	Incoming requests can be blocking (complex) or non-blocking (simple), depending upon the tasks that a user wants to perform in a web application
+ 
+  
+https://www.jsv9000.app/
+ 
+
+Microtasks and (Macro)tasks in Event Loop
+https://medium.com/@saravanaeswari22/microtasks-and-macro-tasks-in-event-loop-7b408b2949e0
+ 
+JavaScript has a concurrency model based on an event loop, which is responsible for executing the code, collecting and processing events, and executing queued sub-tasks.
+
+Within the Event Loop, there are actually 2 type of queues: the (macro)task queue (or just called the task queue), and the microtask queue. The (macro)task queue is for (macro)tasks and the microtask queue is for microtasks.
+
+Microtask
+	A microtask is a short function which is executed after the function or program which created it exits and only if the JavaScript execution stack is empty.
+
+	Promise callback
+	process.nextTick
+
+	queueMicrotask
+
+Macrotask
+	A macrotask is short function which is executed after JavaScript execution stack and microtask are empty.
+
+	setTimeout
+	setInterval
+	setImmediate
+
+Explanation
+	When a Promise resolves and calls its then(), catch() or finally(), method, the callback within the method gets added to the microtask queue! This means that the callback within the then(), catch() or finally() method isn’t executed immediately, essentially adding some async behavior to our JavaScript code!
+
+	So when is a then(), catch() or finally() callback executed?🤷‍♂️
+
+	Here the event loop gives a different priority to the tasks:
+
+	All functions in that are currently in the call stack get executed. When they returned a value, they get popped off the stack.
+
+	When the call stack is empty, all queued up microtasks are popped onto the callstack one by one, and get executed! (Microtasks themselves can also return new microtasks, effectively creating an infinite microtask loop)
+
+	If both the call stack and microtask queue are empty, the event loop checks if there are tasks left on the (macro)task queue. The tasks get popped onto the callstack, executed, and popped off!
+
+Order of execution => 
+1. All functions that are currently in the call stack get executed and then they get popped off the call-stack.
+2. When the call stack is empty, all queued-up micro-tasks are popped onto the call-stack one by one and get executed, and then they get popped off the call-stack.
+3. When both the call-stack and micro-task queue are empty, all queued-up macro-tasks are popped onto the call-stack one by one and get executed, and then they get popped off the call-stack.
+
+
+
+*******************************************************************
+
+=> RESTFUL API :- 
+  
+
+
+Introduction to RESTFul web services
+A web service is a collection of open protocols and standards used for exchanging data between applications or systems.
+Software applications written in various programming languages and running on various platforms can use web services to exchange data over  networks . 
+
+What is a REST API?
+A REST stands Representational State Transfer. REST API is a mechanism that allows different software applications to communicate with each other over the internet or network. 
+
+REST is web standards based architecture and uses HTTP Protocol. REST APIs follow specific rules and standards that enable applications and users to use HTTP requests to access and use data. 
+
+-> We can use text, JSON, XML format to send and receive data in REST API but JSON  (JavaScript Object Notation) is the most popular one.
+Data sent in a request, and the data received from the API call is called the response. 
+
+Two main characteristics of RESTful APIs include:
+
+	1. Stateless Interactions: Each request from a client to a server must contain all the information needed to understand and process the request. The server does not store any session information about the client.
+	2. Uniform Interface: A REST API is designed to use standard HTTP methods and should be easy for any developer familiar with HTTP. This uniformity decouples clients from the server, allowing them to evolve independently. (as long as the interface remains consistent)
+ 
+------------------------------------------------------------
+REST API Methods : 
+REST APIs use the standard HTTP methods. 
+	With REST, each method is intended to perform specific functions:
+
+	GET: This API method requests data from a specified resource. It should only retrieve data and should have no other effect.
+	POST: This API method sends data to the server for creation.  
+	PUT: This API method updates all current representations of the target resource with the uploaded content.
+	DELETE: As the name suggests, this method removes/deletes a specified resource.
+	PATCH: This method applies partial modifications to a resource.
+
+
+
+
+------------------------------------------------------------
+10+ Best Practices for Naming API Endpoints
+https://nordicapis.com/10-best-practices-for-naming-api-endpoints/
+
+RESTful Resource Naming Conventions
+1. URIs resources as nouns
+	REST is the predominant use of nouns in URIs. RESTful URIs should not indicate any kind of CRUD (Create, Read, Update, Delete) functionality.  Instead, REST APIs should allow you to manipulate a resource — which should take the form of a noun — through one of the main HTTP methods.
+
+	Example: /users/{id} instead of /getUser
+
+2. Pluralized resources
+	API design experts would suggest you pluralize all resources unless they are singleton resources.
+	Example: /users (typical resource) or /users/{id}/address (singleton resource)
+6. Lowercase letters and dashes
+	By convention, resource names should use exclusively lowercase letters. Similarly, dashes (-) are conventionally used in place of underscores (_).
+
+	Example: /users/{id}/pending-orders instead of /users/{id}/Pending_Orders
+
+7. No file extensions
+	Leave file extensions (such as .xml) out of your URIs. We’re sorry to say it, but they’re ugly and add length to URIs. If you need to specify the format of the body, instead use the Content-Type header.
+
+	Example: /users/{id}/pending-orders instead of /users/{id}/pending-orders.xml
+3. Forward slashes for hierarchy
+	forward slashes are conventionally used to show the hierarchy between individual resources and collections.
+
+	Example: /users/{id}/address clearly falls under the /users/{id} resource which falls under the /users collection.
+
+4. Punctuation for lists
+	When there is no hierarchical relationship (such as in lists), punctuation marks such as the semicolon, or, more frequently, the comma should be used.
+
+	Example: /users/{id1},{id2} to access multiple user resources
+
+5. Query parameters where necessary
+	In order to sort or filter a collection, a REST API should allow query parameters to be passed in the URI.
+
+	Example: /users?location=USA to find all users living in the United States
+
+
+
+*******************************************************************
+*************************************************************
+https://www.tutorialspoint.com/expressjs/expressjs_scaffolding.htm
+https://www.geeksforgeeks.org/how-to-implement-jwt-authentication-in-express-js-app/
+
+In MERN or MEAN stack E is for Express so it indictess how useful and important express framework is
+=> Express.js : 
+Introducing Express : 
+Express is the very popular Node web framework for development of web application and REST APIS.
+Express makes the development of Node application very easy and it is very simple to use. It provides a simple and efficient way to build web applications and APIs using JavaScript. 
+It helps Node to handling routes, requests, and responses, making it easier  to create robust and scalable applications.
+  
+
+Express was initially released in November 2010 and is currently on major version 4 of the API. 
+
+Express Advantages:
+
+	1. Simplicity and Minimalism: Express JS has very simple design, that makes it easy to learn and use. With its simple structure we quickly set up a server, define routes, and handle HTTP requests which makes it an excellent choice for building web applications efficiently.
+
+	Integrate with "view" rendering engines in order to generate responses by inserting data into templates.
+
+	2. Flexibility and Customization: Express JS is a flexible framework that allows you to structure the application based on your preferences. It does not have a strict application architecture so you can organize your code according to your preference.
+	3. Middleware Ecosystem: Express JS has a large numbers of middleware that can be easily integrated into applications. Middleware functions increases the functionality of Express by allowing you to handle various tasks such as authentication, logging, and error handling.
+	4. Scalability: Express JS is designed to be lightweight and scalable, which makes it suitable for building both small projects and large-scale applications. It is asynchronous and has event-driven architecture which allows you to handle a large number of requests.
+	5. Active Community Support: Express JS has a large active community who contribute to its growth and improvement. Because of them the framework is regularly updated and well-documented.
+
+
+
+Installing Express.js 
+Hello World 
+Middleware
+Serving static files 
+Basic Crud App 
+Routing 
+Template Engines (ejs, hbs, pug etc)
+Express.js RESTful API
+
+Middleware :
+express.json()
+express.static()
+express.Router()
+express.urlencoded()
+Request
+The req object represents the HTTP request and has properties for the request query string, parameters, body, HTTP headers, and so on.
+Response: The res object represents the HTTP response that an Express app sends when it gets an HTTP request.
+
+
+ 
+	
+Express Functions:
+	Express express():
+	Creates an Express application. The express() function is a top-level function exported by the express module.
+Hello World expres App : 
+		The app.use() function is used to mount the specified middleware function(s) at the path that is being specified. It is mostly used to set up middleware for your application. 
+		Syntax:
+		app.use(path, callback)
+
+Methods
+
+	express.Router([options]) : 	Creates a new router object.
+	express.static(root, [options]) : This is a built-in middleware function in Express. It serves static files and is based on serve-static.
+	express.urlencoded([options]) : This is a built-in middleware function in Express. It parses incoming requests with urlencoded payloads and is based on body-parser.
+
+
+
+
+
+Express Applications Function:
+Express Requests Function:
+Express Response Function:
+Express Router Function:
+Express Advanced Topics:
+

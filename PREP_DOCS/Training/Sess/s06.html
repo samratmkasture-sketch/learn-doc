@@ -1,0 +1,206 @@
+Session 6 :
+
+******************Streams*********************************
+https://www.freecodecamp.org/news/node-js-streams-everything-you-need-to-know-c9141306be93/
+
+
+https://www.geeksforgeeks.org/difference-between-readfile-and-createreadstream-in-node-js/
+
+
+const fs = require('fs'); 
+fs.readFile('output.txt', 'utf8', (err, data) => { 
+  console.log(`Data present in the file is::    ${data}`); 
+}); 
+console.log('Outside readFile method'); 
+const fs = require('fs'); 
+const createReader = fs.createReadStream('output.txt'); 
+ 
+clet bodyData='' 
+createReader.on('data', (data) => { 
+  bodyData+=data
+  console.log(data.toString()); 
+}); 
+readableStream.on('end', () => {
+  console.log(bodyData.toString()); 
+  console.log('File reading completed.');
+});
+  
+console.log('Outside createReader.on method'); 
+
+
+----------------------------------------------------------
+Streams are a fundamental concept in Node.js applications, enabling efficient data handling by reading or writing input and output sequentially. They are handy for file operations, network communications, and other forms of end-to-end data exchange.
+
+
+-----------------------------------------------------------
+ 
+  1. for example if you're watching a video on YouTube you don't wait for the entire video to be downloaded to watch it the data arrives in chunks and you watch in chunks while the rest of the data arrives over time. 
+  2. similarly if you're transferring file contents from file A to file B you don't wait for the entire file a content to be saved in temporary memory before moving it into file B the contents arrive in chunks and you transfer in chunks while the remaining contents arrive over time in doing so you're preventing unnecessary data downloads and memory usage  
+
+  
+ ---------------------------
+## Nodejs Streams : ##
+Stream is a sequence of data that is being moved from one point to another over time
+
+The unique aspect of streams is that they process data in small, sequential chunks.
+This approach is highly beneficial when working with extensive data larg amount of data, where the file size may exceed the available memory. 
+Streams make it possible to process data in smaller pieces, making it feasible to work with larger files.
+
+A stream is a collection of data. However, unlike an array or a string, the entire data in a stream object is not stored at once in the memory. Instead, a single chunk of data from the stream is brought into the memory, at a time. It makes streams more efficient. 
+
+Node.js applications are best suited for developing data streaming applications.
+Streams are not only about working with big data. They also give us the power of composability in  code with the help of pipe. 
+
+While an HTTP response is a readable stream on the client, it’s a writable stream on the server. This is because in the HTTP case, we basically read from one object (http.IncomingMessage) and write to the other (http.ServerResponse).
+
+-----------------------------------------------------------
+https://nodesource.com/blog/understanding-streams-in-nodejs/
+Why streams
+streams basically provide two major advantages compared to other data handling methods:
+
+1. Memory efficiency: you don’t need to load large amounts of data in memory before you are able to process it. a file size can be larger than your free memory space, making it impossible to read the whole file into the memory in order to process it. That’s where streams can help and make it possible
+
+2. Time efficiency: it takes significantly less time to start processing data as soon as you have it, rather than having to wait with processing until the entire payload has been transmitted
+  waiting time is very low .
+
+
+ 
+  1. Writable: streams to which data can be written (for example, fs.createWriteStream()).
+  2. Readable: streams from which data can be read (for example, fs.createReadStream()).
+  3. Duplex: streams that are both Readable and Writable (for example, net.Socket).
+  4. Transform: Duplex streams that can modify or transform the data as it is written and read (for example, zlib.createDeflate()).For example, in the instance of file-compression, you can write compressed data and read decompressed data to and from a file.
+
+-  Additionally, this module includes the utility functions stream.pipeline(), stream.finished(), stream.Readable.from() and stream.addAbortSignal().
+
+
+Piping is a mechanism where we provide the output of one stream as the input to another stream. It is normally used to get data from one stream and to pass the output of that stream to another stream. There is no limit on piping operations. In other words, piping is used to process streamed data in multiple steps.
+
+
+var fs = require("fs");
+// Create a readable stream
+var readerStream = fs.createReadStream('input.txt');
+// Create a writable stream
+var writerStream = fs.createWriteStream('output.txt');
+// Pipe the read and write operations
+// read input.txt and write data to output.txt
+readerStream.pipe(writerStream);
+console.log("Program Ended");
+--------------------------------------
+All streams are instances of EventEmitter class.
+It work on publisher subscriber pattern.
+Each type of Stream is an EventEmitter instance and throws several events at different instance of times. For example, some of the commonly used events are −
+
+data − This event is fired when there is data is available to read.
+end − This event is fired when there is no more data to read.
+error − This event is fired when there is any error receiving or writing data.
+finish − This event is fired when all the data has been flushed to underlying system.
+
+
+ 
+readFile   
+------------------------
+1. It reads the file into the memory before making it available to the user.
+2. It is slower due to read of whole file.
+3. It will not scale in case of too many requests as it will try to load them all at the same time.
+4. Due to its property, it is easier for nodejs to handle cleaning of memory in this case.
+
+createReadStream
+------------------------
+1. It reads the file in chunks according to a need by the user.
+2. It is faster due to its property of bringing in chunks.
+3. It is scalable as it pipes the content directly to the HTTP response object
+4 In this case memory cleaning by nodejs is not easy.
+
+-----------------------------------------------------------------------
+Streams can be readable, writable, or both.
+To access the node:stream module:
+
+const stream = require('node:stream'); 
+
+
+  
+https://www.tutorialspoint.com/nodejs/nodejs_streams.htm
+Readable Stream : 
+
+    var fs = require("fs");
+    var data = '';
+
+    // Create a readable stream
+    var readerStream = fs.createReadStream('input.txt');
+
+    // Set the encoding to be utf8. 
+    readerStream.setEncoding('UTF8');
+
+    // Handle stream events --> data, end, and error
+    readerStream.on('data', function(chunk) {
+       data += chunk;
+    });
+
+    readerStream.on('end',function() {
+       console.log(data);
+    });
+
+    readerStream.on('error', function(err) {
+       console.log(err.stack);
+    });
+
+    console.log("Program Ended");
+-----------------------------------------
+
+Writable Stream : 
+-----------------------------------------
+  var fs = require("fs");
+  var data = `Tutorials Point is giving self learning content
+  to teach the world in simple and easy way!!!!!`;
+
+  // Create a writable stream
+  var writerStream = fs.createWriteStream('output.txt');
+
+  // Write the data to stream with encoding to be utf8
+  writerStream.write(data,'UTF8');
+
+  // Mark the end of file
+  writerStream.end();
+
+  // Handle stream events --> finish, and error
+  writerStream.on('finish', function() {
+     console.log("Write completed.");
+  });
+
+  writerStream.on('error', function(err){
+     console.log(err.stack);
+  });
+
+  console.log("Program Ended");
+-----------------------------------------
+ 
+-----------------------------------------
+
+Chaining the Streams : 
+var fs = require("fs");
+var zlib = require('zlib');
+
+// Compress the file input.txt to input.txt.gz
+fs.createReadStream('input.txt')
+   .pipe(zlib.createGzip())
+   .pipe(fs.createWriteStream('input.txt.gz'));
+  
+console.log("File Compressed.");
+-----------------------------------------
+
+var fs = require("fs");
+var zlib = require('zlib');
+
+// Decompress the file input.txt.gz to input.txt
+fs.createReadStream('input.txt.gz')
+   .pipe(zlib.createunzip())
+   .pipe(fs.createWriteStream('input.txt'));
+  
+console.log("File Decompressed.");
+
+-----------------------------------------
+### video-streaming-application-using-node-js ###
+-------------------------------------------------------------
+https://www.geeksforgeeks.org/how-to-build-video-streaming-application-using-node-js/
+https://blog.logrocket.com/build-video-streaming-server-node/
+-------------------------------------------------------------

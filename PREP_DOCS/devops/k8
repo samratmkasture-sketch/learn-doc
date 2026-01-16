@@ -1,0 +1,57 @@
+
+- Introduction to Kubernetes
+- Kubernetes Architecture
+- Install Kubernetes on your machine (Minikube)
+- Kubernetes Pod
+- Kubernetes Deployment
+- Kubernetes Service
+- Kubernetes Interview Q&A (Architecture, Pod, Deploy, svc)
+- Kubernetes Service Deep Dive using KubeShark 
+- Kubernetes Ingress
+- Configmaps and Secrets Deep Dive
+- Kubernetes RBAC
+- Kubernetes monitoring with Prometheus & Grafana
+- Kubernetes Custom Resource & Definitions
+
+Helm Chart
+https://www.youtube.com/watch?v=DQk8HOVlumI
+https://www.youtube.com/watch?v=k4vhgeTAOn0
+
+Topics and Timeline 
+1. What is kubernetes?
+2. What is orchestration?
+3. Usecase of kubernetes ?
+4. Architecture of kubernetes
+5. what is a pod
+6. components of k8
+7. Installation of K8 on Windows
+8. Installation of K8 on MAC
+9. Installation of K8 on Linux
+10. Quick overview of our k8 setup
+11. Deployment of nginx
+12. Summary of commands used
+13. Demo Webapp Project
+14. Deployment of our Webapp
+15. Exposing PORT using service
+16. Rollout in K8
+17. Rollback in K8
+18. Self-Healing in K8
+19. Scaling our App
+20. YAML config for deployment and service
+21. Overview of Multi-container app
+22. Deployment of Multi-container app
+23. Multiple containers in single POD
+24. Single K8 Config File
+25. Multiple containers in Separate POD
+26. ConfigMaps
+27. Volume and Data
+28. Persistent Volume
+29. HostPath Volume
+
+
+TODO :
+istio
+
+kiali
+graphana
+prometheus

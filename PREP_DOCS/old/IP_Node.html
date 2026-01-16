@@ -1,0 +1,223 @@
+
+
+
+
+***************  
+
+PROFILING :=> https://medium.com/@rishabh171192/performance-analysis-node-js-68cc4628205c
+
+  => How to measure and improve Node.js performance?
+   https://raygun.com/blog/improve-node-performance/
+   https://blog.appsignal.com/2021/11/24/7-ways-to-improve-nodejs-performance-at-scale.html
+
+  =>  Enable gzip Compression on the Web Server
+  https://www.geeksforgeeks.org/how-to-do-compression-with-gzip-in-node-js/
+#############################
+
+
+Optimizing Images =>
+
+
+*****************************
+=> Node.js Streams :: 
+https://nodesource.com/blog/understanding-streams-in-nodejs/
+https://www.freecodecamp.org/news/node-js-streams-everything-you-need-to-know-c9141306be93/
+*********************************************
+
+1.  Manage and administer MySQL instances, including configuration, monitoring, performance tuning, and troubleshooting.
+2.  Design, implement, and maintain database backup, replication, and recovery strategies for MySQL databases.
+3.  Monitor database performance, identify bottlenecks, and optimize queries and schema design for improved efficiency.
+4.  Implement and maintain database security measures, including access controls, user management, and data encryption.
+5.  Collaborate with development teams to assist in database design, schema changes, and query optimization.
+6.  Perform database capacity planning and scaling to accommodate growth and ensure high availability.
+8.  Manage and support MongoDB database instances, including installation, configuration, and monitoring.
+9.  Design and implement MongoDB data models, indexes, and sharding strategies for optimal performance.
+10. Implement replication and high availability solutions, ensuring data redundancy and disaster recovery.
+11. Maintain comprehensive documentation of database systems, configurations, and procedures.
+12. Work with SRE (Site reliability engineering) team in supporting database deployments and handle database alerts
+13. Perform database tuning and optimization to improve query performance and overall system efficiency.
+14. Perform regular Audits on the database to maintain the standard security.
+15. Stay updated with the latest trends and technologies in database administration, AWS, and MongoDB, and make recommendations for improvements to the existing database infrastructure.
+16. Knowledge on other databases(Redshift and Postgresql) and experience on AWS services (RDS, Aurora EC2, S3, IAM, CloudWatch) are added advantage
+
+*********************************************
+
+Husky 
+Monorepo
+
+github Actions
+nodejs patterns : example of them
+
+
+
+---------------------
+REST API (Representational state transfer)
+-------------------------------------
+Passport supported Oauth authentication
+JWT token based authentication
+-------------------------------------
+*********************************************
+
+   
+
+A lot of time is spent on scripting because it has to map all the style rules passed to the actual CSS properties, which increases the rendering time for the component.
+Let's imagine that we have an event with a debounce time of one second. The event handler for that event will be triggered after one second, once the user stops triggering the event.
+
+The first step in improving the performance of a React application is to measure its current performance. There are several tools available for measuring performance, including:
+
+Lighthouse – Lighthouse is an open-source tool from Google that audits web pages for performance, accessibility, and more. Lighthouse generates a report that includes suggestions for improving the performance of the application.
+WebPageTest – WebPageTest is a free tool that allows you to test the speed of your website from multiple locations around the world. WebPageTest provides detailed reports on the performance of your website, including suggestions for improvement.
+Google PageSpeed Insights – Google PageSpeed Insights analyzes the content of a web page and generates a report that identifies opportunities to improve the page's performance.
+
+*********************************************
+     
+
+Upload big files using stream?
+error handling in stream
+validation in stream
+
+default buffer limit in nodejs?
+
+----
+Benchmark test of node application
+Apachec bench tool
+Testing code coverage: 
+1- Mocha,sinon,supertest
+2- Jest, supertest
+----
+***********
+ 
+***********
+---------------
+Testing framework: Jest  
+---------------
+
+ 
+---------------------
+REST API (Representational state transfer)
+-------------------------------------
+Passport supported Oauth authentication
+JWT token based authentication
+-------------------------------------
+ 
+-----------
+***************
+How to create npm package ready to distribute from scratch?
+***************
+https://www.jsv9000.app/
+
+https://www.geeksforgeeks.org/node-js-event-loop/
+he event loop in Node.js consists of several phases, each of which performs a specific task
+
+1.Timers , 2.Pending Callbacks ,3. Idle, Prepare , 4. Poll, 5.Check, 6. Close Callbacks
+Eventloop in NodeJS: MacroTasks and MicroTasks
+https://medium.com/dkatalis/eventloop-in-nodejs-macrotasks-and-microtasks-164417e619b9
+ANS :
+    V8 Engine works by enqueuing tasks into the event loop.
+    The tasks are broken down further into microtask and macrotask
+       1. macroTasks: setTimeout, setInterval, setImmediate, requestAnimationFrame, I/O, UI rendering
+       2. microTasks: process.nextTick, Promises, queueMicrotask, MutationObserver
+    Only after tasks in microTasks are completed/ excahusted, event loop will next pick up one task from macroTasks. And this repeats.
+
+**********
+Node.js - Global Objects : __filename,__dirname, setTimeout(cb, ms), clearTimeout(t), setInterval(cb, ms)
+                             Console:Used to print information on stdout and stderr.
+
+                           2  Process:Used to get information on current process. Provides multiple events related to process activities.
+
+Node.js - Utility Modules : 
+1  OS Module
+Provides basic operating-system related utility functions.
+
+2  Path Module
+Provides utilities for handling and transforming file paths.
+
+3  Net Module
+Provides both servers and clients as streams. Acts as a network wrapper.
+
+4  DNS Module
+Provides functions to do actual DNS lookup as well as to use underlying operating system name resolution functionalities.
+
+5  Domain Module
+Provides ways to handle multiple different I/O operations as a single group.
+
+
+************
+Explain the concept of middleware in Node.js.
+next()
+What is callback hell?
+
+Core Modules : HTTP, util, fs , url, query string, stream, zib
+
+Node.js Cluster Process Module
+   The cluster module provides a way of creating child processes that runs simultaneously and share the same server port.
+
+   Node.js runs single threaded programming, which is very memory efficient, but to take advantage of computers multi-core systems, the Cluster module allows you to easily create child processes that each runs on their own single thread, to handle the load.
+
+The Child Processes Module
+   We can easily spin a child process using Node’s child_process module and those child processes can easily communicate with each other with a messaging system.
+   There are four different ways to create a child process in Node: spawn(), fork(), exec(), and execFile().
+   https://www.freecodecamp.org/news/node-js-child-processes-everything-you-need-to-know-e69498fe970a/
+
+CORS (Cross-Origin Resource Sharing) 
+
+how request processed once
+What are streams in Node.js?
+Readable – Used for reading operations
+Writable − Used for write operation
+Duplex − Can be used for both reading and write operations
+Transform − A type of duplex stream where the output is computed based on input
+
+Process Model : https://www.tutorialsteacher.com/nodejs/nodejs-process-model
+   Event loop : 
+   Event loops handle asynchronous callbacks in Node.js. It is the foundation of the non-blocking input/output in Node.js, making it one of the most important environmental features.
+
+   Thread Pool : Node.js uses libev for the event loop which in turn uses internal C++ thread pool to provide asynchronous I/O.
+
+Express.js is based on the Node.js middleware module called connect which in turn uses http module. 
+   Advantages of Express.js
+   Makes Node.js web application development fast and easy.
+   Easy to configure and customize.
+   Allows you to define routes of your application based on HTTP methods and URLs.
+   Includes various middleware modules which you can use to perform additional tasks on request and response.
+   Easy to integrate with different template engines like Jade, Vash, EJS etc.
+   Allows you to define an error handling middleware.
+   Easy to serve static files and resources of your application.
+   Allows you to create REST API server.
+   Easy to connect with databases such as MongoDB, Redis, MySQL
+
+24. What are the two types of API functions in Node.js?
+The two types of API functions in Node.js are:
+
+Asynchronous, non-blocking functions
+Synchronous, blocking functions
+
+4. Why is Node.js preferred over other backend technologies like Java and PHP?
+         Some of the reasons why Node.js is preferred include:
+         Node.js is very fast
+         Node Package Manager has over 50,000 bundles available at the developer’s disposal
+         Perfect for data-intensive, real-time web applications, as Node.js never waits for an API to return data
+         Better synchronization of code between server and client due to same code base
+         Easy for web developers to start using Node.js in their projects as it is a JavaScript library
+
+5. Differentiate between process.nextTick() and setImmediate()?
+The distinction between method and product. This is accomplished through the use of nextTick() and setImmediate(). next Tick() postpones the execution of action until the next pass around the event loop, or it simply calls the callback function once the event loop's current execution is complete, whereas setImmediate() executes a callback on the next cycle of the event loop and returns control to the event loop for any I/O operations.
+**********************
+Socket.IO
+-----------
+https://www.javatpoint.com/socket-io
+**********************
+    
+
+method refrence va constructure ref
+lambda expression
+
+runnable interface implementation 
+try with resources
+fin client
+solid design principle
+lisco substiyution
+executer framework
+async 
+creational design pattern
+sonar issues

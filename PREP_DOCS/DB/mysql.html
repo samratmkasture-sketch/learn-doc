@@ -1,0 +1,42 @@
+https://www.geeksforgeeks.org/mysql-interview-questions/
+https://www.simplilearn.com/mysql-interview-questions-article
+
+https://www.fullstack.cafe/blog/mysql-interview-questions
+
+https://coderpad.io/interview-questions/mysql-interview-questions/
+
+
+
+https://www.javatpoint.com/mysql-delete-duplicate-records
+
+https://www.geeksforgeeks.org/find-nth-highest-salary-table/
+
+-----------------------------------------------------
+To find the 6th highest salary
+
+Query:
+
+mysql> select * from ((select * from Employee 
+       ORDER BY `sal` DESC limit 6 ) AS T) 
+       ORDER BY T.`sal` ASC limit 1;
+
+Select Salary from table_name order by Salary limit n-1,1;
+-----------------------------------------------------
+Find Duplicate Data in a Single Column
+SELECT name, email, COUNT(name)  
+FROM student_contacts  
+GROUP BY name  
+HAVING COUNT(name) > 1;  
+
+Find Duplicate Data in Multiple Columns
+SELECT   
+    name, COUNT(name),  
+    state, COUNT(state),  
+    email, COUNT(email)  
+FROM student_contacts  
+GROUP BY name, state, email  
+HAVING  COUNT(name) > 1  
+    AND COUNT(state) > 1  
+    AND COUNT(email) > 1;  
+-----------------------------------------------------
+

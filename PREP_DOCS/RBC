@@ -1,0 +1,66 @@
+- What is the overall architecture of the DX Application? (e.g., monolithic, microservices)
+- How is the Single Dealer Platform deployed and maintained? (e.g., on-premise, cloud, hybrid)
+- What technologies and frameworks are used in the development of the application? (e.g., programming languages, databases, message queues)
+
+- What are /the dependencies of the DX Application on other systems or libraries?
+
+
+
+sharing this deck with you 
+
+downstream
+upstream
+
+DX
+Catalys Migration
+source of truth bloomburg
+camron tech
+
+MRD Market & Security Data
+Symphony
+RFQ
+
+WS user instance 
+
+F blotter
+
+Symphony
+Data Cloud 
+
+- Single dealer patform vs multi dealer patform
+- Market factory
+- PNL
+- DOMAIN GLOSSARY
+	- Spot traansaction
+	- spot rate 
+	- Spot settlement date
+	- Outright
+	- Farward points
+	- Tenor
+	- Farward points
+	- Tenor
+	- Broken date
+	- Swap
+	- Near leg
+	- far leg
+	- Swap points
+	- SSP 
+	- Price Tier 
+	- Previously quoted order
+	- Fill or Kill order
+	- Limit order
+	- Algo order
+	- Settlement Date / Value Date
+	- PNL (Profit and Loss)
+	- Book 
+	- Position
+	- Risk
+	- Oprtional Dated Farward 
+	- Market maker
+	- Ticket
+	- Offer
+	- Bid
+	- Offer 
+	- Spread
+	- Margin
+	- Choice price

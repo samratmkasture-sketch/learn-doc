@@ -1,0 +1,212 @@
+Mock Interviews:
+https://www.youtube.com/watch?v=xRD0pkTJ-Zg
+------------------------------
+Interview  :->
+
+Good morning, my name is Samrat Kasture,
+I am a fullstack developer having more than more than 9 years of experience in web developemnt,
+NodeJs and ReactJs are my core skills. I have also worked on SQL NoSql databases.
+
+I’ve worked across various domains like E-commerce, Education, and Real Estate we've developed scalable, high-performance applications.
+
+Additionally, I have hands-on experience with AWS services as well, including APIgateway, Cloudfront, EC2, S3, RDS and Lambda, 
+Recently earned my AWS Certified Practitioner certification
+ 
+
+ 
+--------------------------------------------------------------------   
+https://github.com/sudheerj/javascript-interview-questions
+--------------------------------------------------------------------
+Javascript:
+promise.all vs .all settled any race
+https://dev.to/shameel/javascript-promise-all-vs-allsettled-and-race-vs-any-3foj
+
+Expain Hoisting in javascript
+What is closure?
+12. Spread | REST operator 
+
+map vs reduce
+local storage  | session storage | Cokie | sequre cookie | signed cookie
+
+Debouncing concepts - Debouncing refers to ignoring the event handler call until the calls have stopped for a certain amount of time.
+
+Generator function *
+ how can you access history in javascript
+ what is difference between window and document
+What is the difference between Call, Apply and Bind
+
+What is a prototype chain
+  Prototype chaining is used to build new types of objects based on existing ones. It is similar to inheritance in a class based language. i.e, When you create an object using a constructor function or a class, the created object inherits properties from a prototype object.
+
+Web worker
+
+
+display:none turns off the layout of the elements, so they are not rendered. visibility:hidden hides the elements without changing their layouts. 
+What is semantic tags?
+Semantic tags are HTML elements that define the meaning of the content they contain. They help make web pages more accessible, easier to read, and better for search engines. 
+Here are some benefits of using semantic tags:
+-Improved accessibility: Semantic tags make web pages easier to navigate and understand. 
+-Better search engine optimization (SEO): Semantic tags give search engines better context for indexing content. 
+-Easier maintenance: Semantic tags make it easier for developers to maintain and update web pages. 
+-More comprehensible HTML: Semantic tags make HTML code more readable and understandable. 
+--------------------------------------------------------------------
+
+1. CORS concept and why do we need it
+2. client side and serverside changes for CORS
+3. AWS lambda deployment and configurations
+4. cold start in Lambda
+5. Hooks in react
+6. useEffect hook dependency
+7. if block within useEffect vs useEffect in if block
+8. React.fragment vs <></>
+9. usage of key in loop
+10. Progran for finding index of tow elements that has sum equal to provided value e.g[1,2,3,4,5] result would be [1,3]
+11 Call Stack, Event Queue, Event Loop
+12. Spread operator 
+13. Error Handling in Nodejs 
+14. assembly of the browser
+15. use of aria-labelby
+16. create custom hook to incrment a number
+17. why do we need react Fragment
+18. API Gateways for AWS
+
+------------------------------------------------
+React : -> 
+8. React.fragment vs <></>
+9. usage of key in loop
+
+one way data communication
+how to update parent state data
+
+What is Portals in react
+
+prop drilling  how to avoid it
+What is Children Props | render prop
+
+Higher-Order Components
+
+Reconciliation
+
+Get query params in React ? 
+React Hooks - How to get parameter value from query string?
+useSearchParams
+
+https://simplefrontend.com/get-query-params-in-react/
+import { useParams } from "react-router-dom";
+const { id } = useParams();
+
+lazy loading?f
+form vlidation? 
+api calls ?
+
+React best practices (optimisation)
+file upload
+error handling
+Context
+reducer
+ref 
+testing package (Jest | mocha | supertest)
+intercepters
+how to update state of prent from child?
+
+
+how to fetch data with hook
+
+What is redux middleware 
+redux toolkit
+react optimisation technichs
+use memo vs use call back
+Error handling file upload
+  7. Code splitting and Lazy Loading
+    8. React.memo()
+    9. useCallback()
+
+How to Measure Performance
+
+how can you improve loading time of app
+SOLID
+
+--------------------------------------------------------------------
+Nodejs:
+nodejs process model
+Modules :
+Node.js - Global Objects
+Differentiate between process.nextTick() and setImmediate()?
+middleware in Node.js.
+streams in Node.js?
+
+file upload ? multer multiparty type of data (content type)
+name some npm packages you have worked on
+
+multithreading
+ Explain the concept of middleware in Node.js.
+   next()
+   PROFILING
+
+--------------------------------------------------------------------
+1. CORS concept and why do we need it
+2. client side and serverside changes for CORS
+what you need to pass in header :
+https://stackoverflow.com/questions/36958999/cors-is-it-a-client-side-thing-a-server-side-thing-or-a-transport-level-thin
+--------------------------------------------------------------------
+JWT token based authentication
+
+SQL injection
+mongo/nosql injection
+OWASP
+npm i express-mongo-sanitizeZ
+1. https://owasp.org/www-pdf-archive/GOD16-NOSQL.pdf
+2. https://www.imperva.com/learn/application-security/nosql-injection/
+
+MongoDB:
+---------------
+ESR Guideance 
+Projection 
+pipline
+TTL 
+aggregation framework
+lookup
+
+
+Dynamodb :
+--------------
+What do you know about DynamoDB's partition keys and sort keys?
+pagination in dynamodb ?
+
+AWS :
+
+
+--------------------------------------------
+AWS: 
+3. AWS lambda deployment and configurations
+4. cold start in Lambda
+5. API Gateways for AWS
+
+
+--------------------------------------------
+
+What is 1NF 2NF and 3NF?
+
+--------------------------------------------
+
+https://www.freecodecamp.org/news/database-normalization-1nf-2nf-3nf-table-examples/
+
+The main purpose of database normalization is to avoid complexities, eliminate duplicates, and organize data in a consistent way. In normalization, the data is divided into several tables linked together with relationships.
+
+Database administrators are able to achieve these relationships by using primary keys, foreign keys, and composite keys.
+
+To get it done, a primary key in one table, for example, employee_wages is related to the value from another table, for instance, employee_data.
+
+N.B.: A primary key is a column that uniquely identifies the rows of data in that table. It’s a unique identifier such as an employee ID, student ID, voter’s identification number (VIN), and so on.
+
+A foreign key is a field that relates to the primary key in another table.
+
+A composite key is just like a primary key, but instead of having a column, it has multiple columns.
+
+The First Normal Form – 1NF
+For a table to be in the first normal form, it must meet the following criteria:
+
+a single cell must not hold more than one value (atomicity)
+there must be a primary key for identification
+no duplicated rows or columns
+each column must have only one value for each row in the table

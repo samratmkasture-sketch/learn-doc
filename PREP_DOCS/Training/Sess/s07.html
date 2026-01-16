@@ -1,0 +1,338 @@
+Session 7:
+
+ Node.js crypto module
+ Mongoose Properties CRUD
+ Mongoose Constraints and validation
+ 
+ Validation layer AND JOI validation 
+
+
+-----------------------------------
+
+Crypto
+https://nodejs.org/api/crypto.html
+-------------------------------------------
+
+***************************Node.js crypto module ********************************
+
+https://blog.logrocket.com/node-js-crypto-module-a-tutorial/#whatiscryptographyinnodejs
+
+Cryptography is the process of converting plain text into unreadable text and vice-versa.
+
+
+Cryptography is technique of securing information and communications through use of codes so that only those person for whom the information is intended can understand it and process it. Thus preventing unauthorized access to information. 
+The prefix “crypt” means “hidden” and suffix “graphy” means “writing”.
+
+	The Node.js crypto module is a built-in module that provides a variety of cryptographic functions for Node.js applications, which are written in JavaScript.
+
+	 Cybercrime is a persistent threat, and bad actors lurk at every corner seeking to pass malicious scripts to clone your database. What extra steps can you take to protect user information?
+
+	For instance, when a user creates an account in an application, their passwords and usernames need to be kept securely in the database, possibly by encrypting. However, to login into their accounts, the user’s password and username are verified against sets of credentials that are already in the database.
+
+	This cannot work if the passwords in the database — which are encrypted into gibberish — are used to compare the password/email the user inputs. That’s why the credentials in the database have to be decrypted while comparing them to the user’s input. Passwords can either be hashed or encrypted; hashing is a one-way encryption method.
+
+
+	The best solution is to employ cryptography on sensitive information before sending it to the database. This way, when cybercriminals get hold of your database, all they see are random characters.
+
+-------------------------------------------------------------------
+https://www.geeksforgeeks.org/cryptography-and-its-types/
+=> Features Of Cryptography are as follows:
+
+1. Confidentiality: Information can only be accessed by the person for whom it is intended and no other person except him can access it.
+2. Integrity: Information cannot be modified in storage or transition between sender and  receiver without any addition to information being detected.
+3. Non-repudiation: Ensures that the sender or receiver cannot deny a transaction or communication at a later date.
+4. Authentication: The identities of sender and receiver are confirmed. As well as destination/origin of information is confirmed.
+
+-------------------------------------------------------------------
+Types Of Cryptography: In general there are three types Of cryptography:
+
+1. Symmetric Key Cryptography: It is an encryption system where the sender and receiver of message use a single common key to encrypt and decrypt messages. Symmetric Key Systems are faster and simpler but the problem is that sender and receiver have to somehow exchange key in a secure manner. The most popular symmetric key cryptography system are Data Encryption System(DES) and Advanced Encryption System(AES).
+
+2. Hash Functions: There is no usage of any key in this algorithm. A hash value with fixed length is calculated as per the plain text which makes it impossible for contents of plain text to be recovered. Many operating systems use hash functions to encrypt passwords.
+
+3. Asymmetric Key Cryptography: Under this system a pair of keys is used to encrypt and decrypt information. A receiver’s public key is used for encryption and a receiver’s private key is used for decryption. Public key and Private Key are different. Even if the public key is known by everyone the intended receiver can only decode it because he alone know his private key. The most popular asymmetric key cryptography algorithm is RSA algorithm.
+
+-------------------------------------------------------------------
+Applications Of Cryptography: 
+Computer passwords, Digital Currencies, Secure web browsing, Electronic signatures, Authentication, Cryptocurrencies, End-to-End Encryption:
+
+
+Advantages 
+1. Access Control: Cryptography  ensure that only parties with the proper permissions have access to a resource. 
+2. Secure Communication: For secure online communication, cryptography is crucial. It offers secure mechanisms for transmitting private information like passwords, bank account numbers, and other sensitive data over the internet.
+3. Protection against attacks:  It offers strategies for spotting and stopping these assaults. Cryptography aids in the defence against various types of assaults, including replay and man-in-the-middle attacks.
+
+4. Compliance with legal requirements: Cryptography can assist firms in meeting a variety of legal requirements, including data protection and privacy legislation.
+-------------------------------------------------------------------
+Types of Attacks in Cryptography
+
+
+1. Brute Force Attack: In a brute force attack, an attacker attempts to gain access to a system or decrypt a message by guessing the correct password or key.
+2. Man-in-the-Middle Attack: This attack occurs when an attacker intercepts communication between two parties, allowing them to observe and modify the communication.
+3. Dictionary Attack: A dictionary attack uses a list of common words or phrases to guess a user’s password.
+4. Replay Attack: In a replay attack, an attacker captures a valid transmission and retransmits it, possibly masquerading as the intended recipient.
+
+
+
+-------------------------------------------------------------------
+What is cryptography in Node.js?
+---------------------------------
+	
+	With cryptography in Node.js, you can hash passwords and store them in the database so that data cannot be converted to plain text after it is hashed; it can only be verified. When malicious actors get ahold of your database, they cannot decode the encrypted information. You, can also encrypt other user data so that it can be decrypted during transmission.
+
+	The kind of encryption you employ on your application depends on your needs. For instance, cryptography can be symmetric-key (such as hashing), public-key (such as encrypting or decrypting), and so on.
+
+	An end party that receives encrypted data can decrypt it to plain text for their consumption. Cybercriminals cannot decrypt encrypted data if they do not have the key. This is exactly what the Node.js crypto module does.
+
+What is the Node.js crypto module?
+---------------------------------
+	The Node.js crypto module provides cryptographic functions to help you secure your Node.js app. It includes a set of wrappers for OpenSSL’s hash, HMAC, cipher, decipher, sign, and verify functions.
+
+	crypto is built into Node.js, so it doesn’t require rigorous implementation process and configurations. Unlike other modules, 
+	you don’t need to install Crypto before you use it in your Node.js application.
+
+	crypto allows you to hash plain texts before storing them in the database. For this, you have a hash class that can create fixed length, deterministic, collision-resistant, and unidirectional hashes. For hashed data, a password cannot be decrypted with a predetermined key, unlike encrypted data. An HMAC class is responsible for Hash-based Message Authentication Code, which hashes both key and values to create a single final hash.
+	
+	You may need to encrypt and decrypt other user data later for transmission purposes. This is where the Cipher and Decipher classes come in. You can encrypt data with the Cipher class and decrypt it with the Decipher class. Sometimes, you may not want to encrypt data before storing them in the database.
+
+	You can also verify encrypted or hashed passwords to ensure they are valid. All you need is the Verify class. Certificates can also be signed with thesign class.
+
+	All these are reasons developers love to use the crypto module. Let’s explore the various crypto classes and discover how to implement cryptography with them.
+
+Node.js crypto classes
+---------------------------------
+	Let us look at the classes in crypto that enable us to implement cryptography.
+
+Cipher
+---------------------------------
+	The Cipher class is responsible for encrypting information. When the user inputs a password during registration, the Cipher class is called to encrypt the password.
+	First, we’ll generate a key from an algorithm. After that, we’ll generate a random initialization number (iv) before encrypting the text.
+
+	To use this class, you have to create a cipher instance using either the crypto.createCipher() or crypto.createCipheriv(). It‘s advised to use crypto.createCipheriv() since crypto.createCipher() is depreciated.
+
+	The program below shows how to encrypt passwords with the Cipher method:
+
+Decipher
+---------------------------------
+	The Decipher class is responsible for decrypting encrypted texts. When you intend to send information securely to another developer, you have to encrypt it. The only way the receiver of the information can read the information is to decrypt it. This is exactly what the Decipher class does.
+
+	You cannot create decipher objects directly with the new keyword. The crypto.createDecipher() or crypto.createDecipheriv() methods are used to create decipher instances.
+
+	crypto.createDecipher() is depreciated, so you should use the crypto.createdeCipheriv() method instead.
+
+	Here’s how to decipher encrypted text with Decipher:
+
+
+Hash
+---------------------------------
+	The Hash class is used for plain text hashing purpose. Hashing simply converts plain text into hash functions. Hashed text cannot be converted back to its original version. You cannot create hash objects directly with the new keyword.
+
+	To create a hash instance, use the crypto.createHash() method, as shown in the example below:
+
+ 
+***********************************************************
+AES Encryption or Advanced Encryption System
+
+SHA | RSA | AES 
+
+SHA-256.
+SHA-192 	
+Common Asymmetric Encryption Algorithms : 
+	RSA or Rivest–Shamir–Adleman : 
+
+One of the most used hashing algorithms is SHA-256. Older common types, like SHA-1 and MD5, are no longer secure and should no longer be used.
+------------------------------------------------------.
+
+HMAC
+HMAC is an abbreviation for Hash-based Message Authentication Code. The hash algorithm is applied to data and a key to form a final secret hash.
+
+The crypto.createHmac() method creates an HMAC object with the specified algorithm and key.
+
+Syntax:
+
+crypto.createHmac( algorithm, key, options )
+
+const crypto = require("crypto");
+ 
+// Defining key
+const secret = "Secret-Key";
+ 
+// Calling createHmac method
+const hash = crypto
+  .createHmac("sha256", secret)
+ 
+  // updating data
+  .update("Here is the data string")
+ 
+  // Encoding to be used
+  .digest("hex");
+ 
+// Displays output
+console.log(hash);
+
+------------------------------------------------------.
+Hashing :=>
+
+https://www.scaler.com/topics/nodejs/cryptography-in-nodejs/
+	// Hashing
+// A hash is a fixed-length string of bits generated from any arbitrary block of source data using some technique and specified stages.
+// Here is an example to find the hash of a string with the sha-256 algorithm.
+
+// One of the most used hashing algorithms is SHA-256. Older common types, like SHA-1 and MD5, are no longer secure and should no longer be used.
+var crypto = require("crypto");
+
+var data = "This is a simple sentence  a hash by use of sha-256";
+var hasheddata = crypto.createHash("sha256").update(data).digest("base64");
+
+console.log(hasheddata);
+
+
+------------------------------------------------------.
+Encryption/ Decryption : 
+Ciphers enable you to encrypt and decrypt messages using a password.
+
+Cipher Algorithms That Work With Crypto:
+
+How To Use Cipher Algorithms with Crypto:
+
+The crypto module has two methods - one for encrypting and one for decrypting :
+
+crypto.createCipheriv(algorithm, key, iv)
+crypto.createDecipheriv(algorithm, key, iv)
+
+ The crypto.createCipheriv() and crypto.createDecipheriv() methods do not accept a password. Instead, the key and the initialization vector are used to generate a random password. The sizes of these two arguments are fixed based on the algorithm.
+
+const crypto = require("crypto");
+ 
+const algorithm = "aes-256-cbc";
+ 
+// generate 16 bytes of random data
+const iv = crypto.randomBytes(16);
+ 
+// Data that is required to be encrypted.
+const message = "This is a message containing secret information";
+ 
+// secret key generates 32 bytes of random data
+const Securitykey = crypto.randomBytes(32);
+ 
+// the cipher function
+const cipher = crypto.createCipheriv(algorithm, Securitykey, iv);
+ 
+// encrypt the message with the specified input encoding and give output in specified output encoding.
+let encryptedData = cipher.update(message, "utf-8", "hex");
+ 
+encryptedData += cipher.final("hex");
+ 
+console.log("Encrypted message: " + encryptedData);
+
+  
+aes-192-cbc
+sha256
+
+Cipher: The Cipher class is responsible for encrypting information.
+Decipher: The Decipher class is responsible for decrypting encrypted texts.
+
+Hash
+Certificate : A Certificate is made up of a key pair and other information that is used for encrypting electronic documents.
+
+DiffieHellman : Crypto’s DiffieHellman class utilizes Diffie-Hellman key exchanges. Diffie-Hellman key exchange is a method for securely passing cryptographic keys in public channels. 
+
+Sign : The sign class is for generating signatures
+
+HMAC : Hash-based message authentication code (HMAC) enbles you to provide digital signatures with the use of shared secret. Crypto’s HMAC class uses the HMAC method for digital signing.
+
+ ***********************************************************
+ https://blog.logrocket.com/password-hashing-node-js-bcrypt/
+
+
+********************************************
+*************************************************************************
+// CRUD - Create Read Update Delete
+// Properties
+admin/properties
+ 
+
+----------Mongoose Validation--------------------------------
+ . Mongoose Validation is essentially a customizable middleware that gets defined inside the SchemaType of Mongoose schema. It automatically fires off before a document is saved in the NoSQL DB. Validation can also be run manually using doc.validate(callback) or doc.validateSync() methods. Let’s understand more about this with the help of some examples.
+
+ unique: true
+------------------------------------------------------------------
+
+Validation using JOI 
+
+------------------------------------------------------------------------
+How to do pagination in Node.js using sorting ids ?
+
+Pagination in NodeJS is defined as adding the numbers to identify the sequential number of the pages. In pagination, we used to skip and limit for reducing the size of data in the database when they are very large in numbers. In this article, we will do pagination in NodeJS using sorting IDs.
+
+Approach: Sorting in the NodeJS helps to sort the result in ascending or descending order. We use the sort() method in which we pass one parameter that results in ascending or descending order. Use the value -1 in the sort object to sort descending and 1 to sort the object in the ascending order.
+
+Installing module: You can install the required module using the following command. 
+------------------------------------------------------------------
+
+*************************** JOI Validation ***********************************
+https://www.geeksforgeeks.org/how-to-validate-data-using-hapi-joi-module-in-node-js/
+
+Joi module is a popular module for data validation. and widely used package for object schema descriptions and validation.. There are various functions like optional(), required(), min(), max(), etc which make it easy to use and a user-friendly module for validating the data.
+Joi allows the developers to build the Javascript blueprints and make sure that the application accepts the accurately formatted data.
+
+It’s easy to get started and easy to use.
+It is widely used and popular module for data validation.
+It supports schema based validation.
+
+
+
+Steps to Implement the JOI Validation
+Initial Setup
+npm install joi
+
+Requiring module: You need to include joi module in your file by using these lines. 
+ 
+
+const Joi = require('joi');
+
+schema.validate({ username: 'abc', birth_year: 1994 });
+
+try {
+    const value = await schema.validateAsync({ username: 'abc', birth_year: 1994 });
+}
+catch (err) { }
+
+const { error, value } = schema.validate({ a: 'a string' });
+
+const Joi = require('joi'); 
+const schema = Joi.object().keys({ 
+  name: Joi.string().alphanum().min(3).max(30).required(),
+  birthyear: Joi.number().integer().min(1970).max(2013), 
+}); 
+const dataToValidate = { 
+  name 'chris', 
+  birthyear: 1971 
+} 
+const result = Joi.validate(dataToValidate, schema); 
+// result.error == null means valid
+
+const schema = Joi.object().keys({
+  email: Joi.string().email().required(),
+  password: Joi.string().min(8).required(),
+});
+
+
+.options({ abortEarly: false }); 
+
+value - the value being validated.
+options - an optional object with the following optional keys:
+abortEarly - when true, stops validation on the first error, otherwise returns all the errors found. Defaults to true.
+allowUnknown - when true, allows object to contain unknown keys which are ignored. Defaults to false.
+cache - when true, schema caching is enabled (for schemas with explicit caching rules). Default to true.
+context - provides an external data set to be used in references. Can only be set as an external option to validate() and not using any.prefs().
+convert - when true, attempts to cast values to the required types (e.g. a string to a number). Defaults to true.
+
+
+
+**********************************************************************************
+
+
+
+
+ 

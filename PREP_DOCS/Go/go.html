@@ -1,0 +1,306 @@
+https://www.tutorialspoint.com/go/go_interfaces.htm
+
+https://www.geeksforgeeks.org/how-to-sort-a-slice-stable-in-golang/?ref=ml_lbp
+https://www.programiz.com/golang/range
+
+https://www.turing.com/interview-questions/golang
+https://www.toptal.com/golang/interview-questions
+Sa
+Q. what is Go, and why would you use it?
+Ans: 
+Golang, is a statically-typed, compiled programming language designed for simplicity and efficiency.
+
+it's an open-source programming language developed and published by Google.
+	It's a relatively new programming language. It was developed in 2007 and made public in 2009.
+
+	It's an extremely popular programming language because of its focus on simplicity, clarity, and scalability because it offers great performance
+
+	It has a strong focus on concurrency, so on running multiple tasks simultaneously,
+
+	With a lot of important features built in, so that we don't need to reach for a of third-party libraries to perform basic tasks.
+
+	Because it's sthetically typed language, giving us extra-type safety and allowing to catch and fix many errors pretty early during development instead of testing your application and catching errors at runtime.
+	Because of these advantages, Go is pretty popular for developing network applications and APIs, microservice applications, and also CLI Tools Command-Line Interface Tools.
+
+ 
+
+Q. make() vs new() - Similarities & Differences 
+new() and make() functions. While both are used for memory allocation, 
+- make() function is used for initializing slices, maps, and channels – data structures that require runtime initialization
+- usually for data types like structs.
+- The new() function in Go is a built-in function that allocates memory for a new zeroed value of a specified type and returns a pointer to it. Use make() for Reference Types:
+ For slices, maps, and channels, where initialization involves setting up data structures and internal pointers, use make() to create an initialized instance.
+
+- Use new() for Value Types :
+	When dealing with value types like structs, you can use new() to allocate memory for a new zeroed value. This is suitable for scenarios where you want a pointer to an initialized structure.
+    new() returns a pointer, while make() returns a non-zeroed value
+Q. Go.mod file
+Q. Concurrency 
+	channel - FIFO QUE
+	Deadlock
+	go routines
+	Select
+
+Q. 
+
+ McGraw Hill Opportuinity
+
+Q. What is the difference between a method and a function in Go?
+Ans: https://www.tutorialspoint.com/functions-vs-methods-in-golang
+
+
+Basic Questions
+https://www.interviewbit.com/golang-interview-questions/
+
+Q. What is Go (Golang)?
+Ans: Go is an open-source programming language developed by Google. It is statically typed, compiled, and designed for simplicity, efficiency, and scalability.
+
+Q. Why is Go called a statically typed language?
+Ans:Go requires the type of a variable to be specified at compile time, ensuring type safety and faster execution.
+Q. What are the advantages of Go?
+Ans:
+Simple syntax
+Fast compilation
+Built-in concurrency support with goroutines and channels
+Automatic garbage collection
+Strong standard library
+Q. What is the purpose of a Go workspace?
+Ans: A Go workspace is a directory hierarchy that contains Go code, including src (source code), bin (compiled binaries), and pkg (compiled package objects).
+Q. What are Go modules?
+Modules are collections of Go packages. They allow versioning and dependency management, introduced in Go 1.11.
+Syntax and Language Features
+What is the Go package structure?
+
+Go code is organized into packages, with each package corresponding to a directory. The main package is the entry point for executable programs.
+How do you declare variables in Go?
+
+go
+Copy code
+var x int = 10
+y := 20 // shorthand declaration
+What are the basic data types in Go?
+
+Integer types: int, int8, int16, int32, int64
+Floating-point types: float32, float64
+Boolean: bool
+String: string
+What are pointers in Go?
+
+Pointers store memory addresses of variables. For example:
+go
+Copy code
+var x = 10
+var p = &x // p is a pointer to x
+What are slices in Go?
+
+Slices are dynamically-sized, flexible views into arrays. For example:
+go
+Copy code
+arr := [5]int{1, 2, 3, 4, 5}
+slice := arr[1:4] // slice = [2, 3, 4]
+Concurrency and Goroutines
+What are goroutines?
+
+Goroutines are lightweight threads managed by the Go runtime. For example:
+go
+Copy code
+go func() {
+    fmt.Println("Hello, Goroutine!")
+}()
+What are channels in Go?
+
+Channels are used for communication between goroutines. For example:
+go
+Copy code
+ch := make(chan int)
+ch <- 5       // send 5 to channel
+fmt.Println(<-ch) // receive from channel
+What is the difference between buffered and unbuffered channels?
+
+Buffered channels: Allow limited values to be stored without an immediate receiver.
+Unbuffered channels: Block the sender until a receiver is ready.
+How does the select statement work?
+
+The select statement waits for one of multiple channel operations to proceed. Example:
+go
+Copy code
+select {
+case msg := <-ch1:
+    fmt.Println("Received:", msg)
+case ch2 <- value:
+    fmt.Println("Sent:", value)
+default:
+    fmt.Println("No operation")
+}
+What are mutexes in Go?
+
+A mutex is a synchronization primitive used to prevent race conditions. For example:
+go
+Copy code
+var mu sync.Mutex
+mu.Lock()
+// critical section
+mu.Unlock()
+Error Handling
+How does Go handle errors?
+
+Go uses explicit error handling. Functions return an error type as the last return value.
+go
+Copy code
+result, err := someFunction()
+if err != nil {
+    fmt.Println(err)
+}
+What is the defer statement?
+
+defer is used to ensure a function call is executed after the surrounding function completes, often for cleanup:
+go
+Copy code
+defer fmt.Println("End")
+What is a panic in Go?
+
+A panic is a runtime error that stops the program. It can be recovered using the recover function.
+How does recover work?
+
+recover is used to handle panics and prevent program termination:
+go
+Copy code
+defer func() {
+    if r := recover(); r != nil {
+        fmt.Println("Recovered:", r)
+    }
+}()
+What is the difference between panic and error?
+
+Error: Used for predictable, recoverable problems.
+Panic: Used for unexpected, unrecoverable errors.
+Advanced Concepts
+What is an interface in Go?
+
+An interface defines a set of methods that a type must implement:
+go
+Copy code
+type Shape interface {
+    Area() float64
+}
+How are interfaces implemented in Go?
+
+Interfaces are implemented implicitly by any type that defines its methods.
+What is type assertion?
+
+Type assertion retrieves the concrete type of an interface value:
+go
+Copy code
+var i interface{} = "hello"
+s := i.(string) // assert i is of type string
+What is the select statement used for?
+
+It waits for one of several channel communications to proceed, handling concurrent tasks.
+What is a nil pointer?
+
+A nil pointer points to no memory location.
+Memory Management
+Does Go support manual memory management?
+
+No, Go uses garbage collection for automatic memory management.
+What is the purpose of the new function?
+
+Allocates zero-initialized memory and returns a pointer to it:
+go
+Copy code
+p := new(int) // *int
+What is the purpose of the make function?
+
+Used to initialize slices, maps, and channels:
+go
+Copy code
+slice := make([]int, 5)
+Standard Library and Packages
+How do you format output in Go?
+
+Using the fmt package:
+go
+Copy code
+fmt.Printf("Hello, %s!", "World")
+What is the io package in Go?
+
+Provides interfaces for I/O operations, such as Reader and Writer.
+What is the reflect package in Go?
+
+Provides tools to inspect and manipulate the type and value of variables at runtime.
+What is the sync package used for?
+
+Provides synchronization primitives like Mutex, WaitGroup, etc.
+Testing and Performance
+How do you write a test in Go?
+
+Use the testing package:
+go
+Copy code
+func TestAdd(t *testing.T) {
+    if Add(2, 3) != 5 {
+        t.Error("Expected 5")
+    }
+}
+How do you benchmark code in Go?
+
+Use testing.B for benchmarks:
+go
+Copy code
+func BenchmarkAdd(b *testing.B) {
+    for i := 0; i < b.N; i++ {
+        Add(2, 3)
+    }
+}
+How do you profile a Go program?
+
+Use the pprof tool for CPU and memory profiling.
+Miscellaneous
+How do you manage dependencies in Go?
+
+Using Go modules (go mod commands).
+What is the difference between run and build in Go?
+
+go run: Compiles and executes a Go program.
+go build: Compiles a Go program into an executable.
+What are build tags?
+
+Build tags allow conditional compilation.
+What is the runtime package?
+
+Provides functions to interact with the Go runtime, like NumGoroutine.
+What are custom types in Go?
+
+User-defined types based on existing types:
+go
+Copy code
+type Age int
+Debugging and Tools
+What is the go fmt tool?
+
+Formats Go source code.
+What is the go vet tool?
+
+Analyzes code for potential errors.
+How do you use the log package?
+
+For logging messages:
+go
+Copy code
+log.Println("Info message")
+What is the os package?
+
+Provides platform-independent interfaces for operating system functions.
+How do you handle JSON in Go?
+
+Using the encoding/json package:
+go
+Copy code
+json.Marshal() // convert struct to JSON
+json.Unmarshal() // parse JSON to struct
+What are code comments in Go?
+
+Single-line (//) and multi-line (/* */) comments.
+What are Go routines compared to threads?
+
+Goroutines are more lightweight than OS threads, with a smaller

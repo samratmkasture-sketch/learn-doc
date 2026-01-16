@@ -1,0 +1,227 @@
+User Verification
+Login 
+cookie
+
+User Registration : 
+1. Form/payload validation
+2. Password encryption
+3. User entry to DB (status : inactive)
+4. Send Email for verification
+5. Once verified set status to active
+
+
+User Login : 
+1. Form/payload validation
+2. submit usename/password
+3. fetch user from db using username
+4. compare user entered password with encryppted db password using bcrypt compare
+5. if credentials are correct 
+		- generate JWT token 
+		- send back token Or Set cookie
+	else respond with error
+--------------------------------------------
+Logging is one of the most important and useful steps a developer can take when working in Node.js. In fact, it’s one of the most useful steps a developer can take regardless of their runtime environment! Logging helps developers know what it is that their code is actually doing, and can help developers save hours of debugging work.
+
+One of the key purposes of logging is to save information about each flow or runtime. This is the same information that a developer uses to understand their application. For example, if there is a bug in the database section of an app, a log will point to where the failure takes place, helping you to identify the cause of the problem.
+
+In this article, we’ll cover some of the best practices for logging in Node.js and see why logging is a good idea. I will also share my recommendations for the best monitoring tools for Node.js applications.
+
+ it’s important to remember that not all information should be logged. For example, personal data, like user information, and delicate data, like passwords and credit card information, should not be logged. Also worth noting is that the tool you use to log is far less important than your approach to logging.
+--------------------------------------------
+Node.js - Upload Files
+
+
+Logger Winston : 
+******************************
+Creating and publishing unscoped public packages
+
+
+
+Node.js - Upload Files
+Formidable : 
+
+Error Handling, Debugging, and Testing
+Testing 
+Assert
+Mocha 
+Supertest
+
+Debugging Tools and Techniques
+ 
+Logger
+
+
+***************************************************************************
+
+Authentication and Authorization:
+Implementing user authentication (e.g., using JWT)
+Role-based access control
+
+Middleware:
+ Custom middleware functions
+ 
+---------------------------------------------------------------------
+=> How to implement JWT authentication in Express app ?
+https://www.geeksforgeeks.org/how-to-implement-jwt-authentication-in-express-js-app/
+----------------------------------------------------------------------
+ 
+
+
+Response Builder Class : 
+Error handling middleware
+***************************************************************************
+--------------------------------------------------
+			NodeJS Testing : 
+--------------------------------------------------
+https://www.geeksforgeeks.org/what-is-the-role-of-assert-in-node-js/?ref=ml_lbp
+
+What is the role of assert in Node.js ?
+Assert is a Node.js module that provides facilitates to writing the test and will not provide any output on the terminal when the test is in the process until any asserting error during the test. It provides various set assertion functions that can be used verifying constants. The assert module in mostly intended for internal use we can use it in the application.
+
+Role of Assert in Node.js: The role of the assert module provides functions for testing expressions. While testing if any of the expressions evaluates to 0 (false) an assertion failure occurs and the program will be terminated.
+
+Advantages of using the Assert module:
+
+It helps to minimize the time to debug the code.
+It can be reused across multiple projects if developed with the intent of keeping it in mind.
+It improves error detection.
+It provides better monitoring of the design and helps in easier debugging of test failures.
+It can be used for both dynamic simulations as well as in formal verification of the design.
+
+--------------------------------------------------
+Testing with Jest
+https://www.geeksforgeeks.org/testing-with-jest/
+--------------------------------------------------
+Jest is a Javascript Testing Framework by Facebook. It is used most commonly for unit testing. Unit testing is when you provide input to a unit of code(usually, a function) and match the output with the expected output. 
+
+Jest Features: 
+ 
+
+zero config: As we will see later in this article, close to none configuration is required to get started with writing tests and deploying them. However, a config file can be supplied to the test suite as well.
+snapshots: Jest has the ability to enable snapshot testing as well. Essentially, the snapshots are matched with the saved snapshot and check for matching functionality.
+isolated tests: Jest tests are run parallelly to improve run time.
+Setting up a jest project 
+
+
+
+
+
+
+
+
+***********************************
+Using Babel
+***********************************
+What is Babel Transpiler?
+Babel is a tool that converts newer versions of ECMAScript to ECMAScript5 (ES5). ES5 is the current standard Javascript that is understood by major browsers including IE11. Babel enables developers to use cutting-edge Javascript without worrying about browser support.
+
+Babel is a JavaScript transpiler, meaning it converts a newer version of ECMAScript, such as ES9, to a standard version (ES5).
+
+Babel is a combination of plugins. The most common plugins used are:
+
+Plugin	Description
+@babel/core	Contains the core logic for the transpiled code.
+@babel/cli	Provides the CLI tool for working with Babel.
+@bable/env	A preset for transpiling ES6+ to ES5.
+
+Using Babel to Convert ES14 to ES5
+
+Using Babel to Convert ES14 to ES5
+
+./node_modules/.bin/babel src --out-dir dist --presets=@babel/env
+
+
+
+
+
+https://babeljs.io/setup#installation
+-----------------------------------------------------
+1. Choose your tool (try CLI)
+	CLI
+
+2. Installation
+	While you can install Babel CLI globally on your machine, it's much better to install it locally project by project.
+
+	There are two primary reasons for this.
+
+	Different projects on the same machine can depend on different versions of Babel allowing you to update one at a time.
+	It means you do not have an implicit dependency on the environment you are working in. Making your project far more portable and easier to setup.
+	We can install Babel CLI locally by running:
+
+	npm install --save-dev @babel/core @babel/cli
+	Note: If you do not have a package.json, create one before installing. This will ensure proper interaction with the npx command.
+
+	After that finishes installing, your package.json file should include:
+
+	{
+	  "devDependencies": {
+	+   "@babel/cli": "^7.0.0",
+	+   "@babel/core": "^7.0.0"
+	  }
+	}
+3. Usage
+	Instead of running Babel directly from the command line we're going to put our commands in npm scripts which will use our local version.
+
+	Simply add a "scripts" field to your package.json and put the babel command inside there as build.
+
+	  {
+	    "name": "my-project",
+	    "version": "1.0.0",
+	+   "scripts": {
+	+     "build": "babel src -d lib"
+	+   },
+	    "devDependencies": {
+	      "@babel/cli": "^7.0.0"
+	    }
+	  }
+Now from our terminal we can run:
+npm run build
+
+4. Create babel.config.json configuration file
+	Great! You've configured Babel but you haven't made it actually do anything. Create a babel.config.json config in your project root and enable some presets.
+	To start, you can use the env preset, which enables transforms for ES2015+
+	npm install @babel/preset-env --save-dev
+
+	In order to enable the preset you have to define it in your babel.config.json file, like this:
+
+	{
+	  "presets": ["@babel/preset-env"]
+	}
+
+*******************************
+Nodemon : 
+*******************************
+2. Installation
+	npm install @babel/core @babel/node --save-dev
+
+3. Usage
+	In your package.json file make the following changes:
+
+	{
+	  "scripts": {
+	    "babel-node": "babel-node --presets='@babel/preset-env' --ignore='foo|bar|baz'"
+	  }
+	}
+
+	Then call your script with:
+
+	nodemon --exec npm run babel-node -- path/to/script.js
+
+	Arguments caveat
+	Calling nodemon with babel-node may lead to arguments getting parsed incorrectly if you forget to use a double dash. Using npm-scripts helpers prevent this. If you chose to skip using npm-scripts, it can be expressed as:
+
+	nodemon --exec babel-node --presets=@babel/preset-env --ignore='foo\|bar\|baz' -- path/to/script.js
+
+4. Create babel.config.json configuration file
+	Great! You've configured Babel but you haven't made it actually do anything. Create a babel.config.json config in your project root and enable some presets.
+
+	To start, you can use the env preset, which enables transforms for ES2015+
+
+	npm install @babel/preset-env --save-dev
+
+	In order to enable the preset you have to define it in your babel.config.json file, like this:
+
+	{
+	  "presets": ["@babel/preset-env"]
+	}
+

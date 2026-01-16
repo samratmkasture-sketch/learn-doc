@@ -1,0 +1,180 @@
+What is the maximum allowed item size ?
+400 KB
+
+What are primary keys in DynamoDB? Differentiate between Partition Key and Sort Key.
+
+Answer: The primary key uniquely identifies each item in a DynamoDB table. It can be:
+Partition Key (Hash Attribute): A simple primary key composed of a single attribute. DynamoDB uses the partition key's value as input to an internal hash function to determine the physical storage partition where the item will be stored. This is crucial for distributing data and scaling.
+Composite Primary Key (Partition Key and Sort Key/Range Attribute): Composed of two attributes. Items with the same partition key are stored together and ordered by the sort key. This allows for efficient querying of items within a partition based on the sort key (e.g., retrieving all orders for a customer within a specific date range).
+
+Describe the two consistency models in DynamoDB: Eventually Consistent Reads vs. Strongly Consistent Reads. When would you choose one over the other?
+
+Answer:
+Eventually Consistent Reads (Default): Returns a response almost immediately but might not reflect the results of a recently completed write operation. Changes propagate through the system, and all copies of data will eventually be consistent. It's best for read-heavy workloads where immediate data accuracy isn't critical (e.g., social media feeds, product catalogs). Offers lower latency and higher read throughput.
+Strongly Consistent Reads: Returns the most up-to-date data, reflecting all successful writes that occurred before the read. This comes at a slightly higher latency and potentially lower read throughput. It's suitable for scenarios where data accuracy is paramount, such as financial transactions or user profile updates where a user expects to see their changes immediately.
+
+Data Modeling and Design Best Practices
+How do you approach data modeling in DynamoDB, given its NoSQL nature? Discuss the "single-table design" concept.
+
+Answer: Data modeling in DynamoDB is significantly different from relational databases. It's access-pattern driven rather than normalized. My approach involves:
+Identifying Access Patterns: First, list all the ways the application will query and write data. This is the most critical step.
+Minimizing Joins: DynamoDB doesn't support joins. Data should be denormalized and structured to satisfy queries with single GetItem, Query, or Scan operations.
+Leveraging Primary Keys and Indexes: Design primary keys (partition and sort keys) to efficiently support the identified access patterns.
+Single-Table Design: This is a common and often recommended practice for experienced DynamoDB users. Instead of creating many tables, related data is stored in a single table, using carefully chosen primary keys and GSIs to differentiate and query different "entities." This helps avoid cross-table joins, simplifies operations, and often leads to better performance and cost efficiency. It requires creative use of overloaded partition/sort keys and attributes.
+Hot Partitions: Actively plan to avoid hot partitions by distributing write/read operations evenly across partition keys, using high-cardinality attributes for partition keys where possible.
+Explain Global Secondary Indexes (GSIs) and Local Secondary Indexes (LSIs). When would you use each?
+
+Answer:
+Global Secondary Index (GSI): An index with a primary key that can be different from the table's primary key. The GSI can have a different partition key and an optional sort key. It can span across all partitions of the base table.
+Use Cases: Used when your query patterns require querying on attributes other than the table's primary key. Since GSIs are globally distributed, they enable queries across the entire table.
+Important Considerations: GSIs have their own provisioned throughput (or on-demand capacity), and data is eventually consistent between the base table and the GSI.
+Local Secondary Index (LSI): An index that has the same partition key as the base table, but a different sort key. LSIs are "local" to a single partition of the base table.
+Use Cases: Used when you need to query items within a single partition of the base table using a different sort order or a different sort key than the base table's sort key.
+Important Considerations: LSIs share the same provisioned throughput as the base table partition. They are strongly consistent with the base table. There's a limit of 5 LSIs per table.
+How do you handle one-to-many and many-to-many relationships in DynamoDB? Provide examples.
+
+Answer:
+One-to-Many:
+Embedding: If the "many" side has limited items and doesn't require independent access, embed them directly in the "one" item as a list or map attribute. (e.g., Order item containing a list of LineItems).
+Reverse Indexing/Adjacency List: For larger "many" sides, create items where the "many" items' primary key contains the "one" item's identifier (e.g., for User having many Posts, Post items could have a PK: USER#<userId>, SK: POST#<postId>). This allows querying all posts for a user efficiently. You can also use a GSI with the "one" side's ID as the GSI partition key.
+Many-to-Many:
+Adjacency List: This is the most common and flexible approach. Store both sides of the relationship as items in the same table (single-table design). Use composite primary keys to represent the relationship.
+Example: For Students and Courses:
+PK: STUDENT#<studentId>, SK: COURSE#<courseId> (Represents a student enrolled in a course)
+PK: COURSE#<courseId>, SK: STUDENT#<studentId> (Represents a course having enrolled students)
+You can then query for all courses a student is in, or all students in a course, with a single Query operation.
+GSI for inverted lookups: If the primary access pattern is from one entity to the other, a GSI can facilitate the reverse lookup.
+Scaling and Performance
+Explain Provisioned Throughput vs. On-Demand Capacity in DynamoDB. When would you choose one over the other?
+
+Answer:
+Provisioned Throughput: You specify the desired read and write capacity units (RCUs and WCUs) for your table and its GSIs. You pay for the capacity you provision, whether you use it or not.
+Choose when: You have predictable workloads with consistent traffic patterns, and you want to optimize for cost by matching provisioned capacity closely to your average usage. Good for steady-state applications.
+On-Demand Capacity: DynamoDB automatically scales your read and write capacity based on your actual traffic patterns. You pay per request.
+Choose when: You have unpredictable workloads, sporadic traffic, or are just starting development and don't know your usage patterns yet. It offers flexibility and removes the need for capacity planning, but can be more expensive for consistently high or predictable workloads.
+How do you handle throttling in DynamoDB? What strategies can be employed to mitigate it?
+
+Answer: Throttling occurs when your request rate exceeds the provisioned throughput capacity (or the underlying on-demand capacity limits). DynamoDB rejects requests with a ProvisionedThroughputExceededException.
+Mitigation Strategies:
+Exponential Backoff and Retry: Implement client-side logic to automatically retry throttled requests with increasing delays. AWS SDKs typically have this built-in.
+Increase Provisioned Throughput: For predictable workloads, adjust RCUs/WCUs upwards in the console, API, or using Auto Scaling.
+Switch to On-Demand Capacity: For unpredictable workloads, On-Demand mode largely eliminates throttling (though very sudden, massive spikes can still exceed internal limits for a brief period).
+Distribute Workload Evenly: Design partition keys to ensure data is distributed across partitions, preventing "hot partitions" which can lead to throttling on specific partitions even if overall table capacity is sufficient.
+Batch Operations: Use BatchGetItem and BatchWriteItem to reduce the number of API calls, which can help stay within per-second limits. However, BatchWriteItem is not transactional.
+DynamoDB Accelerator (DAX): For read-heavy applications, DAX is an in-memory cache that can significantly reduce read requests to the underlying DynamoDB table, thereby reducing the chance of throttling.
+What is DynamoDB Accelerator (DAX) and when should you use it?
+
+Answer: DAX is a fully managed, in-memory cache for DynamoDB. It's API-compatible with DynamoDB, meaning you can swap your DynamoDB endpoint for a DAX endpoint in your application with minimal code changes.
+Use Cases:
+Read-heavy workloads: Where reads significantly outnumber writes.
+Applications requiring microsecond latency: DAX provides response times in microseconds, improving performance for critical applications.
+Reducing provisioned throughput costs: By serving reads from the cache, you reduce the read capacity units consumed from the underlying DynamoDB table, potentially lowering costs.
+Avoiding throttling on reads: DAX absorbs a significant portion of read traffic, preventing throttling on the base table.
+Considerations: DAX is eventually consistent. It's not suitable for write-heavy applications or applications that require strongly consistent reads for every operation.
+Advanced Features & Use Cases
+Explain DynamoDB Streams and their use cases.
+
+Answer: DynamoDB Streams is a time-ordered sequence of item-level modifications (inserts, updates, deletes) in a DynamoDB table. Each change is captured as a stream record.
+Use Cases:
+Real-time Analytics: Replicating data to an analytics platform (e.g., S3, Redshift) for near real-time dashboards.
+Cross-Region Replication (beyond Global Tables): Building custom replication solutions.
+Triggering Lambda Functions: For tasks like sending notifications, updating search indexes (e.g., Elasticsearch), or performing aggregations.
+Event Sourcing: Building applications based on event streams.
+Auditing and Compliance: Maintaining a historical record of all changes to data.
+How do you implement transactions in DynamoDB? What are the benefits and limitations of TransactWriteItems and TransactGetItems?
+
+Answer: DynamoDB provides transactional operations using TransactWriteItems and TransactGetItems to ensure atomicity, consistency, isolation, and durability (ACID) across multiple items within and across different tables within a single AWS account and region.
+TransactWriteItems: Atomically writes multiple items. All operations in the transaction succeed or all fail.
+Benefits: Guarantees data integrity for complex updates involving multiple items. Simplifies application logic by offloading atomicity concerns to DynamoDB.
+Limitations: Max 10 unique items per transaction. Higher latency and cost compared to individual PutItem or UpdateItem operations.
+TransactGetItems: Atomically reads multiple items. All items are read at the same point in time, or none are.
+Benefits: Ensures data consistency when reading multiple related items.
+Limitations: Max 10 unique items per transaction. Higher latency and cost.
+Discuss DynamoDB Global Tables. How do they provide multi-region replication and disaster recovery?
+
+Answer: Global Tables provide fully managed, multi-master, multi-region replication for DynamoDB tables. They enable you to create a single table that is replicated across multiple AWS regions, allowing applications in different regions to read and write to their local replica.
+How it works:
+You designate a "master" table, and DynamoDB automatically creates replicas in other specified regions.
+Changes made to any replica are automatically propagated to all other replicas, typically within seconds.
+It uses DynamoDB Streams to replicate data across regions.
+Benefits:
+Disaster Recovery: If one region becomes unavailable, your application can failover to another region with a healthy replica.
+Low-latency global access: Users access data from the nearest region, reducing latency.
+Improved fault tolerance: Enhances the resilience of your application.
+Considerations: Eventually consistent (changes replicate eventually), requires careful conflict resolution strategies if both regions are updated simultaneously, and higher cost due to replication traffic and multiple table instances.
+Security and Operations
+How do you secure data in DynamoDB? Discuss IAM, encryption, and VPC Endpoints.
+
+Answer:
+AWS Identity and Access Management (IAM): Crucial for controlling who can access DynamoDB and what actions they can perform. You define IAM policies to grant granular permissions (e.g., read-only access to specific tables, full access to a DynamoDB administrator).
+Encryption at Rest: DynamoDB provides encryption at rest by default using AWS Key Management Service (KMS). You can choose an AWS-owned key, an AWS-managed key, or a customer-managed key for additional control.
+Encryption in Transit: All communication with DynamoDB endpoints uses HTTPS, ensuring data is encrypted during transit.
+VPC Endpoints (Gateway Endpoint & Interface Endpoint):
+Gateway Endpoints (for S3 and DynamoDB): Allow instances in your VPC to access DynamoDB directly, using private IP addresses, without traversing the public internet. This enhances security and can reduce data transfer costs.
+Interface Endpoints (AWS PrivateLink): Provide private connectivity to DynamoDB from your VPC without using an internet gateway, NAT device, VPN, or AWS Direct Connect connection. This offers more granular control and is often preferred for more complex network architectures.
+Network Access Control Lists (NACLs) and Security Groups: Control traffic to and from your EC2 instances that interact with DynamoDB.
+What are your strategies for monitoring and troubleshooting DynamoDB performance issues?
+
+Answer:
+Amazon CloudWatch: The primary monitoring tool. I'd set up dashboards to monitor:
+Consumed Read/Write Capacity Units: To identify if the application is using its provisioned throughput efficiently or if it's being throttled.
+Throttled Requests: Direct indicator of capacity issues.
+Latency: For GetItem, Query, PutItem, UpdateItem, etc.
+IteratorAge (for Streams): To monitor the lag of consumers processing DynamoDB Streams.
+Errors: Application-specific errors and DynamoDB service errors.
+DynamoDB Contributor Insights: Helps identify "hot" partition keys that are receiving a disproportionately high volume of read or write traffic, which can lead to throttling.
+CloudTrail: For auditing API calls made to DynamoDB.
+Application Logs: Logs from the application can provide context on why certain DynamoDB operations are slow or failing.
+Distributed Tracing (e.g., AWS X-Ray): To trace requests end-to-end and identify bottlenecks across different services, including DynamoDB calls.
+Testing: Regularly perform load testing and stress testing to understand how DynamoDB behaves under various load conditions and to identify potential bottlenecks before they impact production.
+How do you perform backups and restores in DynamoDB?
+
+Answer:
+Point-in-Time Recovery (PITR): This is highly recommended. It provides continuous backups of your table data up to the last 35 days. You can restore your table to any point in time within this window, down to the second. It's enabled with a single click and provides granular recovery.
+On-Demand Backups: You can create full backups of your DynamoDB tables at any time. These backups are retained until you explicitly delete them. They are useful for long-term archiving or creating a specific snapshot.
+Export to S3: For more complex use cases like analytics or data warehousing, you can export your DynamoDB table data to S3. This can be done through a managed export process or using AWS Glue.
+Scenario-Based and Architectural Questions
+You have a highly read-intensive application that needs to retrieve customer profiles by user ID and also by email address. How would you design the DynamoDB table and indexes for optimal performance?
+
+Answer:
+Base Table:
+Partition Key: UserId (e.g., User#<uuid>) - for direct lookups by user ID.
+Sort Key: (None) or User Metadata (e.g., if there's other information like PROFILE# that also needs to be stored for the user in the same partition)
+Global Secondary Index (GSI):
+GSI Partition Key: EmailAddress - to efficiently query by email address.
+GSI Sort Key: (None) or UserId (if we need to find all users with a specific email, although email should be unique).
+Read Strategy:
+When querying by UserId: Use GetItem on the base table.
+When querying by EmailAddress: Use Query on the GSI.
+DAX: If the read volume is extremely high and microsecond latency is critical, I'd consider deploying a DAX cluster in front of this table to cache frequently accessed customer profiles.
+Your application processes user activity logs. These logs are high-volume writes, and reads are primarily for analytics, often involving time-series queries. How would you design the DynamoDB schema?
+
+Answer:
+Partition Key: A Date or Date_Hour component combined with a random suffix or a user/device ID to distribute writes across partitions. (e.g., PK: 2025-06-02#<random_id>, or PK: DEVICE#<deviceId>#2025-06-02)
+Sort Key: A highly granular timestamp (e.g., UNIX_TIMESTAMP_MS) to allow for efficient time-series queries within a partition.
+GSI for Analytics: A GSI could be created with a UserID or EventType as the GSI Partition Key and the timestamp as the GSI Sort Key, enabling analytics queries across different users or event types over time.
+Data Archiving/TTL: Since it's log data, I'd consider enabling Time-To-Live (TTL) to automatically expire old logs to manage storage costs. For long-term analytics, I might use DynamoDB Streams to replicate data to S3 or a data warehouse like Redshift/Snowflake.
+Describe a challenging DynamoDB problem you faced and how you resolved it.
+
+Answer: (This is a behavioral question, so your answer should be based on your actual experience. Here's a template for how to structure it):
+Situation: Briefly describe the project and the problem you encountered (e.g., "We were experiencing severe throttling on our user profile table during peak hours, leading to user experience degradation and increased error rates.").
+Task: What was your goal? (e.g., "My task was to identify the root cause of the throttling and implement a solution to ensure high availability and performance.")
+Action: Detail the steps you took.
+"I started by analyzing CloudWatch metrics, specifically consumed RCUs/WCUs and throttled events. I noticed a large spike in writes to a specific set of partition keys."
+"I then used DynamoDB Contributor Insights to identify the hot partitions. It turned out our UserId partition key wasn't as uniformly distributed as we thought, especially for new user sign-ups."
+"To resolve this, we implemented a strategy to prepend a random, low-cardinality string to the UserId partition key for new users, effectively sharding the UserId space. For existing users, we considered a re-architecture to distribute the data if the hotness was persistent."
+"Additionally, we leveraged BatchWriteItem for bulk updates where possible, and ensured our client-side SDK was configured with exponential backoff."
+Result: What was the outcome? (e.g., "After implementing these changes, we observed a significant reduction in throttled requests, consistent low latency, and a much smoother user experience, even during high traffic periods. We also adjusted our Auto Scaling policies to be more proactive.")
+When would you choose DynamoDB over other NoSQL databases like MongoDB or Cassandra?
+
+Answer:
+DynamoDB Strengths:
+Fully Managed: No server provisioning, patching, or scaling concerns. Excellent for teams wanting to minimize operational overhead.
+Serverless Integration: Seamlessly integrates with AWS Lambda, API Gateway, etc., for building serverless applications.
+Predictable Performance at Scale: Provides consistent low latency even at massive scale, with built-in features like DAX and Global Tables.
+Cost-Effective for Specific Workloads: On-Demand capacity is great for variable workloads, and Provisioned Throughput can be cost-effective for predictable high throughput.
+ACID Transactions: Offers ACID transactions for multi-item operations.
+When I'd consider other NoSQL options:
+MongoDB: If I need a more flexible document model, aggregation framework, or graph capabilities. Often preferred for rapid prototyping or if migrating from an existing document-oriented database. Self-managed MongoDB can offer more control but requires more operational effort.
+Cassandra: For extreme write-heavy workloads with very high availability requirements and strong eventual consistency across globally distributed data centers. It's a distributed database and requires significant operational expertise to manage.
+Other options (e.g., Redis): For caching, real-time analytics, or leaderboards (where specialized data structures are beneficial).

@@ -1,0 +1,178 @@
+----------GITHUB ACTIONS-------------
+https://www.youtube.com/watch?v=bSBaAspgmhU
+
+DOCKERHUB :
+https://www.youtube.com/watch?v=euEkYEFCrI8
+-------------------------------------
+
+
+Project1: Host A Static Website on AWS And CI CD Pipeline -
+https://www.youtube.com/watch?v=UVvc_RtOoWg
+
+
+*** GitHub Actions Interview Questions and Answers ***         
+
+1. What is GitHub Actions and what are its core components?
+Answer: GitHub Actions is a continuous integration and continuous delivery (CI/CD) platform that automates, customizes, and executes software development workflows directly in your repository. It allows you to build, test, and deploy your code right from GitHub.
+
+Its core components are:
+
+Workflows: An automated process defined in a YAML file (.github/workflows/workflow_name.yml). A repository can have multiple workflows, each triggered by a different event.
+
+Events: A specific activity in a repository that triggers a workflow run. Examples include push to a branch, pull_request creation, or a scheduled time.
+
+Jobs: A set of steps in a workflow that run on the same runner (virtual machine). A workflow can have multiple jobs that run sequentially or in parallel.
+
+Steps: An individual task within a job. A step can either run a command (e.g., run: npm install) or execute a pre-built action.
+
+Actions: The smallest portable unit of a workflow. It's a reusable component that performs a specific task. Actions can be created by the community, by GitHub, or by you.
+
+Runners: The virtual machine that executes a job. GitHub provides hosted runners for various operating systems (Ubuntu, Windows, macOS) or you can host your own self-hosted runners.
+
+2. How do you trigger a GitHub Actions workflow?
+Answer: Workflows are triggered by events. You specify the events using the on keyword in your workflow YAML file.
+
+Common event types include:
+
+push: Triggers on a git push to a repository branch. You can specify which branches to run on using branches: or branches-ignore:.
+
+pull_request: Triggers when a pull_request is opened, synchronized, or a new commit is pushed.
+
+workflow_dispatch: Allows you to manually trigger a workflow from the GitHub UI.
+
+schedule: Triggers a workflow at a specified time using cron syntax.
+
+issue_comment: Triggers when a new comment is created on an issue.
+
+Example:
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+3. Explain the difference between runs-on and uses.
+Answer:
+
+runs-on: This keyword is used at the job level to specify the type of virtual machine runner on which the job will execute. It defines the environment for the entire job.
+
+uses: This keyword is used at the step level to reference an action that the step should run. It's a way of including a pre-packaged task within your job.
+
+Example:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # <-- specifies the runner for the 'build' job
+    steps:
+      - uses: actions/checkout@v4  # <-- uses the 'checkout' action
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+4. What are GitHub Actions secrets, and how are they used?
+Answer: GitHub Actions secrets are encrypted environment variables that you can create in a repository or organization. They are designed to store sensitive information like API keys, access tokens, or credentials that you don't want to expose in your workflow files or repository history.
+
+Creation: Secrets are added through the repository settings: Settings > Secrets and variables > Actions.
+
+Usage: You can access secrets in a workflow using the ${{ secrets.SECRET_NAME }} syntax. They are only available to the runner during a workflow run and are not visible in the logs.
+
+Example:
+
+steps:
+  - name: Deploy to Production
+    run: |
+      echo "Deploying to production server..."
+      # Use the secret as an environment variable
+      sshpass -p ${{ secrets.SSH_PASSWORD }} ssh user@server
+
+5. How can you share data between jobs in a workflow?
+Answer: You can share data between jobs using artifacts. An artifact is a file or collection of files generated during a workflow run that you can save and later retrieve.
+
+The process involves two main actions:
+
+actions/upload-artifact@v4: Used in a job to upload files as an artifact.
+
+actions/download-artifact@v4: Used in a subsequent job to download the artifact and access the files.
+
+Example:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello World" > my_file.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: my-artifact
+          path: my_file.txt
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build # This job depends on 'build'
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: my-artifact
+      - run: cat my_file.txt # Access the downloaded file
+
+6. What is a matrix strategy, and when would you use it?
+Answer: A matrix strategy allows you to run multiple jobs in parallel based on a set of defined variables. It's a powerful way to test your code across different operating systems, versions of a language (e.g., Node.js, Python), or other configurations without writing a separate job for each combination.
+
+Usage: You define the matrix using the strategy and matrix keywords. The workflow will then create a job for every possible combination of the variables you've specified.
+
+Example:
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        node-version: [16, 18, 20]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm test
+
+7. How do you handle caching in GitHub Actions to speed up workflows?
+Answer: Caching can significantly reduce workflow run times by reusing files from previous runs, such as dependencies. You use the actions/cache@v4 action for this.
+
+path: The directory to cache.
+
+key: A unique identifier for the cache. A common practice is to use a combination of a static string and a hash of a dependency file (e.g., package-lock.json for Node.js).
+
+restore-keys: An optional list of fallback keys to use if the primary key doesn't find a match.
+
+Example:
+
+steps:
+  - uses: actions/cache@v4
+    with:
+      path: ~/.npm
+      key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      restore-keys: |
+        ${{ runner.os }}-node-
+  - name: Install dependencies
+    run: npm ci
+
+8. What are some best practices for writing secure and efficient workflows?
+Answer:
+
+Use Specific Versions: Always use a specific version of an action (e.g., actions/checkout@v4) rather than the latest version (actions/checkout@main). This ensures your workflow is not broken by unexpected changes.
+
+Limit Permissions: Use the permissions keyword to grant jobs the minimum necessary permissions. For example, a job that only reads a repository doesn't need write access.
+
+Use Secrets and Variables: Never hardcode sensitive information. Use secrets for credentials and variables for non-sensitive values.
+
+Cache Dependencies: Use the actions/cache action to speed up build and test times.
+
+Parallelize Jobs: If jobs are independent, configure them to run in parallel using the jobs keyword without needs.
+
+Use Reusable Workflows: For common tasks (like building or deploying), create reusable workflows to centralize logic and promote consistency.
